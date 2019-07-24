@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GetPlace</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet" />
+
+
+    <h:outputStylesheet library="css" name="materialize.css" />
+
+
+</h:head>
+<h:body>
+
+
+
+
+    <div class="sidenave">
+
+        <a id="logo-container" href="/index.xhtml" class=" white-text logo brand-logo center-align">AlmoçoIF</a>
+        <hr class="styleone"/>
+        <br/>
+        <h:form>
+
+
+
+        </h:form>
+        <br/>
+
+    </div>
+
+    <nav class=" blue-grey darken-4" role="navigation">
+        <div class="nav-wrapper container">
+            <ul class="right hide-on-med-and-down">
+
+            </ul>
+
+
+        </div>
+    </nav>
+    <br/>
+
+    <div class="container">
+
+        <ui:insert name="top">
+
+        </ui:insert>
+
+        <div>
+
+            <h:messages
+                    layout="table"
+                    showSummary="true"
+                    showDetail="true"
+                    globalOnly="true"
+
+                    errorClass="card-panel center-align red white-text "
+
+                    fatalClass="card-panel center-align grey darken-4 white-text "
+
+                    infoClass="card-panel center-align green accent-3 black-text "
+
+                    warnClass="card-panel center-align yellow accent-3 black-text "
+            />
+
+            <ui:insert name="centro">
+
+            </ui:insert></div>
+
+
+    </div>
+
+
+
+    <!--  Scripts-->
+    <h:outputScript library="js" name="JQuery.js" />
+    <h:outputScript library="js" name="materialize.js" />
+    <h:outputScript library="js" name="init.js" />
+
+    <script>
+        $('.dropdown-trigger').dropdown();
+
+        $(document).ready(function() {
+            $('.modal').modal();
+        });
+        $(document).ready(function() {
+            $('.collapsible').collapsible();
+        });
+        $(document).ready(function() {
+            $('.scrollspy').scrollSpy();
+        });
+        $(document).ready(function(){
+            $('.tooltipped').tooltip();
+        });
+    </script>
+</h:body>
+
+</html>
