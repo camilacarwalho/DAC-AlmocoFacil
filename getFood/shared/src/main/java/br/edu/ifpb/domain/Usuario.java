@@ -1,7 +1,8 @@
 package br.edu.ifpb.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import br.edu.ifpb.domain.enums.UsuarioEnum;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,51 +10,56 @@ import java.util.Objects;
 public class Usuario implements Serializable {
 
     @Id
-    private String cpf;
-    private String email;
-    private String nome;
-    private String telefone;
+    private String matricula;
+    @Column(nullable = false)
+    private String senha;
+    @Column(nullable = false)
+    private UsuarioEnum cargo;
+
+    @ManyToOne
+    @JoinColumn(name = "pessoa_cpf")
+    private Pessoa pessoa;
 
     public Usuario() {
     }
 
-    public Usuario(String cpf, String email, String nome, String telefone) {
-        this.cpf = cpf;
-        this.email = email;
-        this.nome = nome;
-        this.telefone = telefone;
+    public Usuario(String matricula, String senha, UsuarioEnum cargo,Pessoa pessoa) {
+        this.matricula = matricula;
+        this.senha = senha;
+        this.cargo = cargo;
+        this.pessoa=pessoa;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public String getNome() {
-        return nome;
+    public UsuarioEnum getCargo() {
+        return cargo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCargo(UsuarioEnum cargo) {
+        this.cargo = cargo;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     @Override
@@ -61,15 +67,15 @@ public class Usuario implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(cpf, usuario.cpf) &&
-                Objects.equals(email, usuario.email) &&
-                Objects.equals(nome, usuario.nome) &&
-                Objects.equals(telefone, usuario.telefone);
+        return Objects.equals(matricula, usuario.matricula) &&
+                Objects.equals(senha, usuario.senha) &&
+                cargo == usuario.cargo &&
+                Objects.equals(pessoa, usuario.pessoa);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cpf, email, nome, telefone);
+        return Objects.hash(matricula, senha, cargo, pessoa);
     }
 }
 
