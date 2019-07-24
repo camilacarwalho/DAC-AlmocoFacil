@@ -1,5 +1,7 @@
 package br.edu.ifpb.domain;
 
+import br.edu.ifpb.domain.enums.UsuarioEnum;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -9,51 +11,41 @@ import java.util.Objects;
 public class Usuario implements Serializable {
 
     @Id
-    private String cpf;
-    private String email;
-    private String nome;
-    private String telefone;
+    private String matricula;
+    private String senha;
+    private UsuarioEnum cargo;
 
     public Usuario() {
     }
 
-    public Usuario(String cpf, String email, String nome, String telefone) {
-        this.cpf = cpf;
-        this.email = email;
-        this.nome = nome;
-        this.telefone = telefone;
+    public Usuario(String matricula, String senha, UsuarioEnum cargo) {
+        this.matricula = matricula;
+        this.senha = senha;
+        this.cargo = cargo;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public String getNome() {
-        return nome;
+    public UsuarioEnum getCargo() {
+        return cargo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCargo(UsuarioEnum cargo) {
+        this.cargo = cargo;
     }
 
     @Override
@@ -61,15 +53,14 @@ public class Usuario implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(cpf, usuario.cpf) &&
-                Objects.equals(email, usuario.email) &&
-                Objects.equals(nome, usuario.nome) &&
-                Objects.equals(telefone, usuario.telefone);
+        return Objects.equals(matricula, usuario.matricula) &&
+                Objects.equals(senha, usuario.senha) &&
+                cargo == usuario.cargo;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cpf, email, nome, telefone);
+        return Objects.hash(matricula, senha, cargo);
     }
 }
 
