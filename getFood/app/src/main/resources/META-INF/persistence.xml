@@ -4,7 +4,8 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>br.edu.ifpb.domain.Pessoa</class>
         <class>br.edu.ifpb.domain.Usuario</class>
-
-
+        <class>br.edu.ifpb.domain.Aluno</class>
+        <class>br.edu.ifpb.domain.Periodo</class>
+        <class>br.edu.ifpb.domain.Curso</class>
     </persistence-unit>
 </persistence>
