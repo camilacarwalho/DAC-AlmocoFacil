@@ -2,15 +2,20 @@ package br.edu.ifpb.domain;
 
 import br.edu.ifpb.domain.enums.UsuarioEnum;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
 public class Aluno extends Usuario {
 
+    @OneToOne()
     @Column(nullable = false)
     private Curso curso;
+
+    @OneToOne()
     @Column(nullable = false)
     private Periodo periodoIngresso;
 

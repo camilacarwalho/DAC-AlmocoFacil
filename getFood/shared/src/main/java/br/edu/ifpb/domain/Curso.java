@@ -5,6 +5,7 @@ import br.edu.ifpb.domain.enums.TurnoCurso;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ import java.util.Objects;
 public class Curso {
 
     @Id
+    @GeneratedValue
     private int id;
     @Column(nullable = false)
     private String nome;
