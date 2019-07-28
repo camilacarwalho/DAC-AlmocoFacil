@@ -31,19 +31,17 @@
 
 
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <ui:insert name="links">
 
-                <li><a href="sass.html">Solicitar</a></li>
+                </ui:insert>
 
-                <li><a href="sass.html">Acompanhar</a></li>
-
-                <li><a href="sass.html">Meus dados</a></li>
-                <li><a class="red-text" href="badges.html">Sair</a></li>
             </ul>
         </div>
     </nav>
     <div class="row grey darken-3"><div class="footer-copyright grey darken-3">
         <div class="grey darken-3 container white-text col s6 offset-s10">
-            Bem vindo, professor.
+            <ui:insert name="welcome"> Bem vindo, professor.</ui:insert>
+
         </div>
     </div></div>
 
