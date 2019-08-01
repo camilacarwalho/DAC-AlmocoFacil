@@ -63,6 +63,70 @@
                 </li>
             </ul>
         </h:form>
+
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Desativar conta</h4>
+                <p>Você realmente deseja desativar sua conta?</p>
+            </div>
+            <div class="modal-footer">
+                <h:form>
+                    <h:commandButton value="Sim"
+
+                                     styleClass="white-text btn red" />
+                </h:form>
+                <a href="/professor/perfil.xhtml"
+                   class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+
+            </div>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <h4>Edição de dados</h4>
+                <div class="row">
+                    <div class="col s12 l4 offset-l4">
+                        <h:form>
+                            <h:messages layout="table" class="red-text"></h:messages>
+
+                            <div class="input-field">
+                                <h:outputLabel for="Email">Email:</h:outputLabel>
+                                <h:inputText id="Email"
+                                             value="#" />
+                            </div>
+                            <div class="input-field">
+                                <h:outputLabel for="Nome">Nome:</h:outputLabel>
+                                <h:inputText id="Nome"
+                                             value="#" />
+                            </div>
+                            <div class="input-field">
+                                <h:outputLabel for="Senha">Senha:</h:outputLabel>
+                                <h:inputSecret id="Senha"
+                                               value="#" />
+                            </div>
+                            <div class="input-field">
+                                <h:outputLabel for="Cargo">Cargo:</h:outputLabel>
+                                <h:inputText id="Cargo"
+                                             value="#" />
+                            </div>
+                            <h:commandButton value="Atualizar"
+
+                                             styleClass="btn cyan center-align white-text" />
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <a href="/professor/perfil.xhtml"
+                   class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+
+            </div>
+        </div>
+
     </ui:define>
 </ui:composition>
 </html>
