@@ -38,14 +38,18 @@ public class RefeicaoDaoJpa implements RefeicaoDao{
 
 	@Override
 	public void remover(Refeicao object) {
-		// TODO Auto-generated method stub
-		
+		try {
+			tr.begin();
+			em.remove(object);
+			tr.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tr.rollback();
+		}
 	}
 
 	@Override
 	public void atualizar(Refeicao object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
