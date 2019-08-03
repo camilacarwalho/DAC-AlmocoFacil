@@ -40,7 +40,7 @@ public class UsuarioDaoJPA implements UsuarioDao {
         try{
             tr.begin();
             Usuario morto = getById(usuario.getMatricula());
-            em.persist(usuario);
+            em.remove(morto);
             tr.commit();
         }catch (Exception ex){
             ex.printStackTrace();
