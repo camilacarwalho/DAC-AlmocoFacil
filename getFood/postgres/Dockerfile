@@ -1,6 +1,6 @@
 FROM postgres
-ENV POSTGRES_DB getFood
+ENV POSTGRES_DB getfood
 ENV POSTGRES_USER postgres
-ENV POSTGRES_PASSWORD 123
+ENV POSTGRES_PASSWORD postgres
 COPY create.sql /docker-entrypoint-initdb.d/
 COPY insert.sql /docker-entrypoint-initdb.d/
