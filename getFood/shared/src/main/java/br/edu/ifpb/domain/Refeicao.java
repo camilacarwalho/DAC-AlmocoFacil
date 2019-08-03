@@ -13,9 +13,9 @@ public class Refeicao {
 	@Id
 	private int id;
 	private String nome;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIME)
 	private LocalTime horaInicio;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIME)
 	private LocalTime horaTermino;
 	
 	public Refeicao() {	}
