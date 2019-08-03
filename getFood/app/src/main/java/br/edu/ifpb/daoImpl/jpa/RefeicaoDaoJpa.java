@@ -26,8 +26,14 @@ public class RefeicaoDaoJpa implements RefeicaoDao{
 
 	@Override
 	public void salvar(Refeicao object) {
-		// TODO Auto-generated method stub
-		
+		try {
+			tr.begin();
+			em.persist(object);
+			tr.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tr.rollback();
+		}
 	}
 
 	@Override
