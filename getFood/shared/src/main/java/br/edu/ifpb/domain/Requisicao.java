@@ -12,8 +12,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import br.edu.ifpb.domain.enums.StatusRequisicao;
 
@@ -28,9 +26,7 @@ public class Requisicao implements Serializable{
 	private Refeicao refeicao;
 	@CollectionTable
 	private List<Aluno> alunos;
-	@Temporal(TemporalType.DATE)
 	private LocalDate dataInicial;
-	@Temporal(TemporalType.DATE)
 	private LocalDate dataFinal;
 	@ManyToOne
 	private Solicitacao solicitacao;
