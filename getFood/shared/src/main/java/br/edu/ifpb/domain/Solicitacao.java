@@ -10,8 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import br.edu.ifpb.domain.enums.StatusRequisicao;
 
@@ -21,7 +19,6 @@ public class Solicitacao implements Serializable{
 	
 	@Id
 	private Long id;
-	@Temporal(TemporalType.DATE)
 	private LocalDate dataSolicitacao;
 	private Usuario usuario;
 	private String descricao;
