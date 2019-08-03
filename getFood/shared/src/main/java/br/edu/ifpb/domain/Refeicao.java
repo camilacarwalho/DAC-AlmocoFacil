@@ -1,5 +1,6 @@
 package br.edu.ifpb.domain;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -7,8 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@SuppressWarnings("serial")
 @Entity
-public class Refeicao {
+public class Refeicao implements Serializable {
 	
 	@Id
 	private int id;

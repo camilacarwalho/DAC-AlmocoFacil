@@ -1,11 +1,14 @@
 package br.edu.ifpb.domain;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@SuppressWarnings("serial")
 @Entity
-public class Periodo {
+public class Periodo implements Serializable{
 
     @Id
     private String codigo;

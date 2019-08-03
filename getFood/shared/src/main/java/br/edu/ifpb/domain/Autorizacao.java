@@ -1,5 +1,6 @@
 package br.edu.ifpb.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -12,8 +13,9 @@ import javax.persistence.TemporalType;
 
 import br.edu.ifpb.domain.enums.StatusAutorizacao;
 
+@SuppressWarnings("serial")
 @Entity
-public class Autorizacao {
+public class Autorizacao implements Serializable {
 	
 	@Id
 	private int id;
