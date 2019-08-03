@@ -21,6 +21,13 @@ public class Refeicao implements Serializable {
 	private LocalTime horaTermino;
 	
 	public Refeicao() {	}
+	
+	public Refeicao(String nome, LocalTime horaInicio, LocalTime horaTermino) {
+		super();
+		this.nome = nome;
+		this.horaInicio = horaInicio;
+		this.horaTermino = horaTermino;
+	}
 
 	public Refeicao(Long id, String nome, LocalTime horaInicio, LocalTime horaTermino) {
 		this.id = id;
