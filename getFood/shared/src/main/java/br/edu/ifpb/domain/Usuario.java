@@ -63,20 +63,30 @@ public class Usuario implements Serializable {
         this.pessoa = pessoa;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(matricula, usuario.matricula) &&
-                Objects.equals(senha, usuario.senha) &&
-                cargo == usuario.cargo &&
-                Objects.equals(pessoa, usuario.pessoa);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((matricula == null) ? 0 : matricula.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(matricula, senha, cargo, pessoa);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (matricula == null) {
+			if (other.matricula != null)
+				return false;
+		} else if (!matricula.equals(other.matricula))
+			return false;
+		return true;
+	}
+   
 }
 
