@@ -50,6 +50,14 @@ public class RefeicaoDaoJpa implements RefeicaoDao{
 
 	@Override
 	public void atualizar(Refeicao object) {
+		try {
+			tr.begin();
+			em.merge(object);			
+			tr.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tr.rollback();
+		}
 	}
 
 	@Override
