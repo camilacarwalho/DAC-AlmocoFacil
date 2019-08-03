@@ -3,6 +3,7 @@ package br.edu.ifpb.daoImpl.jpa;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -13,6 +14,7 @@ import br.edu.ifpb.dao.RefeicaoDao;
 import br.edu.ifpb.domain.Refeicao;
 
 @Stateless
+@Remote(value = RefeicaoDao.class)
 public class RefeicaoDaoJpa implements RefeicaoDao{
 	
 	@PersistenceContext
@@ -21,7 +23,7 @@ public class RefeicaoDaoJpa implements RefeicaoDao{
 	private EntityTransaction tr;
 	
 	@PostConstruct
-	private void init() {
+	public void init() {
 		this.tr = em.getTransaction();		
 	}
 

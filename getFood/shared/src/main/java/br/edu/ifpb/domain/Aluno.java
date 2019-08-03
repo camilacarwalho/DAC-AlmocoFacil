@@ -2,9 +2,8 @@ package br.edu.ifpb.domain;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import br.edu.ifpb.domain.enums.UsuarioEnum;
 
@@ -12,12 +11,12 @@ import br.edu.ifpb.domain.enums.UsuarioEnum;
 @Entity
 public class Aluno extends Usuario {
 
-    @OneToOne()
-    @Column(nullable = false)
+    @ManyToOne()
+//    @Column(nullable = false)
     private Curso curso;
 
-    @OneToOne()
-    @Column(nullable = false)
+    @ManyToOne()
+//    @Column(nullable = false)
     private Periodo periodoIngresso;
 
     public Aluno(String matricula, String senha, UsuarioEnum cargo, Pessoa pessoa, Curso curso, Periodo periodoIngresso) {
