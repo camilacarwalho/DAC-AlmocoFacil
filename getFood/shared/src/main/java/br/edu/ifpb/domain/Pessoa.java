@@ -1,14 +1,18 @@
 package br.edu.ifpb.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+@SuppressWarnings("serial")
 @Entity
-public class Pessoa {
+public class Pessoa implements Serializable{
 
     @Id
     private String cpf;
@@ -16,7 +20,7 @@ public class Pessoa {
     private String nome;
     private String telefone;
 
-    @OneToMany(mappedBy = "pessoa")
+    @OneToMany(mappedBy = "pessoa", cascade=CascadeType.ALL)
     private List<Usuario> usuarios;
 
 
