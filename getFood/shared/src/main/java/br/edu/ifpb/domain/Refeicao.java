@@ -5,8 +5,6 @@ import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @SuppressWarnings("serial")
 @Entity
@@ -15,9 +13,7 @@ public class Refeicao implements Serializable {
 	@Id
 	private Long id;
 	private String nome;
-	@Temporal(TemporalType.TIME)
 	private LocalTime horaInicio;
-	@Temporal(TemporalType.TIME)
 	private LocalTime horaTermino;
 	
 	public Refeicao() {	}
