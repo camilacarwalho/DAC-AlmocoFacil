@@ -40,7 +40,10 @@ public class RefeicaoDaoJpa implements RefeicaoDao{
 	public void remover(Refeicao object) {
 		try {
 			tr.begin();
-			em.remove(object);
+			Refeicao refeicao = em.find(
+					Refeicao.class, 
+					object.getId());
+			em.remove(refeicao);
 			tr.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,8 +65,16 @@ public class RefeicaoDaoJpa implements RefeicaoDao{
 
 	@Override
 	public Refeicao buscar(Object key) {
-		// TODO Auto-generated method stub
-		return null;
+		Refeicao refeicao = new Refeicao();
+		try {
+			tr.begin();
+			refeicao = em.find(Refeicao.class, key);
+			tr.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+			tr.rollback();			
+		}
+		return refeicao;
 	}
 
 	@Override
