@@ -9,8 +9,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import br.edu.ifpb.domain.enums.StatusAutorizacao;
 
@@ -21,9 +19,7 @@ public class Autorizacao implements Serializable {
 	@Id
 	private Long id;
 	private Aluno aluno;
-	@Temporal(TemporalType.DATE)
 	private LocalDate data;
-	@Temporal(TemporalType.TIME)
 	private LocalTime hora;
 	private Refeicao refeicao;
 	@Enumerated(EnumType.STRING)
