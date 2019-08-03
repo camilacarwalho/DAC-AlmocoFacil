@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import br.edu.ifpb.dao.RefeicaoDao;
 import br.edu.ifpb.domain.Refeicao;
@@ -79,10 +80,10 @@ public class RefeicaoDaoJpa implements RefeicaoDao{
 
 	@Override
 	public List<Refeicao> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "SELECT r FROM Refeicao r"
+				+ " ORDER BY r.horaInicio";
+		TypedQuery<Refeicao> query = em.createQuery(jpql,Refeicao.class);
+		return query.getResultList();
 	}
-	
-
 
 }
