@@ -2,29 +2,28 @@ package br.edu.ifpb.daoImpl.jpa;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+
 import javax.ejb.Remote;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
+
 import javax.persistence.TypedQuery;
 
 import br.edu.ifpb.dao.RefeicaoDao;
 import br.edu.ifpb.domain.Refeicao;
 
-@Stateless
+
 @Remote(value = RefeicaoDao.class)
 public class RefeicaoDaoJpa implements RefeicaoDao{
 	
-	@PersistenceContext
+
 	private EntityManager em;
 	
 	private EntityTransaction tr;
 	
-	@PostConstruct
-	public void init() {
-		this.tr = em.getTransaction();		
+	public RefeicaoDaoJpa(EntityManager em){
+		this.em=em;
+		this.tr = em.getTransaction();
 	}
 
 	@Override
