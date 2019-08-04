@@ -1,13 +1,20 @@
 package br.edu.ifpb.domain;
 
-import br.edu.ifpb.domain.enums.UsuarioEnum;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import br.edu.ifpb.domain.enums.UsuarioEnum;
 
 @SuppressWarnings("serial")
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Usuario implements Serializable {
 
     @Id
