@@ -3,7 +3,6 @@ package br.edu.ifpb.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,8 +15,7 @@ import br.edu.ifpb.domain.Refeicao;
 @Named
 public class RefeicaoController implements Serializable{
 
-//	@Inject
-	@EJB
+	@Inject
 	private RefeicaoDao refeicaoDao;
 	
 	public List<Refeicao> getListaDeRefeicoes(){
