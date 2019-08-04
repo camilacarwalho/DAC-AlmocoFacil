@@ -39,7 +39,7 @@ public class UsuarioDaoJPA implements UsuarioDao {
     public void remover(Usuario usuario) {
         try{
             tr.begin();
-            Usuario morto = getById(usuario.getMatricula());
+            Usuario morto = buscar(usuario.getMatricula());
             em.remove(morto);
             tr.commit();
         }catch (Exception ex){
@@ -77,7 +77,7 @@ public class UsuarioDaoJPA implements UsuarioDao {
     }
 
     @Override
-    public Usuario getById(String matricula) {
+    public Usuario buscar(Object matricula) {
         try{
             tr.begin();
             Usuario encontrado = em.find(Usuario.class,matricula);
