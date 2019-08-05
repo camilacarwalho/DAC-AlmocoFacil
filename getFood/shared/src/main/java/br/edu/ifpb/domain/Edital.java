@@ -2,21 +2,26 @@ package br.edu.ifpb.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
-import java.util.Objects;
+import javax.persistence.JoinColumn;
 
+@SuppressWarnings("serial")
 @Entity
-public class Edital implements Serializable {
+public class Edital extends Solicitacao {
     
     @Id
     private  String codigo;
+    @JoinColumn(nullable = false)
     private Periodo periodo;
 
-    public Edital() {
+    public Edital() {}
+    
+    public Edital(String codigo, Periodo periodo) {
+		super();
+		this.codigo = codigo;
+		this.periodo = periodo;
+	}
 
-    }
-
-    public String getCodigo() {
+	public String getCodigo() {
         return codigo;
     }
 
@@ -32,17 +37,29 @@ public class Edital implements Serializable {
         this.periodo = periodo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Edital edital = (Edital) o;
-        return Objects.equals(codigo, edital.codigo) &&
-                Objects.equals(periodo, edital.periodo);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(codigo, periodo);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Edital other = (Edital) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+   
 }

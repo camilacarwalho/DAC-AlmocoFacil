@@ -3,6 +3,7 @@ package br.edu.ifpb.domain;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import br.edu.ifpb.domain.enums.UsuarioEnum;
@@ -12,15 +13,15 @@ import br.edu.ifpb.domain.enums.UsuarioEnum;
 public class Aluno extends Usuario {
 
     @ManyToOne()
-//    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Curso curso;
 
     @ManyToOne()
-//    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Periodo periodoIngresso;
 
-    public Aluno(String matricula, String senha, UsuarioEnum cargo, Pessoa pessoa, Curso curso, Periodo periodoIngresso) {
-        super(matricula, senha, cargo, pessoa);
+    public Aluno(String matricula, String senha, Pessoa pessoa, Curso curso, Periodo periodoIngresso) {
+        super(matricula, senha, UsuarioEnum.ALUNO, pessoa);
         this.curso = curso;
         this.periodoIngresso = periodoIngresso;
     }

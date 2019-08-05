@@ -9,15 +9,13 @@
 		<class>br.edu.ifpb.domain.Aluno</class>
 		<class>br.edu.ifpb.domain.Autorizacao</class>
 		<class>br.edu.ifpb.domain.Curso</class>
+		<class>br.edu.ifpb.domain.Edital</class>
 		<class>br.edu.ifpb.domain.Periodo</class>
 		<class>br.edu.ifpb.domain.Pessoa</class>
 		<class>br.edu.ifpb.domain.Refeicao</class>
 		<class>br.edu.ifpb.domain.Requisicao</class>
 		<class>br.edu.ifpb.domain.Solicitacao</class>
 		<class>br.edu.ifpb.domain.Usuario</class>
-		<properties>
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
-		</properties>
 	</persistence-unit>
 
 </persistence>

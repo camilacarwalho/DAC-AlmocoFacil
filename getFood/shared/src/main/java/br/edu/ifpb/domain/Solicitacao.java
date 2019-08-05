@@ -9,12 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 import br.edu.ifpb.domain.enums.StatusRequisicao;
 
 @SuppressWarnings("serial")
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Solicitacao implements Serializable{
 	
 	@Id
