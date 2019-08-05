@@ -11,9 +11,9 @@ CREATE TABLE pessoa
 CREATE TABLE curso
 (
   id bigint NOT NULL,
-  nivel integer NOT NULL,
+  nivel character varying(255) NOT NULL,
   nome character varying(255) NOT NULL,
-  turno integer NOT NULL,
+  turno character varying(255) NOT NULL,
   CONSTRAINT curso_pkey PRIMARY KEY (id)
 );
 
@@ -22,9 +22,9 @@ CREATE TABLE periodo
 (
   codigo character varying(255) NOT NULL,
   ano integer NOT NULL,
-  datafinal date,
-  datainicio date NOT NULL,
   periodo integer NOT NULL,
+  datainicio date NOT NULL,
+  datafinal date NOT NULL,    
   CONSTRAINT periodo_pkey PRIMARY KEY (codigo)
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE periodo
 CREATE TABLE aluno
 (
   matricula character varying(255) NOT NULL,
-  cargo integer NOT NULL,
+  cargo character varying(255) NOT NULL,
   senha character varying(255) NOT NULL,
   curso_id bigint NOT NULL,
   periodoingresso_codigo character varying(255) NOT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE sequence
 CREATE TABLE usuario
 (
   matricula character varying(255) NOT NULL,
-  cargo integer NOT NULL,
+  cargo character varying(255) NOT NULL,
   senha character varying(255) NOT NULL,
   pessoa_cpf character varying(255),
   CONSTRAINT usuario_pkey PRIMARY KEY (matricula),

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -20,8 +22,10 @@ public class Curso implements Serializable{
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private NivelCurso nivel;
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TurnoCurso turno;
 
     public Curso() {

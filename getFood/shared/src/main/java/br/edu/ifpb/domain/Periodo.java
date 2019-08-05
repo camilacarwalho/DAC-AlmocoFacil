@@ -3,6 +3,7 @@ package br.edu.ifpb.domain;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,76 +18,85 @@ public class Periodo implements Serializable{
     @Column(nullable = false)
     private int periodo;
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dataInicio;
-    @Temporal(TemporalType.DATE)
-    private Date dataFinal;
+    private LocalDate dataInicio;
+    @Column(nullable = false)
+    private LocalDate dataFinal;
 
     public Periodo() {
     }
 
-    public Periodo(String codigo, int ano, int periodo, Date dataInicio, Date dataFinal) {
-        this.codigo = codigo;
-        this.ano = ano;
-        this.periodo = periodo;
-        this.dataInicio = dataInicio;
-        this.dataFinal = dataFinal;
-    }
+	public Periodo(String codigo, int ano, int periodo, LocalDate dataInicio, LocalDate dataFinal) {
+		super();
+		this.codigo = codigo;
+		this.ano = ano;
+		this.periodo = periodo;
+		this.dataInicio = dataInicio;
+		this.dataFinal = dataFinal;
+	}
 
-    public String getCodigo() {
-        return codigo;
-    }
+	public String getCodigo() {
+		return codigo;
+	}
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 
-    public int getAno() {
-        return ano;
-    }
+	public int getAno() {
+		return ano;
+	}
 
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
 
-    public int getPeriodo() {
-        return periodo;
-    }
+	public int getPeriodo() {
+		return periodo;
+	}
 
-    public void setPeriodo(int periodo) {
-        this.periodo = periodo;
-    }
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
+	}
 
-    public Date getDataInicio() {
-        return dataInicio;
-    }
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
 
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
 
-    public Date getDataFinal() {
-        return dataFinal;
-    }
+	public LocalDate getDataFinal() {
+		return dataFinal;
+	}
 
-    public void setDataFinal(Date dataFinal) {
-        this.dataFinal = dataFinal;
-    }
+	public void setDataFinal(LocalDate dataFinal) {
+		this.dataFinal = dataFinal;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Periodo periodo1 = (Periodo) o;
-        return ano == periodo1.ano &&
-                periodo == periodo1.periodo &&
-                Objects.equals(codigo, periodo1.codigo) &&
-                Objects.equals(dataInicio, periodo1.dataInicio) &&
-                Objects.equals(dataFinal, periodo1.dataFinal);
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(codigo, ano, periodo, dataInicio, dataFinal);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Periodo other = (Periodo) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+    
 }

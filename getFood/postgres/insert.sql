@@ -1,0 +1,138 @@
+-------------------------------------------------------------------------------------------------------------------------
+-- CURSO
+-------------------------------------------------------------------------------------------------------------------------
+-- CURSOS INTEGRADOS
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (1, 'INTEGRADO', 'Técnico em Edificações Integrado', 'INTEGRAL'); --21
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (2, 'INTEGRADO', 'Técnico em Eletromecânica Integrado', 'INTEGRAL'); --20
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (3, 'INTEGRADO', 'Técnico em Informática Integrado', 'INTEGRAL'); --23
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (4, 'INTEGRADO', 'Técnico em Meio Ambiente Integrado (PROEJA)', 'NOTURNO'); --18
+-- CURSOS SUBSEQUENTES
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (5, 'SUBSEQUENTE', 'Técnico em Edificações Subsequente', 'NOTURNO'); --049
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (6, 'SUBSEQUENTE', 'Técnico em Eletromecânica Subsequente', 'NOTURNO'); --50
+-- CURSOS DE GRADUACAO
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (7, 'GRADUACAO', 'Bacharelado em Engenharia Civil', 'INTEGRAL'); --220
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (8, 'GRADUACAO', 'Bacharelado em Engenharia de Controle e Automação', 'INTEGRAL'); --224
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (9, 'GRADUACAO', 'Licenciatura em Matemática', 'NOTURNO'); --202
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (10, 'GRADUACAO', 'Tecnologia em Análise e Desenvolvimento de Sistemas', 'INTEGRAL'); --201
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (11, 'GRADUACAO', 'Tecnologia em Automação Industrial ', 'INTEGRAL'); --203
+-- CURSO DE POS-GRADUACOA
+INSERT INTO public.curso(id, nivel, nome, turno) VALUES (12, 'POSGRADUACAO', 'Especialização em Matemática ', 'INTEGRAL'); --221
+
+-------------------------------------------------------------------------------------------------------------------------
+-- REFEICAO
+-------------------------------------------------------------------------------------------------------------------------
+INSERT INTO public.refeicao(id, horainicio, horatermino, nome) VALUES (1, '11:00:00', '13:00:00', 'Almoço');
+INSERT INTO public.refeicao(id, horainicio, horatermino, nome) VALUES (2, '17:00:00', '20:00:00', 'Jantar');
+
+-------------------------------------------------------------------------------------------------------------------------
+-- PERIODO
+-------------------------------------------------------------------------------------------------------------------------
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2010.1', 2010, 1, '2010-02-01', '2010-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2010.2', 2010, 2, '2010-07-08', '2010-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2011.1', 2011, 1, '2011-02-01', '2011-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2011.2', 2011, 2, '2011-07-08', '2011-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2012.1', 2012, 1, '2012-02-01', '2012-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2012.2', 2012, 2, '2012-07-08', '2012-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2013.1', 2013, 1, '2013-02-01', '2013-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2013.2', 2013, 2, '2013-07-08', '2013-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2014.1', 2014, 1, '2014-02-01', '2014-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2014.2', 2014, 2, '2014-07-08', '2014-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2016.1', 2016, 1, '2016-02-01', '2016-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2016.2', 2016, 2, '2016-07-08', '2016-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2017.1', 2017, 1, '2017-02-01', '2017-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2017.2', 2017, 2, '2017-07-08', '2017-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2018.1', 2018, 1, '2018-02-01', '2018-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2018.2', 2018, 2, '2018-07-08', '2018-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2019.1', 2019, 1, '2019-02-01', '2019-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2019.2', 2019, 2, '2019-07-08', '2019-11-30');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2020.1', 2020, 1, '2020-02-01', '2020-06-20');
+INSERT INTO public.periodo(codigo, ano, periodo, datafinal, datainicio) VALUES ('2020.2', 2020, 2, '2020-07-08', '2020-11-30');
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+-- ALUNOS
+-------------------------------------------------------------------------------------------------------------------------
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('877.385.669-06', 'Mariana Sophia Eduarda Teixeira', '(83) 98411-4910');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191210001', 'ALUNO', '123', 1, '2019.1', '877.385.669-06');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('943.068.079-08', 'Marcela Rayssa Débora Moura', '(83) 99805-9054');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191210002', 'ALUNO', '123', 1, '2019.1', '943.068.079-08');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('421.471.425-30', 'Márcio Emanuel da Rocha', '(83) 99993-1079');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191210003', 'ALUNO', '123', 1, '2019.1', '421.471.425-30');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('791.632.711-25', 'Jéssica Tereza Brenda Figueiredo', '(83) 98352-3803');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191200001', 'ALUNO', '123', 2, '2019.1', '791.632.711-25');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('918.542.355-67', 'Ricardo Bryan Nunes', '(83) 99509-0321');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191200002', 'ALUNO', '123', 2, '2019.1', '918.542.355-67');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('036.127.458-08', 'Bruna Nicole Cavalcanti', '(83) 98888-7004');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191200003', 'ALUNO', '123', 2, '2019.1', '036.127.458-08');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('056.836.888-68', 'Teresinha Maitê Luana Fogaça', '(83) 99986-9636');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191230001', 'ALUNO', '123', 3, '2019.1', '056.836.888-68');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('593.452.199-35', 'Marli Rosa Mendes', '(83) 99354-7690');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191230002', 'ALUNO', '123', 3, '2019.1', '593.452.199-35');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('774.312.913-61', 'Analu Lúcia Clara Aparício', '(83) 99922-1090');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191230003', 'ALUNO', '123', 3, '2019.1', '774.312.913-61');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('462.783.884-05', 'Hadassa Bárbara Analu Araújo', '(83) 98289-9779');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191180001', 'ALUNO', '123', 4, '2019.1', '462.783.884-05');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('291.289.980-06', 'Ryan Thales Martin Vieira', '(83) 98968-7504');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191180002', 'ALUNO', '123', 4, '2019.1', '291.289.980-06');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('289.876.481-76', 'Cláudia Clarice Juliana da Rosa', '(83) 99827-5852');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191180003', 'ALUNO', '123', 4, '2019.1', '289.876.481-76');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('842.118.960-32', 'Anthony Manuel Lorenzo da Mata', '(83) 98995-6952');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201910490001', 'ALUNO', '123', 5, '2019.1', '842.118.960-32');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('855.424.047-23', 'Antonella Agatha da Luz', '(83) 99384-3420');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201910490002', 'ALUNO', '123', 5, '2019.1', '855.424.047-23');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('511.365.795-67', 'Evelyn Sarah Araújo', '(83) 99353-1706');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201910490003', 'ALUNO', '123', 5, '2019.1', '511.365.795-67');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('233.775.471-50', 'Mário Kauê Duarte', '(83) 98335-6633');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191500001', 'ALUNO', '123', 6, '2019.1', '233.775.471-50');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('797.153.886-39', 'Mateus Cauã Aragão', '(83) 99611-4693');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191500002', 'ALUNO', '123', 6, '2019.1', '797.153.886-39');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('810.024.628-94', 'Arthur Oliver Baptista', '(83) 99204-1236');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('20191500003', 'ALUNO', '123', 6, '2019.1', '810.024.628-94');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('696.009.476-35', 'Julio Gabriel Porto', '(83) 98187-1039');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912200001', 'ALUNO', '123', 7, '2019.1', '696.009.476-35');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('683.455.495-51', 'Danilo João Ruan Porto', '(83) 99389-9258');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912200002', 'ALUNO', '123', 7, '2019.1', '683.455.495-51');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('942.831.099-91', 'Murilo Erick da Silva', '(83) 98883-1908');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912200003', 'ALUNO', '123', 7, '2019.1', '942.831.099-91');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('579.411.320-01', 'Lara Kamilly Peixoto', '(83) 99175-0198');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912240001', 'ALUNO', '123', 8, '2019.1', '579.411.320-01');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('233.994.182-21', 'Heitor Anthony Costa', '(83) 98205-3149');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912240002', 'ALUNO', '123', 8, '2019.1', '233.994.182-21');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('271.803.208-11', 'Giovanni Alexandre Osvaldo da Costa', '(83) 99998-6762');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912240003', 'ALUNO', '123', 8, '2019.1', '271.803.208-11');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('879.855.527-82', 'Raul Juan Monteiro', '(83) 99491-1110');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912020001', 'ALUNO', '123', 9, '2019.1', '879.855.527-82');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('685.596.617-94', 'Bento Tiago Filipe Oliveira', '(83) 99608-5835');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912020002', 'ALUNO', '123', 9, '2019.1', '685.596.617-94');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('989.964.800-02', 'Theo Márcio Diogo das Neves', '(83) 98262-3316');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912020003', 'ALUNO', '123', 9, '2019.1', '989.964.800-02');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('060.693.909-11', 'Kauê Benício Almada', '(83) 99401-4430');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912010001', 'ALUNO', '123', 10, '2019.1', '060.693.909-11');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('975.990.320-29', 'Rodrigo Paulo Almada', '(83) 98370-0908');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912010002', 'ALUNO', '123', 10, '2019.1', '975.990.320-29');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('199.208.293-66', 'Márcio Emanuel Moura', '(83) 98116-4840');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912010003', 'ALUNO', '123', 10, '2019.1', '199.208.293-66');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('317.439.020-69', 'Elias Calebe Martin Nunes', '(83) 98478-5428');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912030001', 'ALUNO', '123', 11, '2019.1', '317.439.020-69');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('808.593.011-09', 'Ryan Sebastião Tiago da Cruz', '(83) 99911-7773');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912030002', 'ALUNO', '123', 11, '2019.1', '808.593.011-09');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('380.598.271-20', 'Ana Sophia da Rocha', '(83) 99444-0650');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912030003', 'ALUNO', '123', 11, '2019.1', '380.598.271-20');
+
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('497.838.589-04', 'Raquel Mariah Sarah Almada', '(83) 99561-1525');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912210001', 'ALUNO', '123', 12, '2019.1', '497.838.589-04');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('188.700.325-82', 'Henry Cauê Mário da Luz', '(83) 98784-1644');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912210002', 'ALUNO', '123', 12, '2019.1', '188.700.325-82');
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('649.580.135-12', 'Laís Tânia Lopes', '(83) 99573-9831');
+INSERT INTO public.aluno(matricula, cargo, senha, curso_id, periodoingresso_codigo, pessoa_cpf)	VALUES ('201912210003', 'ALUNO', '123', 12, '2019.1', '649.580.135-12');
