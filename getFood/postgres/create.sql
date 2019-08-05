@@ -10,11 +10,11 @@ CREATE TABLE pessoa
 --CRIACAO DA TABELA CURSO
 CREATE TABLE curso
 (
-  id bigint NOT NULL,
+  codigo character varying(255) NOT NULL,
   nivel character varying(255) NOT NULL,
   nome character varying(255) NOT NULL,
   turno character varying(255) NOT NULL,
-  CONSTRAINT curso_pkey PRIMARY KEY (id)
+  CONSTRAINT curso_pkey PRIMARY KEY (codigo)
 );
 
 --CRIACAO DA TABELA PERIODO
@@ -34,12 +34,12 @@ CREATE TABLE aluno
   matricula character varying(255) NOT NULL,
   cargo character varying(255) NOT NULL,
   senha character varying(255) NOT NULL,
-  curso_id bigint NOT NULL,
+  curso_codigo character varying(255) NOT NULL,
   periodoingresso_codigo character varying(255) NOT NULL,
   pessoa_cpf character varying(255),
   CONSTRAINT aluno_pkey PRIMARY KEY (matricula),
-  CONSTRAINT fk_aluno_curso_id FOREIGN KEY (curso_id)
-      REFERENCES curso (id) MATCH SIMPLE
+  CONSTRAINT fk_aluno_curso_codigo FOREIGN KEY (curso_codigo)
+      REFERENCES curso (codigo) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT fk_aluno_periodoingresso_codigo FOREIGN KEY (periodoingresso_codigo)
       REFERENCES periodo (codigo) MATCH SIMPLE

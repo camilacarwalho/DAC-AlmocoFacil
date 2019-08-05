@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import br.edu.ifpb.domain.enums.NivelCurso;
@@ -17,8 +16,7 @@ import br.edu.ifpb.domain.enums.TurnoCurso;
 public class Curso implements Serializable{
 
     @Id
-    @GeneratedValue
-    private Long id;
+    private String codigo;
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
@@ -31,50 +29,51 @@ public class Curso implements Serializable{
     public Curso() {
     }
 
-    public Curso(Long id, String nome, NivelCurso nivel, TurnoCurso turno) {
-        this.id = id;
-        this.nome = nome;
-        this.nivel = nivel;
-        this.turno = turno;
-    }
+	public Curso(String codigo, String nome, NivelCurso nivel, TurnoCurso turno) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.nivel = nivel;
+		this.turno = turno;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getCodigo() {
+		return codigo;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public NivelCurso getNivel() {
-        return nivel;
-    }
+	public NivelCurso getNivel() {
+		return nivel;
+	}
 
-    public void setNivel(NivelCurso nivel) {
-        this.nivel = nivel;
-    }
+	public void setNivel(NivelCurso nivel) {
+		this.nivel = nivel;
+	}
 
-    public TurnoCurso getTurno() {
-        return turno;
-    }
+	public TurnoCurso getTurno() {
+		return turno;
+	}
 
-    public void setTurno(TurnoCurso turno) {
-        this.turno = turno;
-    }
+	public void setTurno(TurnoCurso turno) {
+		this.turno = turno;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -87,10 +86,10 @@ public class Curso implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Curso other = (Curso) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (codigo == null) {
+			if (other.codigo != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
 	}
