@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,6 +24,7 @@ public class Autorizacao implements Serializable {
 	private LocalTime hora;
 	private Refeicao refeicao;
 	@Enumerated(EnumType.STRING)
+	@Column(length = 20)
 	private StatusAutorizacao statusAutorizacao;
 	@ManyToOne
 	private Requisicao requisicao;

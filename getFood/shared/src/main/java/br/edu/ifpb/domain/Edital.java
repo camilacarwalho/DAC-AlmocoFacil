@@ -1,5 +1,6 @@
 package br.edu.ifpb.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -9,6 +10,7 @@ import javax.persistence.JoinColumn;
 public class Edital extends Solicitacao {
     
     @Id
+    @Column(length = 20)
     private  String codigo;
     @JoinColumn(nullable = false)
     private Periodo periodo;

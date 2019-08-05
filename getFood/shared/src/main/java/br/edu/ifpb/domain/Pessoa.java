@@ -15,9 +15,11 @@ import java.util.Objects;
 public class Pessoa implements Serializable{
 
     @Id
+    @Column(length = 14)
     private String cpf;
     @Column(nullable = false)
     private String nome;
+    @Column(length = 20)
     private String telefone;
 
     @OneToMany(mappedBy = "pessoa", cascade=CascadeType.ALL)

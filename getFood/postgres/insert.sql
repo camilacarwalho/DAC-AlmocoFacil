@@ -155,7 +155,79 @@ INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('693.230.058-35', 'Raimun
 INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('5000007', 'PROFESSOR', '123', '693.230.058-35');
 INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('558.320.555-51', 'Fernanda Allana Laís Martins', '(83) 99403-8971');
 INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('5000008', 'PROFESSOR', '123', '558.320.555-51');
-INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('739.778.749-50', 'Marina Pietra Barros', '(83) 99314-1536');
-INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('5000009', 'PROFESSOR', '123', '739.778.749-50');
-INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('886.028.664-61', 'Marcos Vinicius Victor Manuel Rezende', '(83) 99394-2230');
-INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('5000010', 'PROFESSOR', '123', '886.028.664-61');
+--Professor e Gestor
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('111.111.111-01', 'Marcos Vinicius Victor Manuel Rezende', '(83) 99394-2230');
+INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('5000009', 'PROFESSOR', '123', '111.111.111-01');
+--Professor e CAEST
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('222.222.222-02', 'Marina Pietra Barros', '(83) 99314-1536');
+INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('5000010', 'PROFESSOR', '123', '222.222.222-02');
+
+-------------------------------------------------------------------------------------------------------------------------
+-- GESTOR
+-------------------------------------------------------------------------------------------------------------------------
+-- INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('111.111.111-01', 'Marcos Vinicius Victor Manuel Rezende', '(83) 99394-2230');
+INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('111.111.111-01', 'GESTOR', '123', '111.111.111-01');
+
+-------------------------------------------------------------------------------------------------------------------------
+-- CAEST
+-------------------------------------------------------------------------------------------------------------------------
+-- INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('222.222.222-02', 'Marina Pietra Barros', '(83) 99314-1536');
+INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('222.222.222-02', 'CAEST', '123', '222.222.222-02');
+
+-------------------------------------------------------------------------------------------------------------------------
+-- REFEITORIO
+-------------------------------------------------------------------------------------------------------------------------
+INSERT INTO public.pessoa(cpf, nome, telefone) VALUES ('333.333.333-03', 'Giovana Bruna Duarte', '(83) 98559-2200');
+INSERT INTO public.usuario(matricula, cargo, senha, pessoa_cpf)VALUES ('333.333.333-03', 'REFEITORIO', '123', '333.333.333-03');
+
+-------------------------------------------------------------------------------------------------------------------------
+-- EDITAL
+-------------------------------------------------------------------------------------------------------------------------
+-- Edital 01/2018
+INSERT INTO public.edital(codigo, id, datasolicitacao, descricao, justificativa, statusrequisicao, periodo_codigo, usuario_matricula) VALUES ('01/2018', 1, '2018-02-01', 'Edital de Assistência Estudantil do IFPB', '', 'AUTORIZADA', '2018.1', '222.222.222-02');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (1, 1, '2018-02-01', '2019-02-01', 'AUTORIZADA', 1);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (1, '20191210001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (1, '20191200001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (1, '20191230001');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (2, 1, '2018-02-01', '2018-07-08', 'AUTORIZADA', 2);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (2, '20191180001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (2, '201910490001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (2, '20191500001');
+-- Edital 02/2018
+INSERT INTO public.edital(codigo, id, datasolicitacao, descricao, justificativa, statusrequisicao, periodo_codigo, usuario_matricula) VALUES ('02/2018', 2, '2018-07-08', 'Edital de Assistência Estudantil do IFPB', '', 'AUTORIZADA', '2018.2', '222.222.222-02');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (3, 2, '2018-02-01', '2018-07-08', 'AUTORIZADA', 2);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (3, '20191180001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (3, '201910490001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (3, '20191500001');
+-- Edital 01/2019
+INSERT INTO public.edital(codigo, id, datasolicitacao, descricao, justificativa, statusrequisicao, periodo_codigo, usuario_matricula) VALUES ('01/2019', 3, '2019-02-01', 'Edital de Assistência Estudantil do IFPB', '', 'AUTORIZADA', '2019.1', '222.222.222-02');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (4, 3, '2018-02-01', '2019-02-01', 'AUTORIZADA', 1);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (4, '20191210001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (4, '20191200001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (4, '20191230001');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (5, 3, '2018-02-01', '2018-07-08', 'AUTORIZADA', 2);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (5, '20191180001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (5, '201910490001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (5, '20191500001');
+--Edital 02/2019
+INSERT INTO public.edital(codigo, id, datasolicitacao, descricao, justificativa, statusrequisicao, periodo_codigo, usuario_matricula) VALUES ('02/2019', 4, '2019-07-08', 'Edital de Assistência Estudantil do IFPB', '', 'AUTORIZADA', '2019.2', '222.222.222-02');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (6, 4, '2018-02-01', '2018-07-08', 'AUTORIZADA', 2);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (6, '20191180001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (6, '201910490001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (6, '20191500001');
+
+-------------------------------------------------------------------------------------------------------------------------
+-- SOLICITACAO
+-------------------------------------------------------------------------------------------------------------------------
+INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula) VALUES (5, '2019-02-01', 'Aula no contraturno do curso de Eng. Civil', '', 'AUTORIZADA', '5000001');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (7, 5, '2019-02-01', '2019-02-01', 'AUTORIZADA', 1);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (7, '201912200001');
+INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id, aluno_matricula, refeicao_id) VALUES (1, '2019-02-01', '11:01:56', 'REALIZADA', 7, '201912200001', 1);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (7, '201912200002');
+INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id, aluno_matricula, refeicao_id) VALUES (2, '2019-02-01', '11:32:12', 'REALIZADA', 7, '201912200002', 1);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (7, '201912200003');
+INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id, aluno_matricula, refeicao_id) VALUES (3, '2019-02-01', '13:01:52', 'AUSENTE', 7, '201912200001', 1);
+
+
+
+

@@ -1,26 +1,39 @@
 --CRIACAO DA TABELA PESSOA
 CREATE TABLE pessoa
 (
-  cpf character varying(255) NOT NULL,
+  cpf character varying(14) NOT NULL,
   nome character varying(255) NOT NULL,
-  telefone character varying(255),
+  telefone character varying(20),
   CONSTRAINT pessoa_pkey PRIMARY KEY (cpf)
+);
+
+--CRIACAO DA TABELA USUARIO
+CREATE TABLE usuario
+(
+  matricula character varying(20) NOT NULL,
+  cargo character varying(20) NOT NULL,
+  senha character varying(255) NOT NULL,
+  pessoa_cpf character varying(14),
+  CONSTRAINT usuario_pkey PRIMARY KEY (matricula),
+  CONSTRAINT fk_usuario_pessoa_cpf FOREIGN KEY (pessoa_cpf)
+      REFERENCES pessoa (cpf) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 --CRIACAO DA TABELA CURSO
 CREATE TABLE curso
 (
-  codigo character varying(255) NOT NULL,
-  nivel character varying(255) NOT NULL,
+  codigo character varying(10) NOT NULL,
+  nivel character varying(20) NOT NULL,
   nome character varying(255) NOT NULL,
-  turno character varying(255) NOT NULL,
+  turno character varying(20) NOT NULL,
   CONSTRAINT curso_pkey PRIMARY KEY (codigo)
 );
 
 --CRIACAO DA TABELA PERIODO
 CREATE TABLE periodo
 (
-  codigo character varying(255) NOT NULL,
+  codigo character varying(10) NOT NULL,
   ano integer NOT NULL,
   periodo integer NOT NULL,
   datainicio date NOT NULL,
@@ -31,12 +44,12 @@ CREATE TABLE periodo
 --CRIACAO DA TABELA ALUNO
 CREATE TABLE aluno
 (
-  matricula character varying(255) NOT NULL,
-  cargo character varying(255) NOT NULL,
+  matricula character varying(20) NOT NULL,
+  cargo character varying(20) NOT NULL,
   senha character varying(255) NOT NULL,
-  curso_codigo character varying(255) NOT NULL,
-  periodoingresso_codigo character varying(255) NOT NULL,
-  pessoa_cpf character varying(255),
+  curso_codigo character varying(10) NOT NULL,
+  periodoingresso_codigo character varying(10) NOT NULL,
+  pessoa_cpf character varying(14),
   CONSTRAINT aluno_pkey PRIMARY KEY (matricula),
   CONSTRAINT fk_aluno_curso_codigo FOREIGN KEY (curso_codigo)
       REFERENCES curso (codigo) MATCH SIMPLE
@@ -53,9 +66,9 @@ CREATE TABLE aluno
 CREATE TABLE refeicao
 (
   id bigint NOT NULL,
-  horainicio character varying(255),
-  horatermino character varying(255),
-  nome character varying(255),
+  horainicio time without time zone,
+  horatermino time without time zone,
+  nome character varying(20),
   CONSTRAINT refeicao_pkey PRIMARY KEY (id)
 );
 
@@ -63,10 +76,11 @@ CREATE TABLE refeicao
 CREATE TABLE solicitacao
 (
   id bigint NOT NULL,
-  datasolicitacao character varying(255),
+  datasolicitacao date,
   descricao character varying(255),
-  statusrequisicao character varying(255),
-  usuario_matricula character varying(255),
+  justificativa character varying(255),
+  statusrequisicao character varying(20),
+  usuario_matricula character varying(20),
   CONSTRAINT solicitacao_pkey PRIMARY KEY (id)
 );
 
@@ -74,10 +88,10 @@ CREATE TABLE solicitacao
 CREATE TABLE requisicao
 (
   id bigint NOT NULL,
-  datafinal character varying(255),
-  datainicial character varying(255),
-  statusrequisicao character varying(255),
   solicitacao_id bigint,
+  datainicial date,
+  datafinal date,
+  statusrequisicao character varying(20),
   refeicao_id bigint,
   CONSTRAINT requisicao_pkey PRIMARY KEY (id),
   CONSTRAINT fk_requisicao_refeicao_id FOREIGN KEY (refeicao_id)
@@ -89,11 +103,11 @@ CREATE TABLE requisicao
 CREATE TABLE autorizacao
 (
   id bigint NOT NULL,
-  data character varying(255),
-  hora character varying(255),
-  statusautorizacao character varying(255),
+  data date,
+  hora time without time zone,
+  statusautorizacao character varying(20),
   requisicao_id bigint,
-  aluno_matricula character varying(255),
+  aluno_matricula character varying(20),
   refeicao_id bigint,
   CONSTRAINT autorizacao_pkey PRIMARY KEY (id),
   CONSTRAINT fk_autorizacao_aluno_matricula FOREIGN KEY (aluno_matricula)
@@ -110,13 +124,14 @@ CREATE TABLE autorizacao
 --CRIACAO DA TABELA EDITAL
 CREATE TABLE edital
 (
-  codigo character varying(255) NOT NULL,
+  codigo character varying(20) NOT NULL,
   id bigint NOT NULL,
-  datasolicitacao character varying(255),
+  datasolicitacao date,
   descricao character varying(255),
-  statusrequisicao character varying(255),
-  periodo_codigo character varying(255) NOT NULL,
-  usuario_matricula character varying(255),
+  justificativa character varying(255),
+  statusrequisicao character varying(20),
+  periodo_codigo character varying(10) NOT NULL,
+  usuario_matricula character varying(20),
   CONSTRAINT edital_pkey PRIMARY KEY (codigo, id),
   CONSTRAINT fk_edital_periodo_codigo FOREIGN KEY (periodo_codigo)
       REFERENCES periodo (codigo) MATCH SIMPLE
@@ -127,7 +142,7 @@ CREATE TABLE edital
 CREATE TABLE requisicao_aluno
 (
   requisicao_id bigint NOT NULL,
-  alunos_matricula character varying(255) NOT NULL,
+  alunos_matricula character varying(20) NOT NULL,
   CONSTRAINT requisicao_aluno_pkey PRIMARY KEY (requisicao_id, alunos_matricula),
   CONSTRAINT fk_requisicao_aluno_alunos_matricula FOREIGN KEY (alunos_matricula)
       REFERENCES aluno (matricula) MATCH SIMPLE
@@ -145,18 +160,6 @@ CREATE TABLE sequence
   CONSTRAINT sequence_pkey PRIMARY KEY (seq_name)
 );
 
---CRIACAO DA TABELA USUARIO
-CREATE TABLE usuario
-(
-  matricula character varying(255) NOT NULL,
-  cargo character varying(255) NOT NULL,
-  senha character varying(255) NOT NULL,
-  pessoa_cpf character varying(255),
-  CONSTRAINT usuario_pkey PRIMARY KEY (matricula),
-  CONSTRAINT fk_usuario_pessoa_cpf FOREIGN KEY (pessoa_cpf)
-      REFERENCES pessoa (cpf) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-);
 
 
 

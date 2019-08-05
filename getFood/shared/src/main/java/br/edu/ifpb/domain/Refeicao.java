@@ -3,6 +3,7 @@ package br.edu.ifpb.domain;
 import java.io.Serializable;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,6 +13,7 @@ public class Refeicao implements Serializable {
 	
 	@Id
 	private Long id;
+	@Column(length = 20)
 	private String nome;
 	private LocalTime horaInicio;
 	private LocalTime horaTermino;

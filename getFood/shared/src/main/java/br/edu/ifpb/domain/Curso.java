@@ -16,13 +16,14 @@ import br.edu.ifpb.domain.enums.TurnoCurso;
 public class Curso implements Serializable{
 
     @Id
+    @Column(length = 10)
     private String codigo;
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private NivelCurso nivel;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private TurnoCurso turno;
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,6 +22,7 @@ public class Requisicao implements Serializable{
 	
 	@Id
 	private Long id;
+	@Column(length = 20)
 	@Enumerated(EnumType.STRING)
 	private StatusRequisicao statusRequisicao;
 	private Refeicao refeicao;

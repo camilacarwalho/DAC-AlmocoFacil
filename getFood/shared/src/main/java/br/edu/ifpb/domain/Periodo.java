@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Periodo implements Serializable{
 
     @Id
+    @Column(length = 10)
     private String codigo;
     @Column(nullable = false)
     private int ano;

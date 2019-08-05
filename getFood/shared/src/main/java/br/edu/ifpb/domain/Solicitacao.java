@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,7 +26,9 @@ public class Solicitacao implements Serializable{
 	private LocalDate dataSolicitacao;
 	private Usuario usuario;
 	private String descricao;
+	private String justificativa;
 	@Enumerated(EnumType.STRING)
+	@Column(length = 20)
 	private StatusRequisicao statusRequisicao;
 	@OneToMany(mappedBy="solicitacao", cascade=CascadeType.ALL)
 	private List<Requisicao> requisicoes;
@@ -42,23 +45,25 @@ public class Solicitacao implements Serializable{
 	
 	public Solicitacao() {}
 
-	public Solicitacao(LocalDate dataSolicitacao, Usuario usuario, String descricao, StatusRequisicao statusRequisicao,
+	public Solicitacao(LocalDate dataSolicitacao, Usuario usuario, String descricao, String justificativa, StatusRequisicao statusRequisicao,
 			List<Requisicao> requisicoes) {
 		super();
 		this.dataSolicitacao = dataSolicitacao;
 		this.usuario = usuario;
 		this.descricao = descricao;
+		this.justificativa = justificativa;
 		this.statusRequisicao = statusRequisicao;
 		setRequisicoes(requisicoes);
 	}
 
-	public Solicitacao(Long id, LocalDate dataSolicitacao, Usuario usuario, String descricao,
+	public Solicitacao(Long id, LocalDate dataSolicitacao, Usuario usuario, String descricao, String justificativa,
 			StatusRequisicao statusRequisicao, List<Requisicao> requisicoes) {
 		super();
 		this.id = id;
 		this.dataSolicitacao = dataSolicitacao;
 		this.usuario = usuario;
 		this.descricao = descricao;
+		this.justificativa = justificativa;
 		this.statusRequisicao = statusRequisicao;
 		setRequisicoes(requisicoes);
 	}
@@ -102,6 +107,14 @@ public class Solicitacao implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getJustificativa() {
+		return justificativa;
+	}
+
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
 	}
 
 	public StatusRequisicao getStatusRequisicao() {

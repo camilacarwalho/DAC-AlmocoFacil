@@ -20,10 +20,11 @@ import br.edu.ifpb.domain.enums.UsuarioEnum;
 public class Usuario implements Serializable {
 
     @Id
+    @Column(length=20)
     private String matricula;
     @Column(nullable = false)
     private String senha;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private UsuarioEnum cargo;
 

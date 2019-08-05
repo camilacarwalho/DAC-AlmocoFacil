@@ -6,6 +6,8 @@
 	<persistence-unit name="Postgres" transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>java:app/jdbc/persistence_getfood</jta-data-source>
+		<class>br.edu.ifpb.convert.ConvertLocalDate</class>
+		<class>br.edu.ifpb.convert.ConvertLocalTime</class>
 		<class>br.edu.ifpb.domain.Aluno</class>
 		<class>br.edu.ifpb.domain.Autorizacao</class>
 		<class>br.edu.ifpb.domain.Curso</class>
@@ -16,6 +18,9 @@
 		<class>br.edu.ifpb.domain.Requisicao</class>
 		<class>br.edu.ifpb.domain.Solicitacao</class>
 		<class>br.edu.ifpb.domain.Usuario</class>
+		<properties>
+			<property name="javax.persistence.schema-generation.database.action" value="none"/>
+		</properties>
 	</persistence-unit>
 
 </persistence>
