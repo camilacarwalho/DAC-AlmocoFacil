@@ -35,7 +35,8 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
     @Override
     public Solicitacao buscar(Object key) {
         Solicitacao solicitacao = new Solicitacao();
-        return em.find(Solicitacao.class,key);
+        solicitacao = em.find(Solicitacao.class,key);
+        return solicitacao;
     }
 
     @Override

@@ -34,7 +34,8 @@ public class AlunoDaoJPA implements AlunoDao {
     @Override
     public Aluno buscar(Object key) {
         Aluno aluno = new Aluno();
-        return em.find(Aluno.class,key);
+        aluno= em.find(Aluno.class,key);
+        return aluno;
     }
 
     @Override
