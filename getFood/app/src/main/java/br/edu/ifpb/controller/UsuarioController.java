@@ -29,7 +29,8 @@ public class UsuarioController implements Serializable {
 		}		
 		return  usuarioService.getUsuarioEnum().getIdentificador();
 	}
-
+	
+	public String getMensagem() {return "Ambiente do " + usuarioService.getUsuarioEnum().getNome();}
 	public String getMatricula() {return matricula;}
 	public void setMatricula(String matricula) {this.matricula = matricula;}
 	public String getSenha() {return senha;}
