@@ -50,6 +50,7 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 		if(!usuario.getSenha().equals(senha))
 			return null;
 		usuarioLogado = usuario;
+		estaLogado = usuario != null;
 		return usuarioLogado;
 	}
 
@@ -60,8 +61,8 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 	}
 	@Override
 	public UsuarioEnum getUsuarioEnum() {
-		if(!isLogado())
-			return null;
+		if(!isLogado() || getUsuarioLogado() == null)
+			return UsuarioEnum.DEFAULT;
 		return getUsuarioLogado().getCargo();
 	}
 
