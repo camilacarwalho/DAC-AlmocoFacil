@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
-              version="2.3">
-    <navigation-rule>
-    <from-view-id>*</from-view-id>
-    <navigation-case>
-        <from-outcome>home</from-outcome>
-        <to-view-id>/professor/index.xhtml</to-view-id>
-        <redirect/>
-    </navigation-case>
-    </navigation-rule>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+	version="2.3">
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>default</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>caest</from-outcome>
+			<to-view-id>/caest/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>gestor</from-outcome>
+			<to-view-id>/gestor/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>professor</from-outcome>
+			<to-view-id>/professor/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>refeitorio</from-outcome>
+			<to-view-id>/refeitorio/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		
+		
+		
+		
+		
+	</navigation-rule>
 
 </faces-config>
