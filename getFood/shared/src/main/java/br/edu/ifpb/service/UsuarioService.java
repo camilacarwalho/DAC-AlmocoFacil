@@ -8,7 +8,7 @@ public interface UsuarioService {
 	boolean isLogado();
 	Usuario getUsuarioLogado();
 	Usuario logar(String matricula, String senha);
-	void logoff();
+	void logout();
 	UsuarioEnum getUsuarioEnum();
 
 }

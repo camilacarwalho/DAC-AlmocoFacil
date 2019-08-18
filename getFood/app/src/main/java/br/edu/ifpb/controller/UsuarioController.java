@@ -22,13 +22,20 @@ public class UsuarioController implements Serializable {
 	@Inject
     private UsuarioService usuarioService;
 	
-	public String Logar() {
+	public String logon() {
 		if (usuarioService.logar(matricula, senha) == null) {
 			MensagensAlert.addErrorMessage("Falha ao autenticar usuário.");
 			return null;
 		}		
 		return  usuarioService.getUsuarioEnum().getIdentificador();
 	}
+	
+	public String logout() {
+		usuarioService.logout();
+		return "home";
+	}
+	
+	
 	
 	public String getMensagem() {return "Ambiente do " + usuarioService.getUsuarioEnum().getNome();}
 	public String getMatricula() {return matricula;}

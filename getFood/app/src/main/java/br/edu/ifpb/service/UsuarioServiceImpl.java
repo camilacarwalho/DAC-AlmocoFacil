@@ -56,7 +56,7 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 
 	@Override
 	@Remove
-	public void logoff() {
+	public void logout() {
 		sair();	
 	}
 	@Override
