@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.domain.enums.UsuarioEnum;
 import br.edu.ifpb.service.MensagensAlert;
 import br.edu.ifpb.service.UsuarioService;
 
@@ -25,8 +26,8 @@ public class UsuarioController implements Serializable {
 		if (usuarioService.logar(matricula, senha) == null) {
 			MensagensAlert.addErrorMessage("Falha ao autenticar usuário.");
 			return null;
-		}
-		return "index";
+		}		
+		return  usuarioService.getUsuarioEnum().getIdentificador();
 	}
 
 	public String getMatricula() {return matricula;}
