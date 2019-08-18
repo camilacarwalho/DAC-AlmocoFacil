@@ -1,23 +1,39 @@
 package br.edu.ifpb.controller;
 
-import br.edu.ifpb.dao.UsuarioDao;
-import br.edu.ifpb.domain.Usuario;
+import java.io.Serializable;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.Serializable;
-import java.util.List;
 
-@RequestScoped
+import br.edu.ifpb.service.MensagensAlert;
+import br.edu.ifpb.service.UsuarioService;
+
+@SessionScoped
 @Named
 public class UsuarioController implements Serializable {
 
-    @Inject
-    private UsuarioDao usuarioDao;
+	private static final long serialVersionUID = -6290167856098791005L;
+	
+	private String matricula;
+	private String senha;
+	
+	@Inject
+    private UsuarioService usuarioService;
+	
+	public String Logar() {
+		if (usuarioService.logar(matricula, senha) == null) {
+			MensagensAlert.addErrorMessage("Falha ao autenticar usuário.");
+			return null;
+		}
+		return "index";
+	}
 
-    public List<Usuario> getListaDeUsuarios(){
-        return usuarioDao.listar();
-    }
+	public String getMatricula() {return matricula;}
+	public void setMatricula(String matricula) {this.matricula = matricula;}
+	public String getSenha() {return senha;}
+	public void setSenha(String senha) {this.senha = senha;}
+	
+	
 
 }
