@@ -1,15 +1,18 @@
 package br.edu.ifpb.service;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
+import javax.management.ObjectInstance;
 
 import br.edu.ifpb.dao.UsuarioDao;
 import br.edu.ifpb.domain.Usuario;
 import br.edu.ifpb.domain.enums.UsuarioEnum;
+import br.edu.ifpb.exceptions.DadosInvalidosException;
 
 @Stateful
 public class UsuarioServiceImpl implements Serializable, UsuarioService {
@@ -38,7 +41,7 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 	@Override
 	public Usuario getUsuarioLogado() {
 		if (!isLogado())
-			return null;
+			return new Usuario();
 		return usuarioLogado;
 	}
 	@Override
@@ -59,12 +62,28 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 	public void logout() {
 		sair();	
 	}
+	
 	@Override
 	public UsuarioEnum getUsuarioEnum() {
 		if(!isLogado() || getUsuarioLogado() == null)
 			return UsuarioEnum.DEFAULT;
 		return getUsuarioLogado().getCargo();
 	}
+	
+	@Override
+	public void editar(String nome, String telefone, String senha) throws DadosInvalidosException{
+		if (!isLogado())
+			return;
+		if (nome == null || nome.length() < 4) throw new DadosInvalidosException("Nome inválido.");
+		if (telefone == null || telefone.length() < 4) throw new DadosInvalidosException("Telefone inválido.");
+		if (senha == null || senha.length() < 3) throw new DadosInvalidosException("Senha inválida.");
+		Usuario usuario = getUsuarioLogado();
+		usuario.getPessoa().setNome(nome);
+		usuario.getPessoa().setTelefone(telefone);
+		usuario.setSenha(senha);
+		usuarioDao.atualizar(usuario);		
+	}
+	
 
 
 }

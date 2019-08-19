@@ -23,49 +23,10 @@
     <!-- ............ -->
 
     <ui:define name="top">
-        <h4>Dados gerais:</h4>
-
-        <a href="#modal2" class="modal-trigger  ">Editar dados</a>
-        <a href="#modal1" class="grey-text modal-trigger">Desativar conta</a>
-        <h:form prependId="false">
-            <ul class="collection with-header">
-                <li class="collection-item">
-                    <div class="row">
-                        <div class="col l3">
-                            <b>Nome</b>
-                        </div>
-                        <div class="col l3">
-                            <b>E-mail</b>
-                        </div>
-                        <div class="col l3">
-                            <b>Matrícula</b>
-                        </div>
-                        <div class="col l3">
-                            <b> Cargo</b>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="collection-item">
-                    <div class="row">
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-                        </div>
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-                        </div>
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-                        </div>
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-
-
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </h:form>
+    	<!--    DADOS GERIAS   -->
+        <ui:include src="../includes/dadosgerais.xhtml"/>
+        <!-- ................. -->
     </ui:define>
+    
 </ui:composition>
 </html>
