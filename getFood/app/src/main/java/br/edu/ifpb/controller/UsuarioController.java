@@ -8,7 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifpb.service.MensagensAlert;
+import br.edu.ifpb.service.MessagesAlert;
 import br.edu.ifpb.service.UsuarioService;
 
 @SessionScoped
@@ -31,7 +31,7 @@ public class UsuarioController implements Serializable {
 	
 	public String logon() {
 		if (usuarioService.logar(matricula, senha) == null) {
-			MensagensAlert.addErrorMessage("Falha ao autenticar usuário.");
+			MessagesAlert.addErrorMessage("Falha ao autenticar usuário.");
 			return null;
 		}		
 		senha = "";
@@ -51,10 +51,10 @@ public class UsuarioController implements Serializable {
 		try {
 			usuarioService.editar(nome, telefone, senha);
 		}catch (Exception e) {
-			MensagensAlert.addErrorMessage("Falha ao editar dados.");
+			MessagesAlert.addErrorMessage("Falha ao editar dados.");
 			return null;
 		}
-		MensagensAlert.addInfoMessage("Dados modificados");
+		MessagesAlert.addInfoMessage("Dados modificados");
 		nome = "";
 		telefone = "";
 		senha = "";

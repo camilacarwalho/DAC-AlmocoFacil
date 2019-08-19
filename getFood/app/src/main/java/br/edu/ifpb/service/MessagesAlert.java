@@ -3,7 +3,7 @@ package br.edu.ifpb.service;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-public class MensagensAlert {
+public class MessagesAlert {
 	
 	public static void addInfoMessage(String msg) {
 		FacesMessage infoMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, 
