@@ -11,13 +11,16 @@
 
 </h:head>
 <ui:composition template="../template.xhtml">
-    <ui:define name="links">  <li><a href="/professor/solicitar.xhtml">Solicitar</a></li>
 
-        <li><a href="/professor/acompanhar.xhtml">Acompanhar</a></li>
-
-        <li><a href="/professor/perfil.xhtml">Meus dados</a></li>
-        <li><a class="red-text" href="">Sair</a></li></ui:define>
-
+    <!--     LINKS   -->
+    <ui:define name="links">  
+    	<ui:include src="menu.xhtml"/>    
+    </ui:define>
+    <!-- ............ -->
+    
+    <!--    MENSAGEM   -->
+    <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
+    <!-- ............ -->
 
     <ui:define name="top">
         <h4>Solicite uma refeição</h4>
