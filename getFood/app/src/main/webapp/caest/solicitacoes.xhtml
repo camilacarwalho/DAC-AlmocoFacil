@@ -28,33 +28,90 @@
 
             <h:form prependId="false">
                 <ul class="collection with-header">
-                    <li class="collection-item">
+
+
+
+
+					<li class="collection-item">
+
+						<div class="row">
+							<div class="input-field col s6">
+								<h:inputText 
+									id="first_name"
+									value="#{solicitacaoController.buscarRequerente}"
+									class="validate"
+									placeholder="Informe o nome do requerente"/> 
+								<label for="first_name">Buscar pelo requerente</label>
+							</div>
+
+							<div class="input-field col s3">							
+								<h:selectOneListbox 
+									id="BuscaStatusRequisicao"
+									value="#{solicitacaoController.buscarStatusRequisicao}">
+									<f:selectItem itemLabel="Todos os status"/>
+									<f:selectItems
+										var="statusRequisicao"
+										value="#{solicitacaoController.listaStatusRequisicao}"
+										item="#{statusRequisicao}"
+										itemLabel="#{statusRequisicao.nome}"/>
+								</h:selectOneListbox>
+								<label>Buscar pelo status</label>
+							</div>
+							
+							<dir class="col s3">
+							 	<h:commandLink
+							 		action="#{solicitacaoController.atualizar()}"
+							 		class="btn-floating btn-small waves-effect waves-light teal">
+							 		<i class="material-icons">search</i>
+							 	</h:commandLink>
+								
+							</dir>
+
+						</div>
+
+
+
+					</li>
+
+
+					<li class="collection-item">
                         <div class="row">
 
                             <div class="col l2"><b>Data</b></div>
-                            <div class="col l2"><b>Hora</b></div>
-                            <div class="col l1"><b>Alunos</b></div>
-                            <div class="col l5"><b>Justificativa</b></div>
+                            <div class="col l6"><b>Requerente</b></div>                            
                             <div class="col l2"><b>Status</b></div>
+                            <div class="col l2"><b>Operações</b></div>
                         </div>
                     </li>
-                    <ui:repeat var="solicitacao" value="#">
+                    <ui:repeat var="solicitacao" value="#{solicitacaoController.listSolicitacao}">
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText 
+                                    	value="#{solicitacao.dataSolicitacao}"
+                                    	converter="dateConverter"/>
+                                </div>
+                                <div class="col l6">
+                                    <h:outputText value="#{solicitacao.usuario.pessoa.nome}"></h:outputText>
+                                </div>                            
+                                <div class="col l2">
+                                    <h:outputText value="#{solicitacao.statusRequisicao.nome}"></h:outputText>
                                 </div>
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l1">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l5">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <a href="#"
+                                    	class="tooltipped" data-position="left" data-tooltip="Visualizar" >
+                                    	<i class="teal-text small material-icons">event_note</i>
+                                    </a>
+                                    
+                                    <a href="#"
+                                    	class="tooltipped" data-position="left" data-tooltip="Autorizar" >
+	                                    <i class="teal-text small material-icons">event_available</i>
+                                    </a>
+                                    <!-- <i class="grey-text text-lighten-3 small material-icons">event_available</i>-->
+                                    <a href="#"
+                                    	class="tooltipped" data-position="left" data-tooltip="Autorizar" >
+                                    	<i class="red-text small material-icons">event_busy</i>
+                                    </a>
                                 </div>
 
                             </div>
