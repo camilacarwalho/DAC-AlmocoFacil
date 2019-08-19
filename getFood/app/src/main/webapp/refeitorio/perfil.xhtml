@@ -11,122 +11,22 @@
 
 </h:head>
 <ui:composition template="../template.xhtml">
-    <ui:define name="links">  <li><a href="/professor/solicitar.xhtml">Solicitar</a></li>
 
-        <li><a href="/professor/acompanhar.xhtml">Acompanhar</a></li>
-
-        <li><a href="/professor/perfil.xhtml">Meus dados</a></li>
-        <li><a class="red-text" href="">Sair</a></li></ui:define>
-
+   	<!--     LINKS   -->
+    <ui:define name="links">  
+    	<ui:include src="menu.xhtml"/>    
+    </ui:define>
+    <!-- ............ -->
+    
+    <!--    MENSAGEM   -->
+    <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
+    <!-- ............ -->
 
     <ui:define name="top">
-        <h4>Dados gerais:</h4>
-
-        <a href="#modal2" class="modal-trigger  ">Editar dados</a>
-        <a href="#modal1" class="grey-text modal-trigger">Desativar conta</a>
-        <h:form prependId="false">
-            <ul class="collection with-header">
-                <li class="collection-item">
-                    <div class="row">
-                        <div class="col l3">
-                            <b>Nome</b>
-                        </div>
-                        <div class="col l3">
-                            <b>E-mail</b>
-                        </div>
-                        <div class="col l3">
-                            <b>Matrícula</b>
-                        </div>
-                        <div class="col l3">
-                            <b> Cargo</b>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="collection-item">
-                    <div class="row">
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-                        </div>
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-                        </div>
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-                        </div>
-                        <div class="col l3">
-                            <h:outputText value="#"></h:outputText>
-
-
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </h:form>
-
-
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <h4>Desativar conta</h4>
-                <p>Você realmente deseja desativar sua conta?</p>
-            </div>
-            <div class="modal-footer">
-                <h:form>
-                    <h:commandButton value="Sim"
-
-                                     styleClass="white-text btn red" />
-                </h:form>
-                <a href="/professor/perfil.xhtml"
-                   class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-
-            </div>
-        </div>
-
-        <!-- Modal Structure -->
-        <div id="modal2" class="modal">
-            <div class="modal-content">
-                <h4>Edição de dados</h4>
-                <div class="row">
-                    <div class="col s12 l4 offset-l4">
-                        <h:form>
-                            <h:messages layout="table" class="red-text"></h:messages>
-
-                            <div class="input-field">
-                                <h:outputLabel for="Email">Email:</h:outputLabel>
-                                <h:inputText id="Email"
-                                             value="#" />
-                            </div>
-                            <div class="input-field">
-                                <h:outputLabel for="Nome">Nome:</h:outputLabel>
-                                <h:inputText id="Nome"
-                                             value="#" />
-                            </div>
-                            <div class="input-field">
-                                <h:outputLabel for="Senha">Senha:</h:outputLabel>
-                                <h:inputSecret id="Senha"
-                                               value="#" />
-                            </div>
-                            <div class="input-field">
-                                <h:outputLabel for="Cargo">Cargo:</h:outputLabel>
-                                <h:inputText id="Cargo"
-                                             value="#" />
-                            </div>
-                            <h:commandButton value="Atualizar"
-
-                                             styleClass="btn cyan center-align white-text" />
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-
-                <a href="/professor/perfil.xhtml"
-                   class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-
-            </div>
-        </div>
-
+    	<!--    DADOS GERIAS   -->
+        <ui:include src="../includes/dadosgerais.xhtml"/>
+        <!-- ................. -->
     </ui:define>
+    
 </ui:composition>
 </html>
