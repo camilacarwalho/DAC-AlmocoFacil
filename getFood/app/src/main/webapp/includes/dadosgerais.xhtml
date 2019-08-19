@@ -28,45 +28,61 @@
             </li>
         </ul>
     
-    
-    
-  <!-- Modal Editar -->
-  <div id="modalEditar" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>Editar dados</h4>
-      <br/>
-      <p>
-      	<div class="input-field col s6">
-          <h:inputText 
-          	id="nome" 
-          	value="#{usuarioController.nome}" 
-          	class="validate"/>
-          <label for="nome">Nome</label>
-        </div>
-        
-        <div class="input-field col s6">
-          <h:inputText 
-          	id="telefone"
-          	value="#{usuarioController.telefone}" 
-			class="validate"/>
-          <label for="telefone">Telefone</label>
-        </div>
-        
-        <div class="input-field col s12">
-          <h:inputSecret 
-          	id="senha"
-          	value="#{usuarioController.senha}" 
-          	class="validate"/>
-          <label for="senha">Senha</label>
-        </div>
-      </p>
-    </div>
-    <div class="modal-footer">
-      <h:commandLink action="#{usuarioController.editar}" class="modal-close waves-effect waves-green btn-flat">Salvar</h:commandLink>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-    </div>
-  </div>
-	
+	  <!-- Modal Editar -->
+	  <div id="modalEditar" class="modal modal-fixed-footer">
+	    <div class="modal-content">
+	      <h4>Editar dados</h4>
+	      <br/>
+	      <p>
+	      	<div class="input-field col s6">
+	          <h:inputText 
+	          	id="nome" 
+	          	value="#{usuarioController.nome}" 
+	          	class="validate"/>
+	          <label for="nome">Nome</label>
+	        </div>
+	        
+	        <div class="input-field col s6">
+	          <h:inputText 
+	          	id="telefone"
+	          	value="#{usuarioController.telefone}" 
+				class="validate"/>
+	          <label for="telefone">Telefone</label>
+	        </div>
+	        
+	        <div class="input-field col s12">
+	          <h:inputSecret 
+	          	id="senha"
+	          	value="#{usuarioController.senha}" 
+	          	class="validate"/>
+	          <label for="senha">Senha</label>
+	        </div>
+	      </p>
+	    </div>
+	    <div class="modal-footer">
+	      <h:commandLink action="#{usuarioController.editar}" class="modal-close waves-effect waves-green btn-flat">Salvar</h:commandLink>
+	      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+	    </div>
+	  </div>
+	  
+	  
+	  <!-- Modal Desativar -->
+		<div id="modalDesativar" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>Desativar conta</h4>
+				<p><b>Deseja desativar a conta atual?</b></p>
+				<p>Caso esteja certo em desativa a conta de <b><h:outputText value="#{usuarioController.nome}" /></b>,<br/>
+				clique em "Desativar". Isto excluirá esta conta, tornando impossível recuperá-la. </p>
+				<p>Para cacelar o processo clique em <b>"Cancelar"</b>.</p>
+			</div>
+			<div class="modal-footer">
+				<h:commandLink action="#{usuarioController.desativar()}"
+					class="modal-close waves-effect waves-green btn-flat">Desativar</h:commandLink>
+				<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+			</div>
+		</div>
+
+
 	</h:form>
 	
 </ui:composition>
