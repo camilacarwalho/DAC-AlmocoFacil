@@ -2,11 +2,12 @@ package br.edu.ifpb.controller;
 
 import java.io.Serializable;
 
+import javax.ejb.Remove;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifpb.domain.enums.UsuarioEnum;
 import br.edu.ifpb.service.MensagensAlert;
 import br.edu.ifpb.service.UsuarioService;
 
@@ -30,12 +31,12 @@ public class UsuarioController implements Serializable {
 		return  usuarioService.getUsuarioEnum().getIdentificador();
 	}
 	
+	@Remove
 	public String logout() {
 		usuarioService.logout();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "home";
 	}
-	
-	
 	
 	public String getMensagem() {return "Ambiente do " + usuarioService.getUsuarioEnum().getNome();}
 	public String getMatricula() {return matricula;}

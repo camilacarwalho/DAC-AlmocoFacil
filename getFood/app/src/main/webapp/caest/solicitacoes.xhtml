@@ -11,16 +11,17 @@
 
 </h:head>
 <ui:composition template="../template.xhtml">
-    <ui:define name="links">  <li><a href="/caest/solicitacoes.xhtml">Solicitações</a></li>
-
-        <li><a href="/caest/refeicoes.xhtml">Refeições</a></li>
-
-        <li><a href="/caest/editais.xhtml">Editais</a></li>
-
-        <li><a href="/caest/perfil.xhtml">Meus Dados</a></li>
-        <li><a class="red-text" href="">Sair</a></li></ui:define>
-
-    <ui:define name="welcome">Bem vinda, CAEST.</ui:define>
+    
+	<!--     LINKS   -->
+    <ui:define name="links">  
+    	<ui:include src="menu.xhtml"/>    
+    </ui:define>
+    <!-- ............ -->
+    
+    <!--    MENSAGEM   -->
+    <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
+    <!-- ............ -->
+    
     <ui:define name="top">
         <h4>Acompanhar solicitações</h4>
         <div class="row">

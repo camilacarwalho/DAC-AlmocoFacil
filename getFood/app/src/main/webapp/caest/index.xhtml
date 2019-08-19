@@ -8,9 +8,16 @@
 <h:head>
 </h:head>
 <ui:composition template="../template.xhtml">
+
+	<!--     LINKS   -->
     <ui:define name="links">  
     	<ui:include src="menu.xhtml"/>    
     </ui:define>
+    <!-- ............ -->
+    
+    <!--    MENSAGEM   -->
     <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
+    <!-- ............ -->
+    
 </ui:composition>
 </html>
