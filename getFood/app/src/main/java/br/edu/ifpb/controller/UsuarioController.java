@@ -25,6 +25,10 @@ public class UsuarioController implements Serializable {
 	@Inject
     private UsuarioService usuarioService;
 	
+	private void encerrarSessao() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	}
+	
 	public String logon() {
 		if (usuarioService.logar(matricula, senha) == null) {
 			MensagensAlert.addErrorMessage("Falha ao autenticar usuário.");
@@ -37,7 +41,7 @@ public class UsuarioController implements Serializable {
 	@Remove
 	public String logout() {
 		usuarioService.logout();
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		encerrarSessao();
 		return "home";
 	}
 	
@@ -55,6 +59,12 @@ public class UsuarioController implements Serializable {
 		telefone = "";
 		senha = "";
 		return "";
+	}
+	
+	public String desativar() {
+		usuarioService.desativar();
+		encerrarSessao();
+		return "home";
 	}
 	
 	public String getMensagem() {return "Ambiente do " + usuarioService.getUsuarioEnum().getNome();}

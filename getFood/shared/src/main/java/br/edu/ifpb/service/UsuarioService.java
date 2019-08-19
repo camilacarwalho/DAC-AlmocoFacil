@@ -11,6 +11,7 @@ public interface UsuarioService {
 	Usuario logar(String matricula, String senha);
 	void logout();
 	void editar(String nome, String telefone, String senha) throws DadosInvalidosException;
+	void desativar();
 	UsuarioEnum getUsuarioEnum();
 
 }

@@ -1,12 +1,14 @@
 package br.edu.ifpb.daoImpl.jpa;
 
-import br.edu.ifpb.dao.UsuarioDao;
-import br.edu.ifpb.domain.Usuario;
+import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.*;
-import java.util.Collections;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import br.edu.ifpb.dao.UsuarioDao;
+import br.edu.ifpb.domain.Usuario;
 
 @Stateless
 public class UsuarioDaoJPA implements UsuarioDao {

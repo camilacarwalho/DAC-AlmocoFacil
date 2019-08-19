@@ -83,6 +83,11 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 		usuario.setSenha(senha);
 		usuarioDao.atualizar(usuario);		
 	}
+	@Override
+	public void desativar() {
+		usuarioDao.remover(getUsuarioLogado());
+		sair();
+	}
 	
 
 
