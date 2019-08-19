@@ -5,7 +5,59 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+<h:head>
+
+
+
+</h:head>
+<ui:composition template="../template.xhtml">
+  
+	<!--     LINKS   -->
+    <ui:define name="links">  
+    	<ui:include src="menu.xhtml"/>    
+    </ui:define>
+    <!-- ............ -->
+    
+    <!--    MENSAGEM   -->
+    <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
+    <!-- ............ -->
+    
+    <ui:define name="top">
+        <h4>Listagem de Professores</h4>
+        <div class="row">
+
+            <h:form prependId="false">
+                <ul class="collection with-header">
+                    <li class="collection-item">
+                        <div class="row">
+
+                            <div class="col l3"><b>Matrícula</b></div>
+                            <div class="col l6"><b>Nome</b></div>
+                            <div class="col l3"><b>Telefone</b></div>
+                        </div>
+                    </li>
+                    <ui:repeat var="solicitacao" value="#">
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col l3">
+                                    <h:outputText value="#"></h:outputText>
+                                </div>
+                                <div class="col l6">
+                                    <h:outputText value="#"></h:outputText>
+                                </div>
+                                <div class="col l3">
+                                    <h:outputText value="#"></h:outputText>
+                                </div>
+
+                            </div>
+
+                        </li>
+
+                    </ui:repeat>
+                </ul>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
 </html>
+
