@@ -1,13 +1,11 @@
 package br.edu.ifpb.service;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
-import javax.management.ObjectInstance;
 
 import br.edu.ifpb.dao.UsuarioDao;
 import br.edu.ifpb.domain.Usuario;

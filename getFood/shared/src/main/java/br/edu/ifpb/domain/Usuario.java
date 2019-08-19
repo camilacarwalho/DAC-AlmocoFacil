@@ -1,6 +1,7 @@
 package br.edu.ifpb.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import br.edu.ifpb.domain.enums.UsuarioEnum;
 
@@ -27,8 +29,7 @@ public class Usuario implements Serializable {
     private String senha;
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
-    private UsuarioEnum cargo;
-
+    private UsuarioEnum cargo;    
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "pessoa_cpf")
     private Pessoa pessoa;
