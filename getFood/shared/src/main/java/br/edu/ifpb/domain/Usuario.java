@@ -1,6 +1,7 @@
 package br.edu.ifpb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,11 +34,15 @@ public class Usuario implements Serializable {
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "pessoa_cpf")
     private Pessoa pessoa;
+    @OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
+    private List<Solicitacao> solicitacoes;
 
     public Usuario() {
+    	solicitacoes = new ArrayList<Solicitacao>();
     }
 
     public Usuario(String matricula, String senha, UsuarioEnum cargo,Pessoa pessoa) {
+    	this();
         this.matricula = matricula;
         this.senha = senha;
         this.cargo = cargo;
@@ -75,6 +80,17 @@ public class Usuario implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+    
+	public List<Solicitacao> getSolicitacoes() {
+		return solicitacoes;
+	}
+
+	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+		for (Solicitacao solicitacao : solicitacoes) {
+			solicitacao.setUsuario(this);
+		}
+		this.solicitacoes = solicitacoes;
+	}
 
 	@Override
 	public int hashCode() {

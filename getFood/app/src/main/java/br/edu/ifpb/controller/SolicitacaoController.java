@@ -23,13 +23,11 @@ public class SolicitacaoController extends PaginacaoController<Solicitacao> impl
 	private SolicitacaoService solicitacaoService;
 	private String buscarRequerente;
 	private StatusRequisicao buscarStatusRequisicao;
-	private List<Solicitacao> solicitacoes;
 	
 	@PostConstruct
 	private void init() {
 		buscarRequerente = "";
 		buscarStatusRequisicao = null;
-		buscar();
 	}
 	
 	@Override
@@ -43,16 +41,10 @@ public class SolicitacaoController extends PaginacaoController<Solicitacao> impl
 
 	@Override
 	public int getQuantidadeItens() {
-		// TODO Auto-generated method stub
-		return 0;
+		return solicitacaoService.quantBuscarSolicitacoes(buscarRequerente, buscarStatusRequisicao);
 	}
 
-	public String buscar() {	
-		solicitacoes = buscarItens();
-		return "";
-	}
-	
-	public List<Solicitacao> getListSolicitacao(){return solicitacoes;}
+	public List<Solicitacao> getListSolicitacao(){return getItens();}
 	public StatusRequisicao[] getlistaStatusRequisicao() {return StatusRequisicao.values();	}
 	public String getBuscarRequerente() {return buscarRequerente;}
 	public void setBuscarRequerente(String buscarRequerente) {this.buscarRequerente = buscarRequerente;}

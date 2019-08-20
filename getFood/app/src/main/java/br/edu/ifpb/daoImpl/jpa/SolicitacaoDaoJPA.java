@@ -68,15 +68,16 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
 
 	@Override
 	public int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao) {
-		String jpql ="SELECT COUNT(s) FROM Solicitacao s"
+		String jpql ="SELECT COUNT(s.id) FROM Solicitacao s"
 				+ " JOIN s.usuario u"
 				+ " WHERE LOWER(u.pessoa.nome) LIKE :nome";
-		jpql += statusRequisicao != null ? " AND s.statusRequisicao = :status":"";
-		TypedQuery<Integer> query = em.createQuery(jpql, Integer.class);
+		jpql += statusRequisicao != null ? " AND s.statusRequisica = :status":"";
+		TypedQuery<Long> query = em.createQuery(jpql, Long.class);
 		query.setParameter("nome", "%"+requerente.toLowerCase()+"%");
 		if (statusRequisicao != null)
 			query.setParameter("status", statusRequisicao);
-		return query.getSingleResult();
+		Long qdt = query.getSingleResult(); 
+		return qdt.intValue(); 
 	}
 	
 	

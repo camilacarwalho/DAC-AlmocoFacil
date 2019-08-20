@@ -1,0 +1,41 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	<h:form>
+	
+	<ul class="pagination">
+		<!-- SELECIONADO -->
+		<li jsf:rendered="#{controller.paginaAtual eq 1}" class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+		<!-- NÂO SELECIONADO -->		
+		<li jsf:rendered="#{not(controller.paginaAtual eq 1)}" class="waves-effect">
+			<h:commandLink  action="#{controller.irParaPagina(1)}">
+				<i class="material-icons">chevron_left</i>
+			</h:commandLink>
+		</li>
+		
+		<ui:repeat  var="pag" value="#{controller.numPaginas}">
+			<!-- SELECIONADO -->
+			<li jsf:rendered="#{pag eq controller.paginaAtual}" class="active"><a href="#!"><h:outputText value="#{pag}"/></a></li>
+			<!-- NÂO SELECIONADO -->
+			<li jsf:rendered="#{not (pag eq controller.paginaAtual)}" class="waves-effect">
+				<h:commandLink  action="#{controller.irParaPagina(pag)}">
+					<h:outputText value="#{pag}"/>
+				</h:commandLink>
+			</li>		
+		</ui:repeat>
+		
+		<!-- SELECIONADO -->
+		<li jsf:rendered="#{controller.paginaAtual eq controller.quantPaginas}" class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+		<!-- NÂO SELECIONADO -->		
+		<li jsf:rendered="#{not(controller.paginaAtual eq controller.quantPaginas)}" class="waves-effect">
+			<h:commandLink  action="#{controller.irParaPagina(controller.quantPaginas)}">
+				<i class="material-icons">chevron_right</i>
+			</h:commandLink>
+		</li>
+				
+	</ul>
+	</h:form>
+</ui:composition>
