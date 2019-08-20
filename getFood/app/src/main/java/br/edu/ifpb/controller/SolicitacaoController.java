@@ -15,7 +15,9 @@ import br.edu.ifpb.service.SolicitacaoService;
 
 @ViewScoped
 @Named
-public class SolicitacaoController implements Serializable {
+public class SolicitacaoController extends PaginacaoController<Solicitacao> implements Serializable {
+	
+	private static final long serialVersionUID = 6246947493370034923L;
 	
 	@Inject
 	private SolicitacaoService solicitacaoService;
@@ -27,25 +29,34 @@ public class SolicitacaoController implements Serializable {
 	private void init() {
 		buscarRequerente = "";
 		buscarStatusRequisicao = null;
-		atualizar();
+		buscar();
 	}
 	
-	public String atualizar() {
-		solicitacoes = solicitacaoService.buscarSolicitacoes(buscarRequerente, buscarStatusRequisicao);		
+	@Override
+	protected List<Solicitacao> listarItensDaBusca(int inicio, int maximo) {
+		return solicitacaoService.buscarSolicitacoes(
+				buscarRequerente,
+			 	buscarStatusRequisicao, 
+			 	inicio, 
+			 	maximo);
+	}
+
+	@Override
+	public int getQuantidadeItens() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String buscar() {	
+		solicitacoes = buscarItens();
 		return "";
 	}
 	
-	public List<Solicitacao> getListSolicitacao(){		
-		return solicitacoes;
-	}
-	
+	public List<Solicitacao> getListSolicitacao(){return solicitacoes;}
 	public StatusRequisicao[] getlistaStatusRequisicao() {return StatusRequisicao.values();	}
 	public String getBuscarRequerente() {return buscarRequerente;}
 	public void setBuscarRequerente(String buscarRequerente) {this.buscarRequerente = buscarRequerente;}
 	public StatusRequisicao getBuscarStatusRequisicao() {return buscarStatusRequisicao;}
 	public void setBuscarStatusRequisicao(StatusRequisicao buscarStatusRequisicao) {this.buscarStatusRequisicao = buscarStatusRequisicao;}
-	
-	
-	
 
 }

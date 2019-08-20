@@ -7,6 +7,7 @@ import br.edu.ifpb.domain.enums.StatusRequisicao;
 
 public interface SolicitacaoDao extends DefaultDao<Solicitacao> {
 	
-	List<Solicitacao> buscarSolicitacaos(String requerente, StatusRequisicao statusRequisicao);
+	List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int quant);
+	int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao);
 	
 }

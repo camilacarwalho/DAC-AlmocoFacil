@@ -60,7 +60,7 @@
 							
 							<dir class="col s3">
 							 	<h:commandLink
-							 		action="#{solicitacaoController.atualizar()}"
+							 		action="#{solicitacaoController.buscar()}"
 							 		class="btn-floating btn-small waves-effect waves-light teal">
 							 		<i class="material-icons">search</i>
 							 	</h:commandLink>
@@ -90,7 +90,7 @@
                                     <h:outputText 
                                     	value="#{solicitacao.dataSolicitacao}"
                                     	converter="dateConverter"/>
-                                </div>
+                                </div>                            
                                 <div class="col l6">
                                     <h:outputText value="#{solicitacao.usuario.pessoa.nome}"></h:outputText>
                                 </div>                            
@@ -122,6 +122,8 @@
                 </ul>
             </h:form>
         </div>
+        
+        
     </ui:define>
 </ui:composition>
 </html>

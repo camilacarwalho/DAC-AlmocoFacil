@@ -1,15 +1,15 @@
 package br.edu.ifpb.daoImpl.jpa;
 
-import br.edu.ifpb.dao.SolicitacaoDao;
-import br.edu.ifpb.domain.Solicitacao;
-import br.edu.ifpb.domain.enums.StatusRequisicao;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.util.List;
+
+import br.edu.ifpb.dao.SolicitacaoDao;
+import br.edu.ifpb.domain.Solicitacao;
+import br.edu.ifpb.domain.enums.StatusRequisicao;
 
 @Stateless
 public class SolicitacaoDaoJPA implements SolicitacaoDao {
@@ -49,14 +49,37 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
     }
 
 	@Override
-	public List<Solicitacao> buscarSolicitacaos(String requerente, StatusRequisicao statusRequisicao) {
-		String jpql ="SELECT s FROM Solicitacao s"
+	public List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int quant) {
+		String jpql ="SELECT DISTINCT(s) FROM Solicitacao s"
 				+ " JOIN s.usuario u"
 				+ " WHERE LOWER(u.pessoa.nome) LIKE :nome";
-		TypedQuery<Solicitacao> query = em.createQuery(jpql, Solicitacao.class);
-		query.setParameter("nome", requerente.toLowerCase());
+		jpql += statusRequisicao != null ? " AND s.statusRequisicao = :status":"";						
+		jpql += " ORDER BY s.dataSolicitacao DESC";
+		
+		TypedQuery<Solicitacao> query = em
+				.createQuery(jpql, Solicitacao.class)
+				.setFirstResult(inicio)
+				.setMaxResults(quant);
+		query.setParameter("nome", "%"+requerente.toLowerCase()+"%");
+		if (statusRequisicao != null)
+			query.setParameter("status", statusRequisicao);
 		return query.getResultList();
 	}
+
+	@Override
+	public int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao) {
+		String jpql ="SELECT COUNT(s) FROM Solicitacao s"
+				+ " JOIN s.usuario u"
+				+ " WHERE LOWER(u.pessoa.nome) LIKE :nome";
+		jpql += statusRequisicao != null ? " AND s.statusRequisicao = :status":"";
+		TypedQuery<Integer> query = em.createQuery(jpql, Integer.class);
+		query.setParameter("nome", "%"+requerente.toLowerCase()+"%");
+		if (statusRequisicao != null)
+			query.setParameter("status", statusRequisicao);
+		return query.getSingleResult();
+	}
+	
+	
     
     
 }
