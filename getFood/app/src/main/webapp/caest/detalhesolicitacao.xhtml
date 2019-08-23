@@ -1,0 +1,136 @@
+<ui:composition 
+	template="../template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui">
+	
+	<!--     LINKS   -->
+    <ui:define name="links">  
+    	<ui:include src="menu.xhtml"/>    
+    </ui:define>
+    <!-- ............ -->
+    
+    <!--    MENSAGEM   -->
+    <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
+    <!-- ............ -->
+
+	<ui:define name="top">
+		<h4>Detalhe da solicitação</h4>
+		<div class="row">
+			<h:form prependId="false">
+				<ul class="collection with-header">
+					<!-- Detalhe da Solicitação -->
+					<li class="collection-item">
+						<div class="row">
+							<!-- Data -->
+							 <div class="col s3 right-align"><b>Data:</b></div>
+							 <div class="col s9">
+							 	<h:outputText 
+							 		value="#{detalheSolicitacaoController.solicitacao.dataSolicitacao}"
+							 		converter="dateConverter"/>
+							 </div>
+							 <!-- Status -->
+							 <div class="col s3 right-align"><b>Status:</b></div>
+							 <div class="col s9">
+							 	<h:outputText 
+							 		value="#{detalheSolicitacaoController.solicitacao.statusRequisicao.nome}"/>
+							 		<br/>
+							 	<h:outputText 
+							 		value="#{detalheSolicitacaoController.solicitacao.justificativa}"/>
+							 </div>							  
+							 <!-- Requerente -->
+							 <div class="col s3 right-align"><b>Requerente:</b></div>
+							 <div class="col s9">
+							 	<h:outputText 
+							 		value="#{detalheSolicitacaoController.solicitacao.usuario.pessoa.nome}"/>
+							 		
+							 	<h:outputText 
+							 		value=" - [#{detalheSolicitacaoController.solicitacao.usuario.cargo}]"/>
+							 </div>
+							 <!-- Descricao -->
+							 <div class="col s3 right-align"><b>Descrição:</b></div>
+							 <div class="col s9">
+							 	<h:outputText 
+							 		value="#{detalheSolicitacaoController.solicitacao.descricao}"/>
+							 </div>
+							
+						</div>
+					</li>
+					
+					
+					<!-- Lista de requisições -->
+					
+						<li class="collection-item">
+                        <div class="row">
+
+                            <div class="col s2"><b>Data Inicial</b></div>
+                            <div class="col s2"><b>Data Final</b></div>                            
+                            <div class="col s2"><b>Refeição</b></div>
+                            <div class="col s2"><b>Alunos</b></div>
+                            <div class="col s2"><b>Status</b></div>
+                            <div class="col s2"><b>Ações</b></div>
+                        </div>
+                    </li>
+					
+					
+					<ui:repeat var="requisicao" value="#{detalheSolicitacaoController.solicitacao.requisicoes}">
+						<li class="collection-item">
+                            <div class="row">
+                            	<!-- Data Inicial -->
+                            	<div class="col s2">
+                            		<h:outputText 
+                            			value="#{requisicao.dataInicial}"
+                            			converter="dateConverter"/>
+                            	</div>
+                            	<!-- Data Final -->
+	                            <div class="col s2">
+                            		<h:outputText 
+                            			value="#{requisicao.dataFinal}"
+                            			converter="dateConverter"/>
+                            	</div>         
+                            	<!-- Refeição -->                   
+	                            <div class="col s2">
+									<h:outputText 
+                            			value="#{requisicao.refeicao.nome}"/>
+	                            </div>
+	                            <!-- Alunos -->
+	                            <div class="col s2">
+									
+                            			 <a class="waves-effect waves-light btn modal-trigger" 
+                            			 	href="#modalAlunos#{requisicao.id}">
+                            				<h:outputText value="#{requisicao.alunos.size()}"/>	 	
+                            				<h:outputText value=" aluno"/>
+                            				<h:outputText rendered="#{requisicao.alunos.size() > 1}" value="s"/>
+                            			 </a>
+                            		<ui:include src="listaalunos.xhtml">
+                            			<ui:param name="requisicao" value="#{requisicao}"></ui:param>
+                            		</ui:include>	                            	
+								</div>
+								<!-- Status -->
+								<div class="col s2">
+									<h:outputText 
+                            			value="#{requisicao.statusRequisicao.nome}"/>
+	                            </div>
+	                            <!-- Ações -->
+	                            <div class="col s2">	                            
+	                            	 <a href="#"
+                                    	class="tooltipped" data-position="left" data-tooltip="Autorizar" >
+	                                    <i class="teal-text small material-icons">event_available</i>
+                                    </a>
+                                    
+                                    <a href="#"
+                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
+                                    	<i class="red-text small material-icons">event_busy</i>
+                                    </a>
+	                            
+	                            </div>	                            	
+                            </div>
+                        </li>
+					</ui:repeat>			
+				</ul>
+			</h:form>
+		</div>
+	</ui:define>
+
+</ui:composition>

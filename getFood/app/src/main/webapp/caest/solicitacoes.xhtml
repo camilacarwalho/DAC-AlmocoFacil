@@ -80,7 +80,7 @@
                             <div class="col l2"><b>Data</b></div>
                             <div class="col l6"><b>Requerente</b></div>                            
                             <div class="col l2"><b>Status</b></div>
-                            <div class="col l2"><b>Operações</b></div>
+                            <div class="col l2"><b>Ações</b></div>
                         </div>
                     </li>
                     <ui:repeat var="solicitacao" value="#{solicitacaoController.listSolicitacao}">
@@ -98,8 +98,8 @@
                                     <h:outputText value="#{solicitacao.statusRequisicao.nome}"></h:outputText>
                                 </div>
                                 <div class="col l2">
-                                    <a href="#"
-                                    	class="tooltipped" data-position="left" data-tooltip="Visualizar" >
+                                    <a href="detalhesolicitacao.xhtml?#{detalheSolicitacaoController.parametroSolicitacaoId}=#{solicitacao.id}"
+                                    	class="tooltipped" data-position="left" data-tooltip="Detalhe" >
                                     	<i class="teal-text small material-icons">event_note</i>
                                     </a>
                                     
@@ -107,9 +107,9 @@
                                     	class="tooltipped" data-position="left" data-tooltip="Autorizar" >
 	                                    <i class="teal-text small material-icons">event_available</i>
                                     </a>
-                                    <!-- <i class="grey-text text-lighten-3 small material-icons">event_available</i>-->
+                                    
                                     <a href="#"
-                                    	class="tooltipped" data-position="left" data-tooltip="Autorizar" >
+                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
                                     	<i class="red-text small material-icons">event_busy</i>
                                     </a>
                                 </div>

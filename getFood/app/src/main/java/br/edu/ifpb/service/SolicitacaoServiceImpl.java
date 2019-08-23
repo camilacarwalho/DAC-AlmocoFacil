@@ -28,6 +28,13 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 	public List<Solicitacao> listar() {
 		return solicitacaoDao.listar();
 	}
+	
+	
+
+	@Override
+	public Solicitacao buscar(Long id) {
+		return solicitacaoDao.buscar(id);
+	}
 
 	@Override
 	public List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int termino) {
