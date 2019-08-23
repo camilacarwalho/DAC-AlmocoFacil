@@ -28,6 +28,7 @@ public class SolicitacaoController extends PaginacaoController<Solicitacao> impl
 	private void init() {
 		buscarRequerente = "";
 		buscarStatusRequisicao = null;
+		buscar();
 	}
 	
 	@Override

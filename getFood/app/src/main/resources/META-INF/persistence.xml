@@ -17,7 +17,7 @@
 		<class>br.edu.ifpb.domain.Refeicao</class>
 		<class>br.edu.ifpb.domain.Requisicao</class>
 		<class>br.edu.ifpb.domain.Solicitacao</class>
-		<class>br.edu.ifpb.domain.Usuario</class>
+		<class>br.edu.ifpb.domain.Usuario</class> 
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="none"/>
 		</properties>

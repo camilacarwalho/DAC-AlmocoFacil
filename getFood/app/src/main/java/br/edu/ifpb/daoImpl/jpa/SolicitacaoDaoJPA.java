@@ -71,7 +71,7 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
 		String jpql ="SELECT COUNT(s.id) FROM Solicitacao s"
 				+ " JOIN s.usuario u"
 				+ " WHERE LOWER(u.pessoa.nome) LIKE :nome";
-		jpql += statusRequisicao != null ? " AND s.statusRequisica = :status":"";
+		jpql += statusRequisicao != null ? " AND s.statusRequisicao = :status":"";
 		TypedQuery<Long> query = em.createQuery(jpql, Long.class);
 		query.setParameter("nome", "%"+requerente.toLowerCase()+"%");
 		if (statusRequisicao != null)
