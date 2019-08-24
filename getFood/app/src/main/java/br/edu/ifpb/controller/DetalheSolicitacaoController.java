@@ -9,7 +9,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.Solicitacao;
+import br.edu.ifpb.service.RequisicaoService;
 import br.edu.ifpb.service.SolicitacaoService;
 
 @ViewScoped
@@ -22,6 +24,8 @@ public class DetalheSolicitacaoController  implements Serializable{
 	
 	@Inject
 	private SolicitacaoService solicitacaoService;
+	@Inject
+	private RequisicaoService requisicaoService;
 	private Solicitacao solicitacao;
 	
 	@PostConstruct
@@ -48,6 +52,23 @@ public class DetalheSolicitacaoController  implements Serializable{
 			solicitacao = solicitacaoService.buscar(solicId);
 		}
 		return solicitacao != null ? solicitacao : new Solicitacao();
+	}
+	
+	public boolean podeAutorizar() {
+		return solicitacaoService.podeAutorizar(solicitacao);
+	}
+	
+	public boolean podeNegar() {
+		return solicitacaoService.podeNegar(solicitacao);
+	}
+	
+	
+	public boolean requisicaoPodeAutorizar(Requisicao requisicao) {
+		return requisicaoService.podeAutorizar(requisicao);
+	}
+	
+	public boolean requisicaoPodeNegar(Requisicao requisicao) {
+		return requisicaoService.podeNegar(requisicao);
 	}
 	
 	public String getParametroSolicitacaoId() {return PARAMETRO_SOLICITACAO_ID;}
