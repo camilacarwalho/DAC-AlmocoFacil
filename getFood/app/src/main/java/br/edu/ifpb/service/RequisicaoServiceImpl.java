@@ -1,0 +1,75 @@
+package br.edu.ifpb.service;
+
+import java.time.LocalDate;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+import br.edu.ifpb.dao.RequisicaoDao;
+import br.edu.ifpb.domain.Requisicao;
+import br.edu.ifpb.domain.enums.StatusRequisicao;
+
+@Stateless
+public class RequisicaoServiceImpl implements RequisicaoService {
+	
+	@EJB
+	RequisicaoDao requisicaoDao;
+
+	@Override
+	public boolean isEncerrada(Requisicao requisicao) {
+		return LocalDate.now().isAfter(requisicao.getDataFinal());
+	}
+
+	@Override
+	public void negar(Requisicao requisicao) {
+		if (!podeNegar(requisicao))
+			return;
+		requisicao.setStatusRequisicao(StatusRequisicao.NEGADA);
+		requisicaoDao.atualizar(requisicao);		
+	}
+
+	@Override
+	public void autorizar(Requisicao requisicao) {
+		if(!podeAutorizar(requisicao))
+			return;
+		requisicao.setStatusRequisicao(StatusRequisicao.AUTORIZADA);
+		requisicaoDao.atualizar(requisicao);
+	}
+
+	@Override
+	public void autorizarCompulsoriamente(Requisicao requisicao) {
+		if(!podeAutorizar(requisicao))
+			return;
+		requisicao.setStatusRequisicao(StatusRequisicao.COMPULSORIA);
+		requisicaoDao.atualizar(requisicao);
+	}
+
+	@Override
+	public boolean podeAutorizar(Requisicao requisicao) {
+		if (isEncerrada(requisicao))
+			return false;
+		switch (requisicao.getStatusRequisicao()) {
+			case PENDENTE: return true;
+			case AUTORIZADA: return false;
+			case NEGADA: return true;
+			case COMPULSORIA: return false;
+			//case PARCIAL: return true; // Não existe parcial em Requisição
+			default: return true;
+		}
+	}
+
+	@Override
+	public boolean podeNegar(Requisicao requisicao) {
+		if (isEncerrada(requisicao))
+			return false;
+		switch (requisicao.getStatusRequisicao()) {
+			case PENDENTE: return true;
+			case AUTORIZADA: return true;
+			case NEGADA: return false;
+			case COMPULSORIA: return false;
+			//case PARCIAL: return true; // Não existe parcial em Requisição
+			default: return true;
+		}
+	}
+
+}
