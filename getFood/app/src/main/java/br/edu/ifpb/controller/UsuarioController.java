@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifpb.service.MessagesAlert;
 import br.edu.ifpb.service.UsuarioService;
 
 @SessionScoped
