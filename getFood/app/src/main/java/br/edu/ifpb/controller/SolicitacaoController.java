@@ -52,6 +52,26 @@ public class SolicitacaoController extends PaginacaoController<Solicitacao> impl
 	public boolean podeNegar(Solicitacao solicitacao) {
 		return solicitacaoService.podeNegar(solicitacao);
 	}
+	
+	public String autorizar(Solicitacao solicitacao) {
+		if (!this.podeAutorizar(solicitacao)) {
+			MessagesAlert.addErrorMessage("Não é possível autorizar esta solicitação.");
+			return null;			
+		}
+		solicitacaoService.autorizar(solicitacao);
+		MessagesAlert.addInfoMessage("Solicitação autorizada.");
+		return "";			
+	}
+	
+	public String negar(Solicitacao solicitacao) {
+		if (!this.podeNegar(solicitacao)) {
+			MessagesAlert.addErrorMessage("Não é possível negar esta solicitação.");
+			return null;			
+		}
+		solicitacaoService.negar(solicitacao);
+		MessagesAlert.addInfoMessage("Solicitação negada.");
+		return "";
+	}
 
 	public List<Solicitacao> getListSolicitacao(){return getItens();}
 	public StatusRequisicao[] getlistaStatusRequisicao() {return StatusRequisicao.values();	}
