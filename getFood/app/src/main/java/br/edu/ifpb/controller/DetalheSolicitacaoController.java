@@ -28,9 +28,14 @@ public class DetalheSolicitacaoController  implements Serializable{
 	private RequisicaoService requisicaoService;
 	private Solicitacao solicitacao;
 	
+	private String justificativa;
+	private Long requisicaoId;
+	
+	
 	@PostConstruct
 	private void init() {
-		solicitacao = lerSolicitacaoPeloParametro();		
+		solicitacao = lerSolicitacaoPeloParametro();
+		justificativa = solicitacao.getJustificativa();
 	}
 	
 	private String lerParametro(String parametro) {
@@ -54,11 +59,55 @@ public class DetalheSolicitacaoController  implements Serializable{
 		return solicitacao != null ? solicitacao : new Solicitacao();
 	}
 	
-	public boolean podeAutorizar() {
+	public String solicitacaoAutorizar() {
+		if (!this.solicitacaoPodeAutorizar()) {
+			MessagesAlert.addErrorMessage("Não é possível autorizar esta solicitação.");
+			return null;			
+		}
+		solicitacaoService.autorizar(this.solicitacao);
+		MessagesAlert.addInfoMessage("Solicitação autorizada.");
+		return "";
+	}
+	
+	public String solicitacaoNegar() {
+		if (!this.solicitacaoPodeNegar()) {
+			MessagesAlert.addErrorMessage("Não é possível negar esta solicitação.");
+			return null;			
+		}
+		solicitacaoService.negar(this.solicitacao);
+		MessagesAlert.addInfoMessage("Solicitação negada.");
+		return "";
+	}
+	
+	public String requisicaoAutorizar(Requisicao requisicao) {
+		if (!this.requisicaoPodeAutorizar(requisicao)) {
+			MessagesAlert.addErrorMessage("Não é possível autorizar esta requisição.");
+			return null;
+		}
+		solicitacaoService.autorizarRequisicao(requisicao);
+		MessagesAlert.addInfoMessage("Requisição autorizada.");
+		return "";
+	}
+	
+	public String requisicaoNegar() {
+		Requisicao requisicao = requisicaoService.buscar(requisicaoId);
+		if (requisicao == null || !this.requisicaoPodeNegar(requisicao)) {
+			MessagesAlert.addErrorMessage("Não é possível negar esta requisição.");
+			return null;
+		}		
+		solicitacaoService.negarRequisicao(requisicao);
+		solicitacao = solicitacaoService.buscar(requisicao.getSolicitacao().getId());
+		solicitacao.setJustificativa(justificativa);
+		solicitacaoService.atualizar(solicitacao);
+		MessagesAlert.addInfoMessage("Requisição negada.");
+		return "";
+	}
+	
+	public boolean solicitacaoPodeAutorizar() {
 		return solicitacaoService.podeAutorizar(solicitacao);
 	}
 	
-	public boolean podeNegar() {
+	public boolean solicitacaoPodeNegar() {
 		return solicitacaoService.podeNegar(solicitacao);
 	}
 	
@@ -74,6 +123,15 @@ public class DetalheSolicitacaoController  implements Serializable{
 	public String getParametroSolicitacaoId() {return PARAMETRO_SOLICITACAO_ID;}
 	public Solicitacao getSolicitacao() {return solicitacao;}
 	public void setSolicitacao(Solicitacao solicitacao) {this.solicitacao = solicitacao;}
+
+	public String getJustificativa() {
+		justificativa = solicitacao.getJustificativa();
+		return justificativa;
+	}
+	public void setJustificativa(String justificativa) {this.justificativa = justificativa;}
+	public Long getRequisicaoId() {return requisicaoId;}
+	public void setRequisicaoId(Long requisicaoId) {this.requisicaoId = requisicaoId;}
+	
 	
 
 }

@@ -19,10 +19,11 @@
 	<ui:define name="top">
 		<h4>Detalhe da solicitação</h4>
 		<div class="row">
-			<h:form prependId="false">
-				<ul class="collection with-header">
-					<!-- Detalhe da Solicitação -->
-					<li class="collection-item">
+			
+			<ul class="collection with-header">
+				<!-- Detalhe da Solicitação -->
+				<li class="collection-item">
+					<h:form >
 						<div class="row">
 							<!-- Data -->
 							 <div class="col s3 right-align"><b>Data:</b></div>
@@ -57,43 +58,83 @@
 							 </div>
 							 <!-- Ações -->
 							 <div class="col s12 right-align">
-							 	<!-- Autorizar -->
-							 	<span jsf:rendered="#{detalheSolicitacaoController.podeAutorizar()}">
-									<a class="waves-effect waves-light btn-small teal">Autorizar</a>	
-								</span>						
-								<span jsf:rendered="#{not detalheSolicitacaoController.podeAutorizar()}">
-									<a class="waves-effect waves-light btn-small teal disabled">Autorizar</a>	
-								</span>
-								
-								<span jsf:rendered="#{detalheSolicitacaoController.podeNegar()}">
-									<a class="waves-effect waves-light btn-small red">Negar</a>
-								</span>
-								<span jsf:rendered="#{not detalheSolicitacaoController.podeNegar()}">
-									<a class="waves-effect waves-light btn-small red disabled">Negar</a>
-								</span>																
-								
+							 		<!-- Autorizar -->
+								 	<span jsf:rendered="#{detalheSolicitacaoController.solicitacaoPodeAutorizar()}">
+										<h:commandLink
+											action="#{detalheSolicitacaoController.solicitacaoAutorizar()}" 
+											class="waves-effect waves-light btn-small teal">
+												Autorizar
+										</h:commandLink>	
+									</span>						
+									<span jsf:rendered="#{detalheSolicitacaoController.solicitacaoPodeAutorizar()==false}">
+										<a class="waves-effect waves-light btn-small teal disabled">Autorizar</a>	
+									</span>
+									<!-- Negar -->								
+									<span jsf:rendered="#{detalheSolicitacaoController.solicitacaoPodeNegar()}">
+									
+										<a href="#modalMotivoNegarSolicitacao"
+  											class="waves-effect waves-light btn-small red modal-trigger"
+  											data-position="left" data-tooltip="Negar">
+  											Negar
+  										</a>
+										
+									</span>
+									<span jsf:rendered="#{detalheSolicitacaoController.solicitacaoPodeNegar()==false}">
+										<a class="waves-effect waves-light btn-small red disabled">Negar</a>
+									</span>
 							</div>
 							
 						</div>
-					</li>
-					
-					<!-- Lista de requisições -->
-					
-						<li class="collection-item">
-                        <div class="row">
+						
+						
+						<!-- Modal Motivo de Negar Solicitação  -->
+						<div id="modalMotivoNegarSolicitacao"
+							class="modal modal-fixed-footer">
+							<div class="modal-content">
+								<h4>Informe a justificativa</h4>
+								<p>Para negar a refeição é necessário informar a
+									justificativa.</p>
+								<div class="row">
+									<div class="input-field col s12">
+										<h:inputTextarea 
+											value="#{detalheSolicitacaoController.solicitacao.justificativa}"
+											id="textarea1" class="materialize-textarea" />													
+										<label for="textarea1">Motivo</label>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<h:commandLink
+									action="#{detalheSolicitacaoController.solicitacaoNegar()}"
+									class="modal-close waves-effect waves-green btn-flat">
+									Confirmar														
+								</h:commandLink>
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+							</div>
+						</div>
+						
+						
+					</h:form>
+				</li>
+				
+				<!-- Lista de requisições -->
+				
+					<li class="collection-item">
+                       <div class="row">
 
-                            <div class="col s2"><b>Data Inicial</b></div>
-                            <div class="col s2"><b>Data Final</b></div>                            
-                            <div class="col s2"><b>Refeição</b></div>
-                            <div class="col s2"><b>Alunos</b></div>
-                            <div class="col s2"><b>Status</b></div>
-                            <div class="col s2"><b>Ações</b></div>
-                        </div>
-                    </li>
-					
-					
-					<ui:repeat var="requisicao" value="#{detalheSolicitacaoController.solicitacao.requisicoes}">
-						<li class="collection-item">
+                           <div class="col s2"><b>Data Inicial</b></div>
+                           <div class="col s2"><b>Data Final</b></div>                            
+                           <div class="col s2"><b>Refeição</b></div>
+                           <div class="col s2"><b>Alunos</b></div>
+                           <div class="col s2"><b>Status</b></div>
+                           <div class="col s2"><b>Ações</b></div>
+                       </div>
+                   </li>
+				
+				
+				<ui:repeat var="requisicao" value="#{detalheSolicitacaoController.solicitacao.requisicoes}">
+					<li class="collection-item">
+						<h:form id="formRequisicao_#{requisicao.id}">
                             <div class="row">
                             	<!-- Data Inicial -->
                             	<div class="col s2">
@@ -132,39 +173,86 @@
 	                            </div>
 	                            <!-- Ações -->
 	                            <div class="col s2">
-	                            	<!-- Autorizar -->	
+	                            	<!-- AUTORIZAR REQUISIÇÃO-->	
 	                            	<span jsf:rendered="#{detalheSolicitacaoController.requisicaoPodeAutorizar(requisicao)}">                            
-		                            	 <a href="#" class="tooltipped"	data-position="left" data-tooltip="Autorizar"> <i
-											class="teal-text small material-icons">event_available</i>
+		                            	 <a href="#" jsf:action="#{detalheSolicitacaoController.requisicaoAutorizar(requisicao)}"
+											class="tooltipped"	data-position="left" data-tooltip="Autorizar"> 
+											<i class="teal-text small material-icons">event_available</i>
 										</a>
 									</span>
-									<span jsf:rendered="#{not detalheSolicitacaoController.requisicaoPodeAutorizar(requisicao)}">                            
+									<span jsf:rendered="#{detalheSolicitacaoController.requisicaoPodeAutorizar(requisicao)==false}">                            
 		                            	 <a href="#" class="tooltipped"	data-position="left" data-tooltip="Autorizar"> <i
 											class="grey-text text-lighten-2 small material-icons">event_available</i>
 										</a>
 									</span>
 									
-                                    <!-- Negar -->
+                                    <!-- NEGAR REQUISIÇÃO -->
                                     <span jsf:rendered="#{detalheSolicitacaoController.requisicaoPodeNegar(requisicao)}">
-	                                    <a href="#"
-	                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
-	                                    	<i class="red-text small material-icons">event_busy</i>
-	                                    </a>
-                                    </span>
-                                    <span jsf:rendered="#{not detalheSolicitacaoController.requisicaoPodeNegar(requisicao)}">
+                                    	 <!-- Modal Trigger Requisicao-->
+  										<a 
+  											href="#modalMotivoNegarRequisicao"
+  											class="modal-trigger tooltipped"
+  											onclick="negarRequisicao('#{requisicao.id}')" 
+  											data-position="left" data-tooltip="Negar">
+  											<i class="red-text small material-icons">event_busy</i>
+  										
+  										</a>										
+
+									</span>
+                                    <span jsf:rendered="#{detalheSolicitacaoController.requisicaoPodeNegar(requisicao)==false}">
 	                                    <a href="#"
 	                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
 	                                    	<i class="grey-text text-lighten-2 small material-icons">event_busy</i>
 	                                    </a>
                                     </span>
-	                            
 	                            </div>	                            	
                             </div>
-                        </li>
-					</ui:repeat>			
-				</ul>
+                           </h:form>
+                       </li>
+
+				</ui:repeat>			
+			</ul>
+
+			<h:form id="formNegar">
+				<!-- Modal Motivo de Negar Requisicao  -->
+				<div id="modalMotivoNegarRequisicao"
+					class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h4>Informe a justificativa</h4>
+						<p>Para negar a refeição é necessário informar a
+							justificativa.</p>
+						<div class="row">
+							<div class="input-field col s12">
+								<h:inputTextarea 
+									value="#{detalheSolicitacaoController.justificativa}"
+									id="textarea1" class="materialize-textarea" />								
+								<label for="textarea1">Motivo</label>
+							</div>
+						</div>
+						
+						<h:inputHidden
+							 id="requisicao_id" 
+							 name="requisicao_id"
+							 value="#{detalheSolicitacaoController.requisicaoId}"/>
+					</div>
+					<div class="modal-footer">
+						<h:commandLink
+							action="#{detalheSolicitacaoController.requisicaoNegar()}"
+							class="modal-close waves-effect waves-green btn-flat">
+							Confirmar														
+						</h:commandLink>
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+					</div>
+				</div>
 			</h:form>
 		</div>
+		
+		<script>
+			function negarRequisicao(req_id) {				
+				document.getElementById('formNegar:requisicao_id').value = req_id;				
+			}
+		</script>
+		
 	</ui:define>
 
 </ui:composition>
