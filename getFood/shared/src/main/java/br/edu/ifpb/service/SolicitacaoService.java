@@ -11,4 +11,10 @@ public interface SolicitacaoService {
 	List<Solicitacao> listar();
 	List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int termino);
 	int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao);
+	void negar(Solicitacao solicitacao);
+	void autorizar(Solicitacao solicitacao);
+	void autorizarCompulsoriamente(Solicitacao solicitacao);
+	boolean podeAutorizar(Solicitacao solicitacao);
+	boolean podeNegar(Solicitacao solicitacao);
+	boolean isEncerrada(Solicitacao solicitacao);
 }
