@@ -243,6 +243,16 @@ INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, status
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (9, '201912210001');
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (9, '201912210002');
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (9, '201912210003');
+--Pendente
+INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula) VALUES (8, CURRENT_DATE, 'Aula no contraturno do curso de Eletromecânica Integrado', '', 'PENDENTE', '5000007');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (10, 8, CURRENT_DATE, CURRENT_DATE, 'PENDENTE', 1);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (10, '20191200001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (10, '20191200002');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (10, '20191200003');
+INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (11, 8, CURRENT_DATE, CURRENT_DATE, 'PENDENTE', 2);
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (11, '20191200001');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (11, '20191200002');
+INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (11, '20191200003');
 
 
 
