@@ -3,7 +3,8 @@
 	xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" 
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core" 
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 	
 	<!--     LINKS   -->
     <ui:define name="links">  
@@ -54,10 +55,27 @@
 							 	<h:outputText 
 							 		value="#{detalheSolicitacaoController.solicitacao.descricao}"/>
 							 </div>
+							 <!-- Ações -->
+							 <div class="col s12 right-align">
+							 	<!-- Autorizar -->
+							 	<span jsf:rendered="#{detalheSolicitacaoController.podeAutorizar()}">
+									<a class="waves-effect waves-light btn-small teal">Autorizar</a>	
+								</span>						
+								<span jsf:rendered="#{not detalheSolicitacaoController.podeAutorizar()}">
+									<a class="waves-effect waves-light btn-small teal disabled">Autorizar</a>	
+								</span>
+								
+								<span jsf:rendered="#{detalheSolicitacaoController.podeNegar()}">
+									<a class="waves-effect waves-light btn-small red">Negar</a>
+								</span>
+								<span jsf:rendered="#{not detalheSolicitacaoController.podeNegar()}">
+									<a class="waves-effect waves-light btn-small red disabled">Negar</a>
+								</span>																
+								
+							</div>
 							
 						</div>
 					</li>
-					
 					
 					<!-- Lista de requisições -->
 					
@@ -113,16 +131,32 @@
                             			value="#{requisicao.statusRequisicao.nome}"/>
 	                            </div>
 	                            <!-- Ações -->
-	                            <div class="col s2">	                            
-	                            	 <a href="#"
-                                    	class="tooltipped" data-position="left" data-tooltip="Autorizar" >
-	                                    <i class="teal-text small material-icons">event_available</i>
-                                    </a>
-                                    
-                                    <a href="#"
-                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
-                                    	<i class="red-text small material-icons">event_busy</i>
-                                    </a>
+	                            <div class="col s2">
+	                            	<!-- Autorizar -->	
+	                            	<span jsf:rendered="#{detalheSolicitacaoController.requisicaoPodeAutorizar(requisicao)}">                            
+		                            	 <a href="#" class="tooltipped"	data-position="left" data-tooltip="Autorizar"> <i
+											class="teal-text small material-icons">event_available</i>
+										</a>
+									</span>
+									<span jsf:rendered="#{not detalheSolicitacaoController.requisicaoPodeAutorizar(requisicao)}">                            
+		                            	 <a href="#" class="tooltipped"	data-position="left" data-tooltip="Autorizar"> <i
+											class="grey-text text-lighten-2 small material-icons">event_available</i>
+										</a>
+									</span>
+									
+                                    <!-- Negar -->
+                                    <span jsf:rendered="#{detalheSolicitacaoController.requisicaoPodeNegar(requisicao)}">
+	                                    <a href="#"
+	                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
+	                                    	<i class="red-text small material-icons">event_busy</i>
+	                                    </a>
+                                    </span>
+                                    <span jsf:rendered="#{not detalheSolicitacaoController.requisicaoPodeNegar(requisicao)}">
+	                                    <a href="#"
+	                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
+	                                    	<i class="grey-text text-lighten-2 small material-icons">event_busy</i>
+	                                    </a>
+                                    </span>
 	                            
 	                            </div>	                            	
                             </div>
