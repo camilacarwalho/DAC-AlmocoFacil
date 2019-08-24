@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:head>
 
 
@@ -103,15 +104,36 @@
                                     	<i class="teal-text small material-icons">event_note</i>
                                     </a>
                                     
-                                    <a href="#"
-                                    	class="tooltipped" data-position="left" data-tooltip="Autorizar" >
-	                                    <i class="teal-text small material-icons">event_available</i>
-                                    </a>
+                                    	
+                                    <!-- Autorizar -->
+                                    <span jsf:rendered="#{solicitacaoController.podeAutorizar(solicitacao)}">
+                                    	<a href="#" class="tooltipped" data-position="left" data-tooltip="Autorizar" >
+	                                    	<i class="teal-text small material-icons">event_available</i>
+                                   		</a>
+                                    </span>
+                                    <span jsf:rendered="#{solicitacaoController.podeAutorizar(solicitacao)==false}">
+                                    	<a href="#" class="tooltipped" data-position="left" data-tooltip="Autorizar" >
+                                    		<i class="grey-text text-lighten-2 small material-icons">event_available</i>
+                                    	</a>
+                                    </span>
                                     
-                                    <a href="#"
-                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
-                                    	<i class="red-text small material-icons">event_busy</i>
-                                    </a>
+                                    <!-- Negar -->
+                                    <span jsf:rendered="#{solicitacaoController.podeNegar(solicitacao)}">
+	                                    <a href="#"
+	                                    	class="tooltipped" data-position="left" data-tooltip="Negar" >
+	                                    	<i class="red-text small material-icons">event_busy</i>
+	                                    </a>
+                                    </span>
+                                    <span jsf:rendered="#{solicitacaoController.podeNegar(solicitacao)==false}">
+                                    	<a href="#"
+                                    		class="tooltipped" data-position="left" data-tooltip="Negar" >
+                                    		<i class="grey-text text-lighten-2 small material-icons">event_busy</i>
+                                    	</a>
+                                    </span>
+                                    
+                                    
+                                    
+                                    
                                 </div>
 
                             </div>
