@@ -11,7 +11,9 @@ public interface SolicitacaoService {
 	Solicitacao buscar(Long id);
 	List<Solicitacao> listar();
 	List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int termino);
+	List<Solicitacao> buscarPelaMatricula(String matricula , StatusRequisicao statusRequisicao, int inicio, int termino);	
 	int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao);
+	int quantBuscarPelaMatricula(String matricula, StatusRequisicao statusRequisicao);
 	void atualizar(Solicitacao solicitacao);
 	void atualizarStatusSolicitação(Solicitacao solicitacao);
 	void negar(Solicitacao solicitacao);

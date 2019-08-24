@@ -41,10 +41,21 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 	public List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int termino) {
 		return solicitacaoDao.buscarSolicitacoes(requerente, statusRequisicao, inicio, termino);
 	}
-
+	
 	@Override
 	public int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao) {		
 		return solicitacaoDao.quantBuscarSolicitacoes(requerente, statusRequisicao);
+	}
+	
+	@Override
+	public List<Solicitacao> buscarPelaMatricula(String matricula, StatusRequisicao statusRequisicao, int inicio,
+			int termino) {		
+		return solicitacaoDao.buscarPelaMatricula(matricula, inicio, termino, statusRequisicao);
+	}
+
+	@Override
+	public int quantBuscarPelaMatricula(String matricula, StatusRequisicao statusRequisicao) {		
+		return solicitacaoDao.quantSolicitacoresPelaMatricula(matricula, statusRequisicao);
 	}
 
 	@Override
