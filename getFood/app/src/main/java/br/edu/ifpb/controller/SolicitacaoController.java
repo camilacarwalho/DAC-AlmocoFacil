@@ -44,6 +44,14 @@ public class SolicitacaoController extends PaginacaoController<Solicitacao> impl
 	public int getQuantidadeItens() {
 		return solicitacaoService.quantBuscarSolicitacoes(buscarRequerente, buscarStatusRequisicao);
 	}
+	
+	public boolean podeAutorizar(Solicitacao solicitacao) {
+		return solicitacaoService.podeAutorizar(solicitacao);
+	}
+	
+	public boolean podeNegar(Solicitacao solicitacao) {
+		return solicitacaoService.podeNegar(solicitacao);
+	}
 
 	public List<Solicitacao> getListSolicitacao(){return getItens();}
 	public StatusRequisicao[] getlistaStatusRequisicao() {return StatusRequisicao.values();	}
