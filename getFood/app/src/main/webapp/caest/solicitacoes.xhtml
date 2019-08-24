@@ -27,14 +27,14 @@
         <h4>Acompanhar solicitações</h4>
         <div class="row">
 
-            <h:form prependId="false">
+            
                 <ul class="collection with-header">
 
-
+					
 
 
 					<li class="collection-item">
-
+						<h:form prependId="false">
 						<div class="row">
 							<div class="input-field col s6">
 								<h:inputText 
@@ -70,7 +70,7 @@
 
 						</div>
 
-
+						</h:form>
 
 					</li>
 
@@ -86,6 +86,7 @@
                     </li>
                     <ui:repeat var="solicitacao" value="#{solicitacaoController.listSolicitacao}">
                         <li class="collection-item">
+                        	<h:form prependId="false">
                             <div class="row">
                                 <div class="col l2">
                                     <h:outputText 
@@ -168,18 +169,31 @@
                                 </div>
 
                             </div>
-
+							</h:form>
                         </li>
 
                     </ui:repeat>
+                    
+                    <li class="collection-item">
+                        <div class="row">
+
+                             <ui:include  src="../includes/paginacao.xhtml">
+					        	<ui:param value="#{solicitacaoController}" name="controller"/>
+					        </ui:include> 
+                        </div>
+                    </li>
+                    
+                     <li class="collection-item">
+                        <div class="row">
+                         <p>Total de solicitações encontas: <h:outputText value="#{solicitacaoController.quantidadeItens}"/></p>
+                        </div>
+                    </li>
+                    
                 </ul>
-            </h:form>
         </div>
         
         
-        <ui:include  src="../includes/paginacao.xhtml">
-        	<ui:param value="#{solicitacaoController}" name="controller"/>
-        </ui:include> 
+      
         
     </ui:define>
 </ui:composition>
