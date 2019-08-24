@@ -14,6 +14,13 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 	
 	@EJB
 	RequisicaoDao requisicaoDao;
+	
+	
+
+	@Override
+	public Requisicao buscar(long id) {		
+		return requisicaoDao.buscar(id);
+	}
 
 	@Override
 	public boolean isEncerrada(Requisicao requisicao) {
