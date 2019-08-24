@@ -78,6 +78,41 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
 		Long qdt = query.getSingleResult(); 
 		return qdt.intValue(); 
 	}
+
+	@Override
+	public List<Solicitacao> buscarPelaMatricula(String matricula, int inicio, int quant,
+			StatusRequisicao statusRequisicao) {
+		String jpql ="SELECT DISTINCT(s) FROM Solicitacao s"
+				+ " JOIN s.usuario u"
+				+ " WHERE u.matricula = :matricula";
+		jpql += statusRequisicao != null ? " AND s.statusRequisicao = :status":"";						
+		jpql += " ORDER BY s.dataSolicitacao DESC";
+		
+		TypedQuery<Solicitacao> query = em
+				.createQuery(jpql, Solicitacao.class)
+				.setFirstResult(inicio)
+				.setMaxResults(quant);
+		query.setParameter("matricula", matricula);
+		if (statusRequisicao != null)
+			query.setParameter("status", statusRequisicao);
+		return query.getResultList();
+	}
+
+	@Override
+	public int quantSolicitacoresPelaMatricula(String matricula, StatusRequisicao statusRequisicao) {
+		String jpql ="SELECT COUNT(s.id) FROM Solicitacao s"
+				+ " JOIN s.usuario u"
+				+ " WHERE u.matricula = :matricula";
+		jpql += statusRequisicao != null ? " AND s.statusRequisicao = :status":"";
+		TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+		query.setParameter("matricula", matricula);
+		if (statusRequisicao != null)
+			query.setParameter("status", statusRequisicao);
+		Long qdt = query.getSingleResult(); 
+		return qdt.intValue(); 
+	}
+	
+	
 	
 	
     
