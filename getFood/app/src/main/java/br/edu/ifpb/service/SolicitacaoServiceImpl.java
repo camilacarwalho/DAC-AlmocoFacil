@@ -49,6 +49,57 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 	}
 
 	@Override
+	public void atualizar(Solicitacao solicitacao) {
+		if (solicitacao.getStatusRequisicao() == StatusRequisicao.AUTORIZADA)
+			solicitacao.setJustificativa("");
+		solicitacaoDao.atualizar(solicitacao);
+	}
+
+	@Override
+	public void atualizarStatusSolicitação(Solicitacao solicitacao) {
+		int quantRequisicoes = solicitacao.getRequisicoes().size();
+		StatusRequisicao statusRequisicao = StatusRequisicao.PENDENTE;
+		if(quantRequisicoes > 0) {
+			statusRequisicao = solicitacao.getRequisicoes().get(0).getStatusRequisicao();
+			boolean continuar = statusRequisicao != StatusRequisicao.PENDENTE; //Se a requisição estiver pendente tudo está pendente
+			int k = 1;			
+			while (continuar) {
+				switch (solicitacao.getRequisicoes().get(k).getStatusRequisicao()) {
+				case PENDENTE: statusRequisicao = StatusRequisicao.PENDENTE;
+					break;
+				case AUTORIZADA:
+					if(statusRequisicao != StatusRequisicao.AUTORIZADA)
+						if(statusRequisicao == StatusRequisicao.NEGADA)
+							statusRequisicao = StatusRequisicao.PARCIAL;						
+					break;
+				case NEGADA:
+					if(statusRequisicao != StatusRequisicao.NEGADA) {
+						if(statusRequisicao == StatusRequisicao.AUTORIZADA)
+							statusRequisicao = StatusRequisicao.PARCIAL;
+						else if(statusRequisicao == StatusRequisicao.COMPULSORIA)
+							statusRequisicao = StatusRequisicao.PARCIAL;
+					}
+					break;
+				case COMPULSORIA:
+					if(statusRequisicao != StatusRequisicao.COMPULSORIA) {
+						if(statusRequisicao == StatusRequisicao.NEGADA)
+							statusRequisicao = StatusRequisicao.PARCIAL;
+						else if(statusRequisicao == StatusRequisicao.AUTORIZADA)
+							statusRequisicao = StatusRequisicao.COMPULSORIA;
+					}				
+				default:
+					break;
+				}
+				
+				continuar = continuar && (statusRequisicao != StatusRequisicao.PENDENTE); //Se for pendente caia fora
+				continuar = continuar && (++k < quantRequisicoes);				
+			}
+		}
+		solicitacao.setStatusRequisicao(statusRequisicao);
+		this.atualizar(solicitacao);
+	}
+
+	@Override
 	public boolean isEncerrada(Solicitacao solicitacao) {
 		for (Requisicao requisicao: solicitacao.getRequisicoes())
 			if(!requisicaoService.isEncerrada(requisicao))
@@ -104,7 +155,7 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 		for (Requisicao requisicao : solicitacao.getRequisicoes()) 
 			requisicaoService.negar(requisicao);
 		solicitacao.setStatusRequisicao(StatusRequisicao.NEGADA);
-		solicitacaoDao.atualizar(solicitacao);
+		this.atualizar(solicitacao);
 	}
 
 	@Override
@@ -113,8 +164,8 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 			return;
 		for(Requisicao requisicao : solicitacao.getRequisicoes())
 			requisicaoService.autorizar(requisicao);
-		solicitacao.setStatusRequisicao(StatusRequisicao.NEGADA);
-		solicitacaoDao.atualizar(solicitacao);		
+		solicitacao.setStatusRequisicao(StatusRequisicao.AUTORIZADA);
+		this.atualizar(solicitacao);		
 	}
 
 	@Override
@@ -123,8 +174,30 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 		for (Requisicao requisicao : solicitacao.getRequisicoes())
 			requisicaoService.autorizarCompulsoriamente(requisicao);
 		solicitacao.setStatusRequisicao(StatusRequisicao.COMPULSORIA);
-		solicitacaoDao.atualizar(solicitacao);		
+		this.atualizar(solicitacao);		
 	}
+
+	@Override
+	public void negarRequisicao(Requisicao requisicao) {
+		this.atualizar(requisicao.getSolicitacao());
+		this.requisicaoService.negar(requisicao);
+		this.atualizarStatusSolicitação(requisicao.getSolicitacao());
+		
+	}
+
+	@Override
+	public void autorizarRequisicao(Requisicao requisicao) {
+		requisicaoService.autorizar(requisicao);
+		this.atualizarStatusSolicitação(requisicao.getSolicitacao());		
+	}
+
+	@Override
+	public void autorizarCompulsoriamente(Requisicao requisicao) {
+		requisicaoService.autorizarCompulsoriamente(requisicao);
+		this.atualizarStatusSolicitação(requisicao.getSolicitacao());		
+	}
+	
+	
 	
 
 }
