@@ -5,7 +5,7 @@ public enum StatusRequisicao {
 	AUTORIZADA("Autorizada"),
 	NEGADA("Negada"),
 	COMPULSORIA("Compulsória"),
-	PARCIAL("Parcial");
+	PARCIAL("Parcialmente atendida");
 	
 	private String nome;
 	
