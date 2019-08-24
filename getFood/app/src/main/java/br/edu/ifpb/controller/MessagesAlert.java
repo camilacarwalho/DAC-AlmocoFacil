@@ -1,4 +1,4 @@
-package br.edu.ifpb.service;
+package br.edu.ifpb.controller;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
