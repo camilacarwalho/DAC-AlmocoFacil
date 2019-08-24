@@ -29,9 +29,8 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
     }
 
     @Override
-    public void atualizar(Solicitacao object) {
+    public void atualizar(Solicitacao object) {    	
         em.merge(object);
-
     }
 
     @Override
