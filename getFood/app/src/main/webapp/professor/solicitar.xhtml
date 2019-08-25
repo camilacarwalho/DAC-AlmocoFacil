@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:head>
 
 
@@ -22,36 +23,11 @@
     <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
     <!-- ............ -->
 
-    <ui:define name="top">
-        <h4>Solicite uma refeição</h4>
-        <div class="row">
-            <h:form class="col s12">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="data" type="text" class="validate"/>
-                        <label for="data">Data:</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="hora" type="text" class="validate"/>
-                        <label for="hora">Hora:</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="quantAlunos" type="text" class="validate"/>
-                        <label for="quantAlunos">Quantidade de alunos</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="justificativa" type="text" class="validate"/>
-                        <label for="justificativa">Justificativa</label>
-                    </div>
-                </div>
-                <h:commandButton value="Enviar"
-                                 styleClass="white-text btn  green accent-3 center-align"/>
-            </h:form>
-        </div>
-    </ui:define>
+	<ui:define name="top">
+		<h4>Solicite uma refeição</h4>
+		<div class="row">
+			<ui:include src="../includes/solicitacao.xhtml"/>	
+		</div>
+	</ui:define>
 </ui:composition>
 </html>
