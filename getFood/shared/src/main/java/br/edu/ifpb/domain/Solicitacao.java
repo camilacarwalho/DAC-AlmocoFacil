@@ -2,6 +2,7 @@ package br.edu.ifpb.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -45,11 +46,14 @@ public class Solicitacao implements Serializable{
 		}		
 	}
 	
-	public Solicitacao() {}
+	public Solicitacao() {
+		super();
+		this.requisicoes = new ArrayList<Requisicao>();
+	}
 
 	public Solicitacao(LocalDate dataSolicitacao, Usuario usuario, String descricao, String justificativa, StatusRequisicao statusRequisicao,
 			List<Requisicao> requisicoes) {
-		super();
+		this();
 		this.dataSolicitacao = dataSolicitacao;
 		this.usuario = usuario;
 		this.descricao = descricao;
@@ -60,7 +64,7 @@ public class Solicitacao implements Serializable{
 
 	public Solicitacao(Long id, LocalDate dataSolicitacao, Usuario usuario, String descricao, String justificativa,
 			StatusRequisicao statusRequisicao, List<Requisicao> requisicoes) {
-		super();
+		this();
 		this.id = id;
 		this.dataSolicitacao = dataSolicitacao;
 		this.usuario = usuario;
