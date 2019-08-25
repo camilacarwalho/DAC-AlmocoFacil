@@ -15,7 +15,7 @@ import java.io.IOException;
 public class AuthFilter implements Filter {
 
     @Inject
-    private UsuarioService usuarioService;
+    private UsuarioController usuarioController;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -26,7 +26,8 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        if(!usuarioService.isLogado()){
+        Usuario logado = usuarioController.getUsuario();
+        if(logado.getMatricula()==null){
             res.sendRedirect("http://localhost:8080/app/index.xhtml");
         }else{
             res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
