@@ -10,17 +10,19 @@
 	<ul class="collection with-header">
 		<!-- DESCRIÇÃO -->
 		<li class="collection-item">
-				<div class="row">
-			<h:form class="col s12">
+			<div class="row">
+				<h:form class="col s12">
 					<div class="input-field col s12">
 						<h:inputTextarea
 							 id="descricao"
 							 value="#{requererController.descricao}" 
-							 class="materialize-textarea" />
+							 class="materialize-textarea">
+							 <f:ajax/>
+						</h:inputTextarea>
 						<label for="descricao">Descrição</label>
 					</div>
-			</h:form>
-				</div>
+				</h:form>
+			</div>
 		</li>
 		<!-- REFEIÇÕES -->
 		<li class="collection-item">
@@ -28,11 +30,6 @@
 			<ui:repeat var="requisicao" value="#{requererController.requisicoes}">				
 				<div class="row z-depth-1">
 					<h:form>
-					
-					<!-- <h:outputText value="#{requisicao.id}"/>
-					<h:outputText value="#{requisicao.refeicao.nome}"/>
-					<h:outputText value="#{requisicao.dataInicial}" converter="dateConverter"/> -->
-					
 					<div class="input-field col s3">
 						<p:inputMask 
 							id="dataInicial"
@@ -56,7 +53,8 @@
 					<div class="input-field col s2">
 						<h:selectOneListbox 
 							id="refeicao"
-							value="#{requisicao.refeicao}">
+							value="#{requisicao.refeicao}"
+							converter="refeicaoConverter">
 							<f:selectItems
 								var="refeicao"
 								value="#{requererController.listRefeicoes}"
@@ -93,8 +91,9 @@
 										class="btn-floating btn-small waves-effect waves-light teal"><i class="material-icons">group_add</i></a>
 								</span> -->
 								<span>
-									<a jsf:action="#{requererController.removerRequisicao(requisicao)}"
-										class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">clear</i></a>
+									<a href="#modalExcluirRequisicao"
+										onclick="excluirRequisicao(#{requisicao.id})"
+										class="modal-trigger btn-floating btn-small waves-effect waves-light red"><i class="material-icons">clear</i></a>
 								</span>
 							</div>
 						</div>
@@ -113,7 +112,6 @@
 							<div class="col s1"><b>Ação</b></div>
 							
 						</div>
-						
 						<ui:repeat var="aluno" value="#{requisicao.alunos}">
 							<div class="row">
 								<div class="col s2"><h:outputText value="#{aluno.matricula}"/></div>
@@ -131,13 +129,10 @@
 						<a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
 					</div>
 				</div>
-
-
+				
 			</ui:repeat>
 		</li>
-		
 		<!-- COMANDOS -->
-
 		<li class="collection-item">
 			<div class="row">
 				<h:form>
@@ -147,14 +142,32 @@
 				</div>
 				<div class="col s2 offset-s8 right-align">
 					<h:commandButton 
+						action="#{requererController.salvar()}"
 						value="Enviar"
 						styleClass="white-text btn  green accent-3 center-align" />
 				</div>
 				</h:form>
 			</div>
 		</li>
-
 	</ul>
+	
+	<!-- Modal Excluir Requisicao -->
+	<h:form id="formExcluirRequisicao">
+	<div id="modalExcluirRequisicao" class="modal">
+		<div class="modal-content">
+			<h4>Excluir Requisição</h4>
+			<p>Deseja excluir esta requisição?</p>
+			<div class="input-field col s6">
+			</div>
+			<h:inputHidden	value="#{requererController.requerimentoId}" id="requisicao_id"/>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+			<a 	jsf:action="#{requererController.removerRequisicao()}"
+				href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
+		</div>
+	</div>
+	</h:form>
 
 	<!-- Modal Adidiconar aluno -->
 	<h:form id="formAdicionarAluno">
@@ -190,15 +203,9 @@
 				<span id="nome">nome</span>
 				' da lista de alunos </p>
 			<div class="input-field col s6">
-				
-				
 			</div>
-			<h:inputHidden
-					value="#{requererController.matricula}" 
-					id="matricula" />
-			<h:inputHidden
-				value="#{requererController.requerimentoId}" 
-				id="requisicao_id"/>
+			<h:inputHidden	value="#{requererController.matricula}"	id="matricula" />
+			<h:inputHidden	value="#{requererController.requerimentoId}" id="requisicao_id"/>
 		</div>
 		<div class="modal-footer">
 			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
@@ -208,25 +215,23 @@
 	</div>
 	</h:form>
 	
+	<!-- Script -->
 	<script>
+		function excluirRequisicao(id){
+			document.getElementById('formExcluirRequisicao:requisicao_id').value = id;
+		}
+	
+	
 		function excluirAlunoPelaMatricula(id, matricula, nome){
 			$('#modalAlunos'+id).modal();
-			
-			
 			document.getElementById('formExcluirAluno:requisicao_id').value = id;
 			document.getElementById('formExcluirAluno:matricula').value = matricula;
 			document.getElementById('nome').innerHTML = nome;
-			
 			$('#modalExcluirAlunoMatricula').open();
 		}
 	
 		function adicionarAlunoPelaMatricula(id){
 			document.getElementById('formAdicionarAluno:requisicao_id').value = id;
 		}
-		
-		
-		
 	</script>
-
-
 </ui:composition>
