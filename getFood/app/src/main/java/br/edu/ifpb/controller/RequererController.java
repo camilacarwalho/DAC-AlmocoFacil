@@ -48,14 +48,13 @@ public class RequererController implements Serializable{
 		this.solicitacao.setDataSolicitacao(LocalDate.now());
 		this.solicitacao.setUsuario(usuarioController.getUsuario());
 		this.solicitacao.setStatusRequisicao(StatusRequisicao.PENDENTE);		
-		//this.solicitacao.adicionarRequisicao(criarNovaRequisicao());
 	}
 	
 	private Requisicao criarNovaRequisicao() {
 		return new Requisicao(
 				--cntReq,
 				StatusRequisicao.PENDENTE, 
-				refeicaoController.getListaDeRefeicoes().get(0), 
+				null, 
 				new ArrayList<>(),
 				LocalDate.now(),
 				LocalDate.now(), 
@@ -69,6 +68,63 @@ public class RequererController implements Serializable{
 				return requisicao;
 		}
 		return null;
+	}
+	
+	private boolean podeSalvarSolicitacao() {
+		if(solicitacao.getStatusRequisicao() != StatusRequisicao.PENDENTE) {
+			MessagesAlert.addErrorMessage("Não é possível modificar a solicitação processada.");
+			return false;
+		}
+		if (solicitacao.getDescricao() == null || solicitacao.getDescricao().isEmpty()) {
+			MessagesAlert.addErrorMessage("Informe um descrição.");
+			return false;
+		}
+		if(solicitacao.getRequisicoes().size()==0) {
+			MessagesAlert.addErrorMessage("Não existe requisição.");
+			return false;
+		}
+		for (Requisicao requisicao : solicitacao.getRequisicoes()) 
+			if (!podeSalvarRequesicao(requisicao)) return false;
+		return true;
+	}
+	
+	private boolean podeSalvarRequesicao(Requisicao requisicao) {
+		if (requisicao == null) {
+			MessagesAlert.addErrorMessage("Requisição inválida.");
+			return false;
+		}
+		//Inverter datas
+		if (requisicao.getDataInicial().isAfter(requisicao.getDataFinal())) {
+			LocalDate tmp = requisicao.getDataInicial();
+			requisicao.setDataInicial(requisicao.getDataFinal());
+			requisicao.setDataFinal(tmp);
+		}
+		if(requisicao.getDataInicial().isAfter(LocalDate.now())) {
+			MessagesAlert.addErrorMessage("Data da requisição inválida.");
+			return false;
+		}
+		if (requisicao.getRefeicao()==null) {
+			MessagesAlert.addErrorMessage("Informe a refição.");
+			return false;
+		}
+		if(requisicao.getAlunos().size()==0) {
+			MessagesAlert.addErrorMessage("Não existe aluno na requisição.");
+			return false;
+		}
+		return true;
+	}
+	
+	public String salvar() {
+		if (!podeSalvarSolicitacao())
+			return null;
+		if (solicitacao.getId() == null) {
+			for (Requisicao requisicao : solicitacao.getRequisicoes()) 
+				requisicao.setId(null);
+			solicitacaoService.salvar(solicitacao);
+		} else
+			solicitacaoService.atualizar(solicitacao);
+			
+		return "";
 	}
 	
 	public String adicionarRequisicao() {
@@ -93,13 +149,12 @@ public class RequererController implements Serializable{
 						+"', ele(a) consta na lista.");
 				return null;
 			}
-				
 		}
 		
 		requisicao.getAlunos().add(aluno);
-		MessagesAlert.addInfoMessage("Aluno '"
+		MessagesAlert.addInfoMessage("Aluno(a) '"
 				+ aluno.getPessoa().getNome() 
-				+ "'\n Foi acionado com sucesso.");
+				+ "' foi acionado(a) com sucesso.");
 		return "";
 	}
 	
@@ -113,13 +168,19 @@ public class RequererController implements Serializable{
 			return null;
 		}
 		requisicao.getAlunos().remove(aluno);
-		MessagesAlert.addInfoMessage("O aluno '"
+		MessagesAlert.addInfoMessage("O(A) aluno(a) '"
 				+ aluno.getPessoa().getNome()
-				+ "'foi removido.");
+				+ "'foi removido(a).");
 		return "";
 	}
 	
-	public String removerRequisicao(Requisicao requisicao) {
+	public String removerRequisicao() {
+		Requisicao requisicao = getRequisicao(requerimentoId);
+		requerimentoId = null;
+		if(requisicao == null) {
+			MessagesAlert.addErrorMessage("Não foi possível remover a reqisição.");
+			return null;
+		}
 		this.solicitacao.getRequisicoes().remove(requisicao);
 		return "";
 	}
