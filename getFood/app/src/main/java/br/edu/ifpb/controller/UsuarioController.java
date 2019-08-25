@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.domain.Usuario;
 import br.edu.ifpb.service.UsuarioService;
 
 @SessionScoped
@@ -65,7 +66,7 @@ public class UsuarioController implements Serializable {
 		encerrarSessao();
 		return "home";
 	}
-	
+	public Usuario getUsuario() {return usuarioService.getUsuarioLogado(); }
 	public String getMensagem() {return "Ambiente do " + usuarioService.getUsuarioEnum().getNome();}
 	public String getMatricula() {return matricula;}
 	public void setMatricula(String matricula) {this.matricula = matricula;}
