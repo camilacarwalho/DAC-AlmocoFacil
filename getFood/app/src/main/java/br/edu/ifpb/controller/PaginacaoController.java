@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class PaginacaoController<T> {
 	
-	private static final int ITENS_POR_PAGINA_DEFAULT = 1;
+	private static final int ITENS_POR_PAGINA_DEFAULT = 6;
 	
 	private int paginaAtual;
 	private int itensPorPagina;

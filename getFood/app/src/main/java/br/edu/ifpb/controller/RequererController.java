@@ -56,8 +56,8 @@ public class RequererController implements Serializable{
 				StatusRequisicao.PENDENTE, 
 				null, 
 				new ArrayList<>(),
-				LocalDate.now(),
-				LocalDate.now(), 
+				LocalDate.now().plusDays(1),
+				LocalDate.now().plusDays(1), 
 				this.solicitacao, 
 				new ArrayList<>());
 	}
@@ -99,12 +99,12 @@ public class RequererController implements Serializable{
 			requisicao.setDataInicial(requisicao.getDataFinal());
 			requisicao.setDataFinal(tmp);
 		}
-		if(requisicao.getDataInicial().isAfter(LocalDate.now())) {
+		if(requisicao.getDataInicial().isBefore(LocalDate.now().plusDays(1))) {
 			MessagesAlert.addErrorMessage("Data da requisição inválida.");
 			return false;
 		}
 		if (requisicao.getRefeicao()==null) {
-			MessagesAlert.addErrorMessage("Informe a refição.");
+			MessagesAlert.addErrorMessage("Informe a refeição.");
 			return false;
 		}
 		if(requisicao.getAlunos().size()==0) {
