@@ -49,7 +49,7 @@ public class RefeicaoDaoJpa implements RefeicaoDao {
 	@Override
 	public Refeicao buscarPeloNome(String nome) {
 		String jpql = "SELECT r FROM Refeicao r" 
-				+ " WHERE nome = :nome";
+				+ " WHERE r.nome = :nome";
 		TypedQuery<Refeicao> query = em.createQuery(jpql, Refeicao.class);
 		query.setParameter("nome", nome);
 		return query.getSingleResult();
