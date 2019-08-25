@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -18,6 +20,7 @@ import br.edu.ifpb.domain.enums.StatusAutorizacao;
 public class Autorizacao implements Serializable {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Long id;
 	private Aluno aluno;
 	private LocalDate data;
