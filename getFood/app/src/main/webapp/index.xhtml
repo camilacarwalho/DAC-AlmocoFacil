@@ -1,18 +1,87 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Insert title here</title>
-</head>
-<body>
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
 
-<a href="login.xhtml">Entrar</a>
 
-</body>
+
+</h:head>
+<ui:composition template="template.xhtml">
+
+
+	<!--    MENSAGEM   -->
+	<ui:define name="welcome"><h:outputLabel value=" "/></ui:define>
+	<!-- ............ -->
+	<ui:define name="top">
+
+
+		<h:outputStylesheet library="css" name="indexx.css" />
+
+		<h:outputScript library="js" name="anim.js" />
+
+		<div id="index-banner" class="parallax-container">
+			<div class="section no-pad-bot">
+				<div class="container">
+					<br/><br/>
+					<h1 class="header center teal-text text-lighten-2">Refeições IF</h1>
+					<div class="row center">
+						<h5 class="header col s12 light">A melhor ferramenta para gerência de refeições escolares!</h5>
+					</div>
+					<div class="row center">
+						<a href="/app/login.xhtml" id="download-button" class="btn-large waves-effect waves-light green accent-3">Entrar</a>
+					</div>
+					<br/><br/>
+
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="container">
+			<div class="section">
+
+				<!--   Icon Section   -->
+				<div class="row black-text">
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center black-text"><i class="material-icons">account_circle</i></h2>
+							<h5 class="center">Usuário</h5>
+
+							<p class="light">Usuários comuns acessam os horários públicos de todos os ambientes cadastrados de uma maneira rápida e intuitiva!</p>
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center black-text"><i class="material-icons">group</i></h2>
+							<h5 class="center">Responsável</h5>
+
+							<p class="light">Usuários podem ser Responsáveis ao realizar um cadastro. Assim, o sistema permite que o mesmo solicite um ambiente da instituição e acompanhe sua reserva em tempo real :)</p>
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center black-text"><i class="material-icons">face</i></h2>
+							<h5 class="center">Supervisor</h5>
+
+							<p class="light">Supervisores são os administradores das solicitações, horários e ambientes. São as pessoas que controlam, aceitam e recusam reservas.</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+	</ui:define>
+
+</ui:composition>
 </html>
