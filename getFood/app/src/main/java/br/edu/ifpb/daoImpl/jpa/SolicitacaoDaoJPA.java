@@ -19,6 +19,7 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
 
     @Override
     public void salvar(Solicitacao object) {
+    	object.setId(null);
         em.persist(object);
     }
 
