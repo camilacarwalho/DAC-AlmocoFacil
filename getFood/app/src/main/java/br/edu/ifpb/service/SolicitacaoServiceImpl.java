@@ -64,6 +64,13 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 			solicitacao.setJustificativa("");
 		solicitacaoDao.atualizar(solicitacao);
 	}
+	
+
+	@Override
+	public void salvar(Solicitacao solicitacao) {
+		solicitacaoDao.salvar(solicitacao);
+		
+	}
 
 	@Override
 	public void atualizarStatusSolicitação(Solicitacao solicitacao) {

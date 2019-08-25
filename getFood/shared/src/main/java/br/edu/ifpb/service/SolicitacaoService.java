@@ -8,6 +8,7 @@ import br.edu.ifpb.domain.enums.StatusRequisicao;
 
 public interface SolicitacaoService {
 
+	
 	Solicitacao buscar(Long id);
 	List<Solicitacao> listar();
 	List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int termino);
@@ -15,6 +16,7 @@ public interface SolicitacaoService {
 	int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao);
 	int quantBuscarPelaMatricula(String matricula, StatusRequisicao statusRequisicao);
 	void atualizar(Solicitacao solicitacao);
+	void salvar(Solicitacao solicitacao);
 	void atualizarStatusSolicitação(Solicitacao solicitacao);
 	void negar(Solicitacao solicitacao);
 	void autorizar(Solicitacao solicitacao);
