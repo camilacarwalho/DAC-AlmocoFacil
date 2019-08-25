@@ -5,6 +5,8 @@ import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @SuppressWarnings("serial")
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 public class Refeicao implements Serializable {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Long id;
 	@Column(length = 20)
 	private String nome;
