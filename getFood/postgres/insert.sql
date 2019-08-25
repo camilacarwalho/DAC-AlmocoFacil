@@ -254,6 +254,6 @@ INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (11,
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (11, '20191200002');
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (11, '20191200003');
 
-
-
+--Sequence
+INSERT INTO public.sequence(seq_name, seq_count) VALUES ('SEQ_GEN_TABLE', 100);
 
