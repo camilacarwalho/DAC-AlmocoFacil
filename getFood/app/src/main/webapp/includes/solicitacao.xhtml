@@ -1,0 +1,232 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	
+	
+	
+	<ul class="collection with-header">
+		<!-- DESCRIÇÃO -->
+		<li class="collection-item">
+				<div class="row">
+			<h:form class="col s12">
+					<div class="input-field col s12">
+						<h:inputTextarea
+							 id="descricao"
+							 value="#{requererController.descricao}" 
+							 class="materialize-textarea" />
+						<label for="descricao">Descrição</label>
+					</div>
+			</h:form>
+				</div>
+		</li>
+		<!-- REFEIÇÕES -->
+		<li class="collection-item">
+			<div class="row"><h5>Refeições</h5></div>
+			<ui:repeat var="requisicao" value="#{requererController.requisicoes}">				
+				<div class="row z-depth-1">
+					<h:form>
+					
+					<!-- <h:outputText value="#{requisicao.id}"/>
+					<h:outputText value="#{requisicao.refeicao.nome}"/>
+					<h:outputText value="#{requisicao.dataInicial}" converter="dateConverter"/> -->
+					
+					<div class="input-field col s3">
+						<p:inputMask 
+							id="dataInicial"
+							mask="99/99/9999" 
+							value="#{requisicao.dataInicial}"
+							converter="dateConverter">
+							<f:ajax/>
+						</p:inputMask>
+						<label for="dataInicial">Data inicial</label>
+					</div>
+					<div class="input-field col s3">
+						<p:inputMask
+							id="dataFinal"
+							mask="99/99/9999"
+							value="#{requisicao.dataFinal}"
+							converter="dateConverter">
+							<f:ajax/>
+						</p:inputMask>
+						<label for="dataFinal">Data final</label>
+					</div>
+					<div class="input-field col s2">
+						<h:selectOneListbox 
+							id="refeicao"
+							value="#{requisicao.refeicao}">
+							<f:selectItems
+								var="refeicao"
+								value="#{requererController.listRefeicoes}"
+								itemValue="#{refeicao}"
+								itemLabel="#{refeicao.nome}"/>
+							<f:ajax/>
+						</h:selectOneListbox>
+						<label for="refeicao">Refeição</label>
+					</div>
+					</h:form>
+					<h:form>
+					<div class="input-field col s2">
+						<div class="row center-align">
+							<div class="col s12"><label>Alunos: <h:outputLabel value="#{requisicao.alunos.size()}"/></label></div>
+							<div class="col s12">
+								<span>
+									<a href="#modalAlunos#{requisicao.id}" class="waves-effect waves-light btn modal-trigger">Listar</a>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="input-field col s2 ">
+						<div class="row center-align">
+						<div class="col s12"><label>Ações</label></div>
+							<div class="col s12">
+								<!-- Adicionar aluno pela matrícula -->
+								<span>
+									<a  href="#modalAdicionarAlunoMatricula"
+										onclick="adicionarAlunoPelaMatricula(#{requisicao.id})"
+										class="modal-trigger btn-floating btn-small waves-effect waves-light teal"><i class="material-icons">person_add</i></a>
+								</span>
+								<!-- <span>
+									<a jsf:action="#{requererController.adicionarRequisicao()}"
+										class="btn-floating btn-small waves-effect waves-light teal"><i class="material-icons">group_add</i></a>
+								</span> -->
+								<span>
+									<a jsf:action="#{requererController.removerRequisicao(requisicao)}"
+										class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">clear</i></a>
+								</span>
+							</div>
+						</div>
+					</div>
+					</h:form>
+				</div>
+				
+				 <!-- Modal Lista Alunos -->
+				<div id="modalAlunos#{requisicao.id}" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h4>Lista de Alunos</h4>
+						<div class="row">
+							<div class="col s2"><b>Matricula</b></div>
+							<div class="col s5"><b>Nome</b></div>
+							<div class="col s4"><b>Curso</b></div>
+							<div class="col s1"><b>Ação</b></div>
+							
+						</div>
+						
+						<ui:repeat var="aluno" value="#{requisicao.alunos}">
+							<div class="row">
+								<div class="col s2"><h:outputText value="#{aluno.matricula}"/></div>
+								<div class="col s5"><h:outputText value="#{aluno.pessoa.nome}"/></div>
+								<div class="col s4"><h:outputText value="#{aluno.curso.nome}"/></div>
+								<div class="col s1">
+									<a href="#modalExcluirAlunoMatricula"
+										onclick="excluirAlunoPelaMatricula(#{requisicao.id},'#{aluno.matricula}','#{aluno.pessoa.nome}')"										
+										class="modal-trigger btn-floating btn-small waves-effect waves-light red"><i class="material-icons">clear</i></a>
+								</div>
+							</div>
+						</ui:repeat>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+					</div>
+				</div>
+
+
+			</ui:repeat>
+		</li>
+		
+		<!-- COMANDOS -->
+
+		<li class="collection-item">
+			<div class="row">
+				<h:form>
+				<div class="col s2">
+					<a jsf:action="#{requererController.adicionarRequisicao()}"
+						class="btn-floating btn-small waves-effect waves-light teal"><i class="material-icons">add</i></a>
+				</div>
+				<div class="col s2 offset-s8 right-align">
+					<h:commandButton 
+						value="Enviar"
+						styleClass="white-text btn  green accent-3 center-align" />
+				</div>
+				</h:form>
+			</div>
+		</li>
+
+	</ul>
+
+	<!-- Modal Adidiconar aluno -->
+	<h:form id="formAdicionarAluno">
+	<div id="modalAdicionarAlunoMatricula" class="modal">
+		<div class="modal-content">
+			<h4>Adicionar aluno</h4>
+			<p>Informe a matrícula do aluno</p>
+			<div class="input-field col s6">
+				<h:inputText
+					value="#{requererController.matricula}" 
+					id="matricula" />
+				<label for="matricula">Matrícula</label>
+			</div>
+			<h:inputHidden
+				value="#{requererController.requerimentoId}" 
+				id="requisicao_id"/>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+			<a jsf:action="#{requererController. adicionarAlunoPelaMatricula()}" 
+				href="#!" class="modal-close waves-effect waves-green btn-flat">Adicionar</a>
+		</div>
+	</div>
+	</h:form>
+	
+	
+	<!-- Modal Excluir aluno -->
+	<h:form id="formExcluirAluno">
+	<div id="modalExcluirAlunoMatricula" class="modal">
+		<div class="modal-content">
+			<h4>Excluir aluno</h4>
+			<p>Deseja excluir o(a) aluno(a) '
+				<span id="nome">nome</span>
+				' da lista de alunos </p>
+			<div class="input-field col s6">
+				
+				
+			</div>
+			<h:inputHidden
+					value="#{requererController.matricula}" 
+					id="matricula" />
+			<h:inputHidden
+				value="#{requererController.requerimentoId}" 
+				id="requisicao_id"/>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+			<a 	jsf:action="#{requererController.removerAluno()}"
+				href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
+		</div>
+	</div>
+	</h:form>
+	
+	<script>
+		function excluirAlunoPelaMatricula(id, matricula, nome){
+			$('#modalAlunos'+id).modal();
+			
+			
+			document.getElementById('formExcluirAluno:requisicao_id').value = id;
+			document.getElementById('formExcluirAluno:matricula').value = matricula;
+			document.getElementById('nome').innerHTML = nome;
+			
+			$('#modalExcluirAlunoMatricula').open();
+		}
+	
+		function adicionarAlunoPelaMatricula(id){
+			document.getElementById('formAdicionarAluno:requisicao_id').value = id;
+		}
+		
+		
+		
+	</script>
+
+
+</ui:composition>
