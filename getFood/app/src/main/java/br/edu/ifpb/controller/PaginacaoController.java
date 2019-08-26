@@ -27,7 +27,7 @@ public abstract class PaginacaoController<T> {
 	
 	private List<T> buscarItens(){		
 		atualizarValores();
-		int inicio = (paginaAtual -1) / itensPorPagina;	
+		int inicio = (paginaAtual -1) * itensPorPagina;	
 		int termino = itensPorPagina;
 		return listarItensDaBusca(inicio, termino);
 	}
