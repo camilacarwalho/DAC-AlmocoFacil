@@ -36,6 +36,13 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 	public Solicitacao buscar(Long id) {
 		return solicitacaoDao.buscar(id);
 	}
+	
+	
+
+	@Override
+	public Solicitacao bucarPeloUsuario(Long id, String matricula) {		
+		return solicitacaoDao.buscarPeloUsuario(id, matricula);
+	}
 
 	@Override
 	public List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int termino) {

@@ -10,6 +10,7 @@ public interface SolicitacaoService {
 
 	
 	Solicitacao buscar(Long id);
+	Solicitacao bucarPeloUsuario(Long id, String matricula);
 	List<Solicitacao> listar();
 	List<Solicitacao> buscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao, int inicio, int termino);
 	List<Solicitacao> buscarPelaMatricula(String matricula , StatusRequisicao statusRequisicao, int inicio, int termino);	
