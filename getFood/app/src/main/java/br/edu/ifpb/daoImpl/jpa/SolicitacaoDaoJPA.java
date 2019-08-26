@@ -40,8 +40,22 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
         solicitacao = em.find(Solicitacao.class,key);
         return solicitacao;
     }
+    
+    
 
     @Override
+	public Solicitacao buscarPeloUsuario(Long id, String matricula) {
+    	String jpql ="SELECT DISTINCT(s) FROM Solicitacao s"
+				+ " JOIN s.usuario u"
+				+ " WHERE s.id = :id"
+				+ " AND u.matricula = :matricula";
+		TypedQuery<Solicitacao> query = em.createQuery(jpql, Solicitacao.class);
+		query.setParameter("matricula", matricula);
+		query.setParameter("id", id);
+		return query.getSingleResult();
+	}
+
+	@Override
     public List<Solicitacao> listar() {
         String jpql="SELECT s FROM Solicitacao s";
         TypedQuery<Solicitacao> query = em.createQuery(jpql, Solicitacao.class);
