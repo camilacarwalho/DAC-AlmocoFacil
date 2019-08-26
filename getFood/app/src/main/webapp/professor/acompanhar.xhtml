@@ -23,7 +23,7 @@
     <!-- ............ -->
 
     <ui:define name="top">
-        <h4>Suas solicitações</h4>       
+        <h4>Acompanhe suas solicitações</h4>       
         
         <div class="row">
 	        <ul class="collection with-header">
@@ -52,23 +52,12 @@
 							 		class="btn-floating btn-small waves-effect waves-light teal">
 							 		<i class="material-icons">search</i>
 							 	</h:commandLink>
-								
 							</dir>
-
 						</div>
-
 						</h:form>
-
 					</li>
-	        
-	        
-	        
-	        
-	        
-	        
 	            <li class="collection-item">
 	                <div class="row">
-	
 	                    <div class="col s2"><b>Data</b></div>
 	                    <div class="col s3"><b>Descrição</b></div>
 	                    <div class="col s2"><b>Status</b></div>
@@ -95,7 +84,7 @@
 			                    	<h:outputText value="#{solicitacao.justificativa}"/>			                    	
 			                    </div>
 			                    <div class="col s2">
-			                    	<a href="#" class="tooltipped" data-position="left" data-tooltip="Editar" >
+			                    	<a href="solicitar.xhtml?solic=#{solicitacao.id}" class="tooltipped" data-position="left" data-tooltip="Visualizar" >
                                     	<i class="teal-text small material-icons">date_range</i>
                                     </a>
 			                    	<a href="#" class="tooltipped" data-position="left" data-tooltip="Cancelar" >
