@@ -85,7 +85,7 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 		StatusRequisicao statusRequisicao = StatusRequisicao.PENDENTE;
 		if(quantRequisicoes > 0) {
 			statusRequisicao = solicitacao.getRequisicoes().get(0).getStatusRequisicao();
-			boolean continuar = statusRequisicao != StatusRequisicao.PENDENTE; //Se a requisição estiver pendente tudo está pendente
+			boolean continuar = statusRequisicao != StatusRequisicao.PENDENTE && quantRequisicoes > 1; //Se a requisição estiver pendente tudo está pendente
 			int k = 1;			
 			while (continuar) {
 				switch (solicitacao.getRequisicoes().get(k).getStatusRequisicao()) {
@@ -203,7 +203,6 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 
 	@Override
 	public void negarRequisicao(Requisicao requisicao) {
-		this.atualizar(requisicao.getSolicitacao());
 		this.requisicaoService.negar(requisicao);
 		this.atualizarStatusSolicitação(requisicao.getSolicitacao());
 		
