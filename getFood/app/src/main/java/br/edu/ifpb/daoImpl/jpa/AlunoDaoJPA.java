@@ -44,4 +44,22 @@ public class AlunoDaoJPA implements AlunoDao {
         TypedQuery<Aluno> query = em.createQuery(jpql, Aluno.class);
         return query.getResultList();
     }
+
+    @Override
+    public int quantBuscarAlunos() {
+        String jpql = "SELECT COUNT(a.matricula) FROM Aluno a ";
+        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+        Long result = query.getSingleResult();
+        return result.intValue();
+    }
+
+    @Override
+    public List<Aluno> buscarAlunos(int min, int quant) {
+        String jpql = "SELECT a FROM Aluno a ORDER BY a.matricula ";
+        TypedQuery<Aluno> query = em.createQuery(jpql, Aluno.class)
+                .setFirstResult(min)
+                .setMaxResults(quant);
+        return query.getResultList();
+
+    }
 }
