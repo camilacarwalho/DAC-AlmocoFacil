@@ -36,17 +36,17 @@
                             <div class="col l3"><b>Telefone</b></div>
                         </div>
                     </li>
-                    <ui:repeat var="solicitacao" value="#">
+                    <ui:repeat var="aluno" value="#{gestaoAlunoController.itens}">
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l3">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{aluno.matricula}"></h:outputText>
                                 </div>
                                 <div class="col l6">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{aluno.pessoa.nome}"></h:outputText>
                                 </div>
                                 <div class="col l3">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{aluno.pessoa.telefone}"></h:outputText>
                                 </div>
 
                             </div>
@@ -54,6 +54,19 @@
                         </li>
 
                     </ui:repeat>
+                    <li class="collection-item">
+                        <div class="row">
+                            <ui:include  src="../includes/paginacao.xhtml">
+                                <ui:param value="#{gestaoAlunoController}" name="controller"/>
+                            </ui:include>
+                        </div>
+                    </li>
+
+                    <li class="collection-item">
+                        <div class="row">
+                            <p>Total de alunos encontrados: <h:outputText value="#{gestaoAlunoController.quantidadeItens}"/></p>
+                        </div>
+                    </li>
                 </ul>
             </h:form>
         </div>
