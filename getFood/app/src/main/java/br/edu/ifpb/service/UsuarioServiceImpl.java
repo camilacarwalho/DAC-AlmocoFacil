@@ -1,6 +1,7 @@
 package br.edu.ifpb.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -67,7 +68,17 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 			return UsuarioEnum.DEFAULT;
 		return getUsuarioLogado().getCargo();
 	}
-	
+
+	@Override
+	public List<Usuario> buscarProfessores(int min, int quant) {
+		return usuarioDao.buscarProfessores(min,quant);
+	}
+
+	@Override
+	public int quantProfessores() {
+		return usuarioDao.quantProfessores();
+	}
+
 	@Override
 	public void editar(String nome, String telefone, String senha) throws DadosInvalidosException{
 		if (!isLogado())
