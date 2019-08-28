@@ -4,7 +4,7 @@ import br.edu.ifpb.domain.Aluno;
 import br.edu.ifpb.service.AlunoService;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
