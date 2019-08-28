@@ -26,7 +26,7 @@
         <h4>Listagem de Professores</h4>
         <div class="row">
 
-            <h:form prependId="false">
+            <!--<h:form prependId="false">-->
                 <ul class="collection with-header">
                     <li class="collection-item">
                         <div class="row">
@@ -36,17 +36,17 @@
                             <div class="col l3"><b>Telefone</b></div>
                         </div>
                     </li>
-                    <ui:repeat var="solicitacao" value="#">
+                    <ui:repeat var="professor" value="#{gestaoProfessorController.itens}">
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l3">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{professor.matricula}"></h:outputText>
                                 </div>
                                 <div class="col l6">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{professor.pessoa.nome}"></h:outputText>
                                 </div>
                                 <div class="col l3">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{professor.pessoa.telefone}"></h:outputText>
                                 </div>
 
                             </div>
@@ -54,8 +54,21 @@
                         </li>
 
                     </ui:repeat>
+                    <li class="collection-item">
+                        <div class="row">
+                            <ui:include  src="../includes/paginacao.xhtml">
+                                <ui:param value="#{gestaoProfessorController}" name="controller"/>
+                            </ui:include>
+                        </div>
+                    </li>
+
+                    <li class="collection-item">
+                        <div class="row">
+                            <p>Total de professores encontrados: <h:outputText value="#{gestaoProfessorController.quantidadeItens}"/></p>
+                        </div>
+                    </li>
                 </ul>
-            </h:form>
+            <!--</h:form>-->
         </div>
     </ui:define>
 </ui:composition>
