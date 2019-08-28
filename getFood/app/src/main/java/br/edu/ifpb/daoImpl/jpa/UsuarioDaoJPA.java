@@ -47,4 +47,21 @@ public class UsuarioDaoJPA implements UsuarioDao {
         return encontrado;
 
     }
+
+    @Override
+    public List<Usuario> buscarProfessores(int min, int quant) {
+        String jqpl="SELECT u FROM Usuario u WHERE u.cargo LIKE 'PROFESSOR'";
+        TypedQuery<Usuario> query = em.createQuery(jqpl, Usuario.class)
+                .setFirstResult(min)
+                .setMaxResults(quant);
+        return query.getResultList();
+    }
+
+    @Override
+    public int quantProfessores() {
+        String jpql="SELECT COUNT(u.matricula) FROM Usuario u WHERE u.cargo LIKE 'PROFESSOR'";
+        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+        Long quant = query.getSingleResult();
+        return quant.intValue();
+    }
 }

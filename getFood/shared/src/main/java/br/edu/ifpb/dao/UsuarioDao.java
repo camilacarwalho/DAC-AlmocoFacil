@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface UsuarioDao extends DefaultDao<Usuario> {
 
+    List<Usuario> buscarProfessores(int min, int quant);
+    int quantProfessores();
 
 }
