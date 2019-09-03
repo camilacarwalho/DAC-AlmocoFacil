@@ -16,6 +16,7 @@ public class GestaoAlunoController extends PaginacaoController<Aluno> implements
 
     @Inject
     AlunoService alunoService;
+    String matricula;
 
     @PostConstruct
     public void init(){
@@ -24,11 +25,27 @@ public class GestaoAlunoController extends PaginacaoController<Aluno> implements
 
     @Override
     protected List<Aluno> listarItensDaBusca(int inicio, int maximo) {
-        return alunoService.buscarAlunos(inicio,maximo);
+        return alunoService.buscarAlunos(inicio,maximo,matricula);
     }
 
     @Override
     public int getQuantidadeItens() {
         return alunoService.quantAlunos();
+    }
+
+    public AlunoService getAlunoService() {
+        return alunoService;
+    }
+
+    public void setAlunoService(AlunoService alunoService) {
+        this.alunoService = alunoService;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }

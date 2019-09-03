@@ -54,11 +54,15 @@ public class AlunoDaoJPA implements AlunoDao {
     }
 
     @Override
-    public List<Aluno> buscarAlunos(int min, int quant) {
-        String jpql = "SELECT a FROM Aluno a ORDER BY a.matricula ";
+    public List<Aluno> buscarAlunos(int min, int quant,String matricula) {
+        String jpql = "SELECT a FROM Aluno a ";
+        jpql+= !(matricula==null||matricula.isEmpty()) ? " WHERE a.matricula=:matricula":"";
         TypedQuery<Aluno> query = em.createQuery(jpql, Aluno.class)
                 .setFirstResult(min)
                 .setMaxResults(quant);
+        if(!(matricula==null||matricula.isEmpty())){
+            query.setParameter("matricula",matricula);
+        }
         return query.getResultList();
 
     }

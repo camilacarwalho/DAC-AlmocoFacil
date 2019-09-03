@@ -25,8 +25,8 @@ public class AlunoServiceImpl implements AlunoService{
 	}
 
 	@Override
-	public List<Aluno> buscarAlunos(int min, int quant) {
-		return alunoDao.buscarAlunos(min,quant);
+	public List<Aluno> buscarAlunos(int min, int quant,String matricula) {
+		return alunoDao.buscarAlunos(min,quant,matricula);
 	}
 
 }

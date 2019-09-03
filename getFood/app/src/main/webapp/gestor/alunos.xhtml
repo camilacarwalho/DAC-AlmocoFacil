@@ -29,6 +29,24 @@
             <!--<h:form prependId="false">-->
                 <ul class="collection with-header">
                     <li class="collection-item">
+                        <h:form prependId="false">
+                            <div class="row">
+                                <div class="input-field col s3">
+                                    <h:inputText value="#{gestaoAlunoController.matricula}"/>
+                                    <label>Buscar pela matricula</label>
+                                </div>
+
+                                <dir class="col s3">
+                                    <h:commandLink
+                                            action="#{gestaoAlunoController.buscar()}"
+                                            class="btn-floating btn-small waves-effect waves-light teal">
+                                        <i class="material-icons">search</i>
+                                    </h:commandLink>
+                                </dir>
+                            </div>
+                        </h:form>
+                    </li>
+                    <li class="collection-item">
                         <div class="row">
 
                             <div class="col l3"><b>Matrícula</b></div>
