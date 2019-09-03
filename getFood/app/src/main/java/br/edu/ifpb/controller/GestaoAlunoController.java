@@ -30,7 +30,7 @@ public class GestaoAlunoController extends PaginacaoController<Aluno> implements
 
     @Override
     public int getQuantidadeItens() {
-        return alunoService.quantAlunos();
+        return alunoService.quantAlunos(matricula);
     }
 
     public AlunoService getAlunoService() {

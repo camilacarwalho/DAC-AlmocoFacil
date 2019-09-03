@@ -20,8 +20,8 @@ public class AlunoServiceImpl implements AlunoService{
 	}
 
 	@Override
-	public int quantAlunos() {
-		return alunoDao.quantBuscarAlunos();
+	public int quantAlunos(String matricula) {
+		return alunoDao.quantBuscarAlunos(matricula);
 	}
 
 	@Override

@@ -46,9 +46,13 @@ public class AlunoDaoJPA implements AlunoDao {
     }
 
     @Override
-    public int quantBuscarAlunos() {
+    public int quantBuscarAlunos(String matricula) {
         String jpql = "SELECT COUNT(a.matricula) FROM Aluno a ";
+        jpql+= !(matricula==null||matricula.isEmpty()) ? " WHERE a.matricula LIKE :matricula":"";
         TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+        if(!(matricula==null||matricula.isEmpty())){
+            query.setParameter("matricula","%"+matricula+"%");
+        }
         Long result = query.getSingleResult();
         return result.intValue();
     }
@@ -56,12 +60,12 @@ public class AlunoDaoJPA implements AlunoDao {
     @Override
     public List<Aluno> buscarAlunos(int min, int quant,String matricula) {
         String jpql = "SELECT a FROM Aluno a ";
-        jpql+= !(matricula==null||matricula.isEmpty()) ? " WHERE a.matricula=:matricula":"";
+        jpql+= !(matricula==null||matricula.isEmpty()) ? " WHERE a.matricula LIKE :matricula":"";
         TypedQuery<Aluno> query = em.createQuery(jpql, Aluno.class)
                 .setFirstResult(min)
                 .setMaxResults(quant);
         if(!(matricula==null||matricula.isEmpty())){
-            query.setParameter("matricula",matricula);
+            query.setParameter("matricula","%"+matricula+"%");
         }
         return query.getResultList();
 
