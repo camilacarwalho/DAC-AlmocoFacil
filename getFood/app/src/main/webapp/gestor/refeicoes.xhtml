@@ -44,6 +44,18 @@
                                 </p:inputMask>
                                 <label>Data Final</label>
                             </div>
+                                <div class="input-field col s3">
+                                    <h:selectOneListbox
+                                            id="BuscaStatusAutorizacao"
+                                            value="#{gestaoRefeicaoController.statusAutorizacao}">
+                                        <f:selectItem itemLabel="Todos os status"/>
+                                        <f:selectItems
+                                                var="statusAutorizacao"
+                                                value="#{gestaoRefeicaoController.listarStatus}"
+                                                item="#{statusAutorizacao}"
+                                                itemLabel="#{statusAutorizacao.nome}"/>
+                                    </h:selectOneListbox>
+                                </div>
                                 <dir class="col s3">
                                     <h:commandLink
                                             action="#"
@@ -56,27 +68,22 @@
                     </li>
                     <li class="collection-item">
                         <div class="row">
-
-                            <div class="col l2"><b>Data</b></div>
-                            <div class="col l2"><b>Hora</b></div>
-                            <div class="col l1"><b>Alunos</b></div>
-                            <div class="col l5"><b>Professor</b></div>
+                            <div class="col l3"><b>Data</b></div>
+                            <div class="col l3"><b>Refeição</b></div>
+                            <div class="col l3"><b>Quantidade</b></div>
                             <div class="col l2"><b>Status</b></div>
                         </div>
                     </li>
                     <ui:repeat var="solicitacao" value="#">
                         <li class="collection-item">
                             <div class="row">
-                                <div class="col l2">
+                                <div class="col l3">
                                     <h:outputText value="#"></h:outputText>
                                 </div>
-                                <div class="col l2">
+                                <div class="col l3">
                                     <h:outputText value="#"></h:outputText>
                                 </div>
-                                <div class="col l1">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l5">
+                                <div class="col l3">
                                     <h:outputText value="#"></h:outputText>
                                 </div>
                                 <div class="col l2">
