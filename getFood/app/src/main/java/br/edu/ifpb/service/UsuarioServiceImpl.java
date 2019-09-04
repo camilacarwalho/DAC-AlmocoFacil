@@ -70,13 +70,13 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> buscarProfessores(int min, int quant) {
-		return usuarioDao.buscarProfessores(min,quant);
+	public List<Usuario> buscarProfessores(int min, int quant,String matricula) {
+		return usuarioDao.buscarProfessores(min,quant,matricula);
 	}
 
 	@Override
-	public int quantProfessores() {
-		return usuarioDao.quantProfessores();
+	public int quantProfessores(String matricula) {
+		return usuarioDao.quantProfessores(matricula);
 	}
 
 	@Override

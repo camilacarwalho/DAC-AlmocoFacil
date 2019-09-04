@@ -15,7 +15,7 @@ public interface UsuarioService {
 	void editar(String nome, String telefone, String senha) throws DadosInvalidosException;
 	void desativar();
 	UsuarioEnum getUsuarioEnum();
-	List<Usuario> buscarProfessores(int min, int quant);
-	int quantProfessores();
+	List<Usuario> buscarProfessores(int min, int quant,String matricula);
+	int quantProfessores(String matricula);
 
 }
