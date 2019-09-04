@@ -17,6 +17,8 @@ public class GestaoProfessorController extends PaginacaoController<Usuario> impl
     @Inject
     UsuarioService usuarioService;
 
+    private String matricula;
+
     @PostConstruct
     public void init(){
         buscar();
@@ -24,11 +26,19 @@ public class GestaoProfessorController extends PaginacaoController<Usuario> impl
 
     @Override
     protected List<Usuario> listarItensDaBusca(int inicio, int maximo) {
-        return usuarioService.buscarProfessores(inicio,maximo);
+        return usuarioService.buscarProfessores(inicio,maximo,matricula);
     }
 
     @Override
     public int getQuantidadeItens() {
-        return usuarioService.quantProfessores();
+        return usuarioService.quantProfessores(matricula);
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }
