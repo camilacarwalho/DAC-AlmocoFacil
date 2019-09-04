@@ -74,26 +74,39 @@
                             <div class="col l2"><b>Status</b></div>
                         </div>
                     </li>
-                    <ui:repeat var="solicitacao" value="#">
+                    <ui:repeat var="autorizacao" value="#{gestaoRefeicaoController.itens}">
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l3">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{autorizacao.data}"></h:outputText>
                                 </div>
                                 <div class="col l3">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{autorizacao.nome}"></h:outputText>
                                 </div>
                                 <div class="col l3">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{autorizacao.quantidade}"></h:outputText>
                                 </div>
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{autorizacao.statusAutorizacao}"></h:outputText>
                                 </div>
 
 
 
                             </div>
 
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <ui:include  src="../includes/paginacao.xhtml">
+                                    <ui:param value="#{gestaoRefeicaoController}" name="controller"/>
+                                </ui:include>
+                            </div>
+                        </li>
+
+                        <li class="collection-item">
+                            <div class="row">
+                                <p>Total de alunos encontrados: <h:outputText value="#{gestaoRefeicaoController.quantidadeItens}"/></p>
+                            </div>
                         </li>
 
                     </ui:repeat>
