@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 
@@ -28,6 +29,31 @@
 
             <h:form prependId="false">
                 <ul class="collection with-header">
+                    <li class="collection-item">
+                        <h:form prependId="false">
+                            <div class="row">
+                                <div class="input-field col s3">
+                                    <p:inputMask mask="99/99/9999" converter="dateConverter">
+                                        <f:ajax/>
+                                    </p:inputMask>
+                                    <label>Data Inicial</label>
+                                </div>
+                                <div class="input-field col s3">
+                                <p:inputMask mask="99/99/9999" converter="dateConverter">
+                                    <f:ajax/>
+                                </p:inputMask>
+                                <label>Data Final</label>
+                            </div>
+                                <dir class="col s3">
+                                    <h:commandLink
+                                            action="#{gestaoAlunoController.buscar()}"
+                                            class="btn-floating btn-small waves-effect waves-light teal">
+                                        <i class="material-icons">search</i>
+                                    </h:commandLink>
+                                </dir>
+                            </div>
+                        </h:form>
+                    </li>
                     <li class="collection-item">
                         <div class="row">
 
