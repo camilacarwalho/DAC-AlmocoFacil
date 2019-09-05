@@ -2,24 +2,26 @@ package com.example.almocofacil.domain;
 
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Date;
+import java.util.Timer;
 
 public class Refeicao implements Serializable {
 	
 	private Long id;
 	private String nome;
-	private LocalTime horaInicio;
-	private LocalTime horaTermino;
+	private Date horaInicio;
+	private Date horaTermino;
 	
 	public Refeicao() {	}
 	
-	public Refeicao(String nome, LocalTime horaInicio, LocalTime horaTermino) {
+	public Refeicao(String nome, Date horaInicio, Date horaTermino) {
 		super();
 		this.nome = nome;
 		this.horaInicio = horaInicio;
 		this.horaTermino = horaTermino;
 	}
 
-	public Refeicao(Long id, String nome, LocalTime horaInicio, LocalTime horaTermino) {
+	public Refeicao(Long id, String nome, Date horaInicio, Date horaTermino) {
 		this.id = id;
 		this.nome = nome;
 		this.horaInicio = horaInicio;
@@ -42,19 +44,19 @@ public class Refeicao implements Serializable {
 		this.nome = nome;
 	}
 
-	public LocalTime getHoraInicio() {
+	public Date getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(LocalTime horaInicio) {
+	public void setHoraInicio(Date horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public LocalTime getHoraTermino() {
+	public Date getHoraTermino() {
 		return horaTermino;
 	}
 
-	public void setHoraTermino(LocalTime horaTermino) {
+	public void setHoraTermino(Date horaTermino) {
 		this.horaTermino = horaTermino;
 	}
 
