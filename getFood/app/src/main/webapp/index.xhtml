@@ -14,42 +14,49 @@
 
 
 	<!--    MENSAGEM   -->
-	<ui:define name="welcome"><h:outputLabel value=" "/></ui:define>
+	<ui:define name="links">
+		<a href="/app/login.xhtml" class="center btn-large botaoentrar waves-effect waves-light white green-text">Entrar</a>
+
+	</ui:define>
+	<ui:define name="welcome"><h:outputLabel value=" "/>
+
+		<h:outputStylesheet library="css" name="indexx.css" />
+
+		<h:outputScript library="js" name="anim.js" /></ui:define>
 	<!-- ............ -->
 	<ui:define name="top">
 
 
-		<h:outputStylesheet library="css" name="indexx.css" />
 
-		<h:outputScript library="js" name="anim.js" />
 
-		<div id="index-banner" class="parallax-container">
-			<div class="section no-pad-bot">
-				<div class="container">
-					<br/><br/>
-					<h1 class="header center teal-text text-lighten-2">Refeições IF</h1>
-					<div class="row center">
-						<h5 class="header col s12 light">A melhor ferramenta para gerência de refeições escolares!</h5>
-					</div>
-					<div class="row center">
-						<a href="/app/login.xhtml" id="download-button" class="btn-large waves-effect waves-light green accent-3">Entrar</a>
-					</div>
-					<br/><br/>
 
-				</div>
-			</div>
 
+		<div class="propaganda ">
+			<img src="/app/resources/img/Pattern.png" class="fundoPropaganda" />
+			<div class="centertexto"><h1 class="header white-text">Refeição sem esforço!</h1>
+				<div class="row">
+					<h5 class="header col s12 light white-text">Solicite e gerencie refeições de qualquer lugar, a qualquer hora </h5>
+				</div></div>
 		</div>
+
+
+
+
+
+	</ui:define>
+	<ui:define name="final">
 
 
 		<div class="container">
 			<div class="section">
 
+
 				<!--   Icon Section   -->
 				<div class="row black-text">
+
 					<div class="col s12 m4">
 						<div class="icon-block">
-							<h2 class="center black-text"><i class="material-icons">account_circle</i></h2>
+							<h2 class="center black-text"><i class="material-icons medium">account_circle</i></h2>
 							<h5 class="center">Professores</h5>
 
 							<p class="light">Professores requisitam refeições de uma maneira rápida e intuitiva!</p>
@@ -58,7 +65,7 @@
 
 					<div class="col s12 m4">
 						<div class="icon-block">
-							<h2 class="center black-text"><i class="material-icons">group</i></h2>
+							<h2 class="center black-text"><i class="material-icons medium">group</i></h2>
 							<h5 class="center">CAEST</h5>
 
 							<p class="light">A CAEST é responsável por aceitar ou recusar uma solicitação de refeição</p>
@@ -67,7 +74,7 @@
 
 					<div class="col s12 m4">
 						<div class="icon-block">
-							<h2 class="center black-text"><i class="material-icons">face</i></h2>
+							<h2 class="center black-text"><i class="material-icons medium">face</i></h2>
 							<h5 class="center">Gestores</h5>
 
 							<p class="light">Gestores são os administradores gerais do sistema, o acompanham e tem acesso aos relatórios.</p>
@@ -77,11 +84,9 @@
 
 			</div>
 		</div>
-
-
-
-
 	</ui:define>
+
+
 
 </ui:composition>
 </html>

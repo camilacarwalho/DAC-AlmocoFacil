@@ -24,22 +24,25 @@
 <h:body>
 
 
+    <ui:insert name="navbar">
 
-    <nav class="grey darken-4">
-        <div class="nav-wrapper">
-            <a href="index.xhtml" class="brand-logo">Refeições IF</a>
+    <nav class="white z-depth-0 black-text">
+        <div class="nav-wrapper black-text">
+            <a href="index.xhtml" class="brand-logo black-text"><img src="/app/resources/img/Logo.png" class="logoimagem" /></a>
 
 
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
                 <ui:insert name="links">
 
                 </ui:insert>
 
             </ul>
         </div>
-    </nav>
-    <div class="row grey darken-3"><div class="footer-copyright grey darken-3">
-        <div class="grey darken-3 container white-text col s6 offset-s10">
+    </nav></ui:insert>
+
+
+    <div class="row black"><div class="footer-copyright black">
+        <div class="black container white-text col s12 right-align">
             <ui:insert name="welcome"> Bem vindo, professor.</ui:insert>
 
         </div>
@@ -47,10 +50,6 @@
 
 
 
-    <br/>
-
-    <div class="container">
-    
     
     <!-- ÁREA DE NOTIFICAÇÃO DAS MENSAGENS -->
             <h:messages
@@ -79,7 +78,9 @@
             </ui:insert></div>
 
 
-    </div>
+    <ui:insert name="final">
+
+    </ui:insert>
 
 
 
@@ -104,6 +105,9 @@
         });
         $(document).ready(function(){
             $('.tooltipped').tooltip();
+        });
+        $(document).ready(function(){
+            $('.parallax').parallax();
         });
     </script>
 </h:body>
