@@ -53,12 +53,17 @@ public class AutorizacaoDaoJPA implements AutorizacaoDao {
     public List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, LocalDate dataInicial, LocalDate dataFinal) {
         String jpql="SELECT NEW br.edu.ifpb.domain.AutorizacaoRR(a.data,f.nome,a.statusAutorizacao,COUNT(a.id))" +
                 " FROM Autorizacao a LEFT JOIN a.requisicao r JOIN r.refeicao f";
-        jpql+= !(dataFinal==null&&dataInicial==null) ? " WHERE a.data BETWEEN :dataInicial AND :dataFinal":"";
+        jpql+= dataInicial!=null ? " WHERE a.data BETWEEN :dataInicial AND :dataFinal":"";
         jpql+=" GROUP BY a.data,f.nome,a.statusAutorizacao ORDER BY a.data DESC";
         TypedQuery<AutorizacaoRR> query = em.createQuery(jpql, AutorizacaoRR.class);
-        if(!(dataInicial==null&&dataFinal==null)){
-            query.setParameter("dataInicial",dataInicial);
-            query.setParameter("dataFinal",dataFinal);
+        if(dataInicial!=null){
+            if(dataFinal==null){
+                query.setParameter("dataInicial",dataInicial);
+                query.setParameter("dataFinal",LocalDate.now());
+            }else{
+                query.setParameter("dataInicial",dataInicial);
+                query.setParameter("dataFinal",dataFinal);
+            }
         }
         query.setFirstResult(min).setMaxResults(quant);
         return query.getResultList();
@@ -68,12 +73,17 @@ public class AutorizacaoDaoJPA implements AutorizacaoDao {
     public int quantAutorizacaoRR(LocalDate dataInicial, LocalDate dataFinal) {
         String jpql="SELECT NEW br.edu.ifpb.domain.AutorizacaoRR(a.data,f.nome,a.statusAutorizacao,COUNT(a.id))" +
                 " FROM Autorizacao a LEFT JOIN a.requisicao r JOIN r.refeicao f";
-        jpql+= !(dataFinal==null&&dataInicial==null) ? " WHERE a.data BETWEEN :dataInicial AND :dataFinal":"";
+        jpql+= dataInicial!=null ? " WHERE a.data BETWEEN :dataInicial AND :dataFinal":"";
         jpql+=" GROUP BY a.data,f.nome,a.statusAutorizacao ORDER BY a.data DESC";
         TypedQuery<AutorizacaoRR> query = em.createQuery(jpql, AutorizacaoRR.class);
-        if(!(dataInicial==null&&dataFinal==null)){
-            query.setParameter("dataInicial",dataInicial);
-            query.setParameter("dataFinal",dataFinal);
+        if(dataInicial!=null){
+            if(dataFinal==null){
+                query.setParameter("dataInicial",dataInicial);
+                query.setParameter("dataFinal",LocalDate.now());
+            }else{
+                query.setParameter("dataInicial",dataInicial);
+                query.setParameter("dataFinal",dataFinal);
+            }
         }
         return query.getResultList().size();
     }
