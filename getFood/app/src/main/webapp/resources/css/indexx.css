@@ -1,0 +1,27 @@
+body{
+    background: #fff;
+}
+.botaoentrar{
+    border-color: #00c853;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3px;
+}
+.propaganda{
+    background-color: #00c853;
+    position: relative;
+    height: 40%;
+}
+.centertexto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+}
+.fundoPropaganda
+{
+    width: 100%;
+    height: auto;
+    opacity: 0.3;
+}
