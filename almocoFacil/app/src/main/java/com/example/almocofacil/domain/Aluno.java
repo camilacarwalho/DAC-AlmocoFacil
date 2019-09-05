@@ -17,8 +17,21 @@ public class Aluno extends Usuario {
         this.periodoIngresso = periodoIngresso;
     }
 
+    public Aluno(String matricula, String nome){
+        super(matricula,
+                "123",
+                ALUNO,
+                new Pessoa());
+        this.getPessoa().setNome(nome);
+
+    }
+
+
+
     public Aluno() {
     }
+
+    public String getNome(){return getPessoa().getNome();}
 
     public Curso getCurso() {
         return curso;
