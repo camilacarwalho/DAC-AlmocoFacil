@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:text="Relatório de Refeição"
             android:textAlignment="center"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -83,6 +84,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Filtrar" />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="75"
+                    android:text="Data"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content"
+                    android:text="Refeição"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="124dp"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quant."
+                    android:textStyle="bold" />
             </TableRow>
         </TableLayout>
 

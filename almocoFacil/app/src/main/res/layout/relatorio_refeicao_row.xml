@@ -13,19 +13,19 @@
 
             <TextView
                 android:id="@+id/tvData"
-                android:layout_width="wrap_content"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:text="Data" />
 
             <TextView
                 android:id="@+id/tvRefeicao"
-                android:layout_width="wrap_content"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:text="Refeição" />
 
             <TextView
                 android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
+                android:layout_width="124dp"
                 android:layout_height="wrap_content"
                 android:text="Status" />
 

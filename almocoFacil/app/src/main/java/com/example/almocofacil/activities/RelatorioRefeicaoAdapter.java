@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.almocofacil.R;
 import com.example.almocofacil.domain.RelatorioRequisicaoDado;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class RelatorioRefeicaoAdapter extends BaseAdapter {
@@ -57,7 +58,9 @@ public class RelatorioRefeicaoAdapter extends BaseAdapter {
         }
         RelatorioRequisicaoDado requisicaoMap = requisicao.get(i);
 
-        holder.data.setText(requisicaoMap.getData().toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+
+        holder.data.setText(sdf.format(requisicaoMap.getData()));
         holder.refeicao.setText(requisicaoMap.getRefeicao().getNome());
         holder.status.setText(requisicaoMap.getStatus().getNome());
         holder.quant.setText(String.valueOf(requisicaoMap.getQuant()));
