@@ -52,38 +52,36 @@ public class AutorizacaoDaoJPA implements AutorizacaoDao {
     @Override
     public List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, StatusAutorizacao statusAutorizacao, LocalDate dataInicial, LocalDate dataFinal) {
         String jpql="SELECT NEW br.edu.ifpb.domain.AutorizacaoRR(a.data,f.nome,a.statusAutorizacao,COUNT(a.id))" +
-                " FROM Autorizacao a JOIN Requisicao r ON a.requisicao_id=r.id JOIN" +
-                " Refeicao f ON r.refeicao_id=f.id";
+                " FROM Requisicao r JOIN r.autorizacoes a JOIN a.refeicao f";
         jpql+=!(dataInicial==null||dataFinal==null) ? " WHERE a.data BETWEEN :dataInicial AND :dataFinal":"";
-        jpql+=!(statusAutorizacao==null) ? " AND a.statusAutorizacao=:status ":"";
+//        jpql+=!(statusAutorizacao==null) ? " AND a.statusAutorizacao=:status ":"";
         jpql+=" GROUP BY a.data,f.nome,a.statusAutorizacao ORDER BY a.data DESC";
         TypedQuery<AutorizacaoRR> query = em.createQuery(jpql, AutorizacaoRR.class);
         if(!(dataInicial==null||dataFinal==null)){
             query.setParameter("dataInicial",dataInicial);
             query.setParameter("dataFinal",dataFinal);
         }
-        if(statusAutorizacao!=null){
-            query.setParameter("status",statusAutorizacao);
-        }
+//        if(statusAutorizacao!=null){
+//            query.setParameter("status",statusAutorizacao);
+//        }
         query.setFirstResult(min).setMaxResults(quant);
         return query.getResultList();
     }
 
     @Override
     public int quantAutorizacaoRR(StatusAutorizacao statusAutorizacao, LocalDate dataInicial, LocalDate dataFinal) {
-        String jpql="SELECT COUNT(a.id)" +
-                " FROM Autorizacao a JOIN Requisicao r ON a.requisicao_id=r.id JOIN" +
-                " Refeicao f ON r.refeicao_id=f.id";
+        String jpql="SELECT COUNT(a.requisicao_id)" +
+                " FROM Requisicao r JOIN r.autorizacoes a JOIN a.refeicao f";
         jpql+=!(dataInicial==null||dataFinal==null) ? " WHERE a.data BETWEEN :dataInicial AND :dataFinal":"";
-        jpql+=!(statusAutorizacao==null) ? " AND a.statusAutorizacao=:status ":"";
+//        jpql+=!(statusAutorizacao==null) ? " AND a.statusAutorizacao=:status ":"";
         TypedQuery<Long> query = em.createQuery(jpql, Long.class);
         if(!(dataInicial==null||dataFinal==null)){
             query.setParameter("dataInicial",dataInicial);
             query.setParameter("dataFinal",dataFinal);
         }
-        if(statusAutorizacao!=null){
-            query.setParameter("status",statusAutorizacao);
-        }
+//        if(statusAutorizacao!=null){
+//            query.setParameter("status",statusAutorizacao);
+//        }
         Long quant = query.getSingleResult();
         return quant.intValue();
     }

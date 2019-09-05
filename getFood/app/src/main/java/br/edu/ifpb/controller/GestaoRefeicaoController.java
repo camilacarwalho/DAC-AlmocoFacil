@@ -33,7 +33,7 @@ public class GestaoRefeicaoController extends PaginacaoController<AutorizacaoRR>
 
     @Override
     protected List<AutorizacaoRR> listarItensDaBusca(int inicio, int maximo) {
-        return autorizaoService.listarAutorizacaoRR(inicio,maximo,dataInicial,dataFinal,statusAutorizacao);
+        return autorizaoService.listarAutorizacaoRR(inicio,maximo,dataInicial,dataFinal,this.statusAutorizacao);
     }
 
     @Override

@@ -10,12 +10,12 @@ public class AutorizacaoRR implements Serializable {
     private LocalDate data;
     private String nome;
     private StatusAutorizacao statusAutorizacao;
-    private int quantidade;
+    private Long quantidade;
 
     public AutorizacaoRR() {
     }
 
-    public AutorizacaoRR(LocalDate data, String nome, StatusAutorizacao statusAutorizacao, int quantidade) {
+    public AutorizacaoRR(LocalDate data, String nome, StatusAutorizacao statusAutorizacao, Long quantidade) {
         this.data = data;
         this.nome = nome;
         this.statusAutorizacao = statusAutorizacao;
@@ -46,11 +46,11 @@ public class AutorizacaoRR implements Serializable {
         this.statusAutorizacao = statusAutorizacao;
     }
 
-    public int getQuantidade() {
+    public Long getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Long quantidade) {
         this.quantidade = quantidade;
     }
 }

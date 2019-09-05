@@ -27,19 +27,19 @@
         <h4>Acompanhar refeições</h4>
         <div class="row">
 
-            <h:form prependId="false">
+            <!--<h:form prependId="false">-->
                 <ul class="collection with-header">
                     <li class="collection-item">
                         <h:form prependId="false">
                             <div class="row">
                                 <div class="input-field col s3">
-                                    <p:inputMask mask="99/99/9999" converter="dateConverter">
+                                    <p:inputMask value="#{gestaoRefeicaoController.dataInicial}" mask="99/99/9999" converter="dateConverter">
                                         <f:ajax/>
                                     </p:inputMask>
                                     <label>Data Inicial</label>
                                 </div>
                                 <div class="input-field col s3">
-                                <p:inputMask mask="99/99/9999" converter="dateConverter">
+                                <p:inputMask mask="99/99/9999" value="#{gestaoRefeicaoController.dataFinal}" converter="dateConverter">
                                     <f:ajax/>
                                 </p:inputMask>
                                 <label>Data Final</label>
@@ -58,7 +58,7 @@
                                 </div>
                                 <dir class="col s3">
                                     <h:commandLink
-                                            action="#"
+                                            action="#{gestaoRefeicaoController.buscar}"
                                             class="btn-floating btn-small waves-effect waves-light teal">
                                         <i class="material-icons">search</i>
                                     </h:commandLink>
@@ -78,7 +78,7 @@
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l3">
-                                    <h:outputText value="#{autorizacao.data}"></h:outputText>
+                                    <h:outputText  value="#{autorizacao.data}"><f:converter converterId="dateConverter"/> </h:outputText>
                                 </div>
                                 <div class="col l3">
                                     <h:outputText value="#{autorizacao.nome}"></h:outputText>
@@ -95,23 +95,23 @@
                             </div>
 
                         </li>
-                        <li class="collection-item">
-                            <div class="row">
-                                <ui:include  src="../includes/paginacao.xhtml">
-                                    <ui:param value="#{gestaoRefeicaoController}" name="controller"/>
-                                </ui:include>
-                            </div>
-                        </li>
-
-                        <li class="collection-item">
-                            <div class="row">
-                                <p>Total de alunos encontrados: <h:outputText value="#{gestaoRefeicaoController.quantidadeItens}"/></p>
-                            </div>
-                        </li>
 
                     </ui:repeat>
+                    <li class="collection-item">
+                        <div class="row">
+                            <ui:include  src="../includes/paginacao.xhtml">
+                                <ui:param value="#{gestaoRefeicaoController}" name="controller"/>
+                            </ui:include>
+                        </div>
+                    </li>
+
+                    <!--<li class="collection-item">-->
+                        <!--<div class="row">-->
+                            <!--<p>Total de requisições encontrados: <h:outputText value="#{gestaoRefeicaoController.quantidadeItens}"/></p>-->
+                        <!--</div>-->
+                    <!--</li>-->
                 </ul>
-            </h:form>
+            <!--</h:form>-->
         </div>
     </ui:define>
 </ui:composition>
