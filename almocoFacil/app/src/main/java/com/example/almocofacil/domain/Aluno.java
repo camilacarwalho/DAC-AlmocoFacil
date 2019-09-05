@@ -1,30 +1,53 @@
 package com.example.almocofacil.domain;
 
-public class Aluno {
-    private String matricula;
-    private String nome;
+import java.util.Objects;
 
-    public Aluno(String matricula, String nome) {
-        this.matricula = matricula;
-        this.nome = nome;
+import static com.example.almocofacil.domain.enums.UsuarioEnum.ALUNO;
+
+
+public class Aluno extends Usuario {
+
+    private Curso curso;
+
+    private Periodo periodoIngresso;
+
+    public Aluno(String matricula, String senha, Pessoa pessoa, Curso curso, Periodo periodoIngresso) {
+        super(matricula, senha, ALUNO, pessoa);
+        this.curso = curso;
+        this.periodoIngresso = periodoIngresso;
     }
 
     public Aluno() {
     }
 
-    public String getMatricula() {
-        return matricula;
+    public Curso getCurso() {
+        return curso;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
-    public String getNome() {
-        return nome;
+    public Periodo getPeriodoIngresso() {
+        return periodoIngresso;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setPeriodoIngresso(Periodo periodoIngresso) {
+        this.periodoIngresso = periodoIngresso;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Aluno aluno = (Aluno) o;
+        return Objects.equals(curso, aluno.curso) &&
+                Objects.equals(periodoIngresso, aluno.periodoIngresso);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), curso, periodoIngresso);
     }
 }
