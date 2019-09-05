@@ -2,7 +2,6 @@ package br.edu.ifpb.service;
 
 import br.edu.ifpb.dao.AutorizacaoDao;
 import br.edu.ifpb.domain.AutorizacaoRR;
-import br.edu.ifpb.domain.enums.StatusAutorizacao;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,12 +15,12 @@ public class AutorizacaoServiceImpl implements AutorizaoService {
     private AutorizacaoDao autorizacaoDao;
 
     @Override
-    public int quantAutorizacaoRR(LocalDate dataInicial, LocalDate dataFinal, StatusAutorizacao statusAutorizacao) {
-        return autorizacaoDao.quantAutorizacaoRR(statusAutorizacao,dataInicial,dataFinal);
+    public int quantAutorizacaoRR(LocalDate dataInicial, LocalDate dataFinal) {
+        return autorizacaoDao.quantAutorizacaoRR(dataInicial,dataFinal);
     }
 
     @Override
-    public List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, LocalDate dataInicial, LocalDate dataFinal, StatusAutorizacao statusAutorizacao) {
-        return autorizacaoDao.listarAutorizacaoRR(min,quant,statusAutorizacao,dataInicial,dataFinal);
+    public List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, LocalDate dataInicial, LocalDate dataFinal) {
+        return autorizacaoDao.listarAutorizacaoRR(min,quant,dataInicial,dataFinal);
     }
 }

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface AutorizaoService {
 
-    int quantAutorizacaoRR(LocalDate dataInicial, LocalDate dataFinal, StatusAutorizacao statusAutorizacao);
-    List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant,LocalDate dataInicial, LocalDate dataFinal, StatusAutorizacao statusAutorizacao);
+    int quantAutorizacaoRR(LocalDate dataInicial, LocalDate dataFinal);
+    List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant,LocalDate dataInicial, LocalDate dataFinal);
 }

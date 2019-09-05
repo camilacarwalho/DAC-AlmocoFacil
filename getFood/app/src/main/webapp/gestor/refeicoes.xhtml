@@ -44,18 +44,6 @@
                                 </p:inputMask>
                                 <label>Data Final</label>
                             </div>
-                                <div class="input-field col s3">
-                                    <h:selectOneListbox
-                                            id="BuscaStatusAutorizacao"
-                                            value="#{gestaoRefeicaoController.statusAutorizacao}">
-                                        <f:selectItem itemLabel="Todos os status"/>
-                                        <f:selectItems
-                                                var="statusAutorizacao"
-                                                value="#{gestaoRefeicaoController.listarStatus}"
-                                                item="#{statusAutorizacao}"
-                                                itemLabel="#{statusAutorizacao.nome}"/>
-                                    </h:selectOneListbox>
-                                </div>
                                 <dir class="col s3">
                                     <h:commandLink
                                             action="#{gestaoRefeicaoController.buscar}"
@@ -105,11 +93,11 @@
                         </div>
                     </li>
 
-                    <!--<li class="collection-item">-->
-                        <!--<div class="row">-->
-                            <!--<p>Total de requisições encontrados: <h:outputText value="#{gestaoRefeicaoController.quantidadeItens}"/></p>-->
-                        <!--</div>-->
-                    <!--</li>-->
+                    <li class="collection-item">
+                        <div class="row">
+                            <p>Total de requisições encontrados: <h:outputText value="#{gestaoRefeicaoController.quantidadeItens}"/></p>
+                        </div>
+                    </li>
                 </ul>
             <!--</h:form>-->
         </div>

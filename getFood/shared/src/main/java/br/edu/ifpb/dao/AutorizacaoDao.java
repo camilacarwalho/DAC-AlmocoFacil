@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface AutorizacaoDao extends DefaultDao<Autorizacao> {
 
-    List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, StatusAutorizacao statusAutorizacao,
+    List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant,
                                             LocalDate dataInicial, LocalDate dataFinal);
 
-    int quantAutorizacaoRR(StatusAutorizacao statusAutorizacao,
-                           LocalDate dataInicial, LocalDate dataFinal);
+    int quantAutorizacaoRR(
+            LocalDate dataInicial, LocalDate dataFinal);
 
 }
