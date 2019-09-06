@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.RelatorioRefeicaoActivity"></activity>
+        <activity android:name=".activities.AcompanharSolicitacaoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.RelatorioRefeicaoActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/app_name"
@@ -21,10 +28,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ListarAlunos">
-            <!--tools:ignore="WrongManifestParent">-->
+
+            <!-- tools:ignore="WrongManifestParent"> -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
