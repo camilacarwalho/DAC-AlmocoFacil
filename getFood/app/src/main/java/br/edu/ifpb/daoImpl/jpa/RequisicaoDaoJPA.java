@@ -2,6 +2,8 @@ package br.edu.ifpb.daoImpl.jpa;
 
 import br.edu.ifpb.dao.RequisicaoDao;
 import br.edu.ifpb.domain.Requisicao;
+import br.edu.ifpb.domain.enums.StatusRequisicao;
+import java.time.LocalDate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -42,6 +44,18 @@ public class RequisicaoDaoJPA implements RequisicaoDao {
     public List<Requisicao> listar() {
         String jpql="SELECT r FROM Requisicao r";
         TypedQuery<Requisicao> query = em.createQuery(jpql, Requisicao.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Requisicao> buscarPeloStatus(StatusRequisicao statusRequisicao, LocalDate data) {
+         String jpql = "SELECT r FROM Requisicao r"
+                + " WHERE r.statusRequisicao = :status"
+                + " AND :data BETWEEN r.dataInicial AND r.dataFinal";
+
+        TypedQuery<Requisicao> query = em.createQuery(jpql, Requisicao.class);
+        query.setParameter("status", statusRequisicao);
+        query.setParameter("data", data);
         return query.getResultList();
     }
 }

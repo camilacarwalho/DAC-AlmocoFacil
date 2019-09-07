@@ -12,6 +12,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.Query;
 
 @Stateless
 public class AutorizacaoDaoJPA implements AutorizacaoDao {
@@ -47,6 +48,27 @@ public class AutorizacaoDaoJPA implements AutorizacaoDao {
         String jpql="SELECT at FROM Autorizacao at";
         TypedQuery<Autorizacao> query = em.createQuery(jpql, Autorizacao.class);
         return query.getResultList();
+    }
+    
+    @Override
+    public List<Autorizacao> buscar(LocalDate data) {
+        String jpql = "SELECT a FROM Autorizacao a"
+                + " WHERE a.data = :data";
+        TypedQuery<Autorizacao> query = em.createQuery(jpql, Autorizacao.class);
+        query.setParameter("data", data);
+        return query.getResultList();
+    }
+
+    @Override
+    public void alterarStatus(Long id, StatusAutorizacao statusAutorizacao) {
+        String queryUpdate = "UPDATE Autorizacao a "
+                + "SET a.statusAutorizacao = :statusAutorizacao "
+                + "WHERE a.id = :id";
+
+        Query query = em.createQuery(queryUpdate, Autorizacao.class);
+        query.setParameter("statusAutorizacao", statusAutorizacao);
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 
     @Override
