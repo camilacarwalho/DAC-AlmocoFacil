@@ -64,6 +64,6 @@ public class RefeicaoDaoJpa implements RefeicaoDao {
 		query.setParameter("data", data);
 		return query.getResultList();
         }
-	
+       
 	
 }

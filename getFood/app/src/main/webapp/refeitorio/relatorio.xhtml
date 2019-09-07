@@ -12,7 +12,7 @@
 </h:head>
 <ui:composition template="../template.xhtml">
   
-	<!--     LINKS   -->
+    <!--     LINKS   -->
     <ui:define name="links">  
     	<ui:include src="menu.xhtml"/>    
     </ui:define>
@@ -23,49 +23,48 @@
     <!-- ............ -->
     
     <ui:define name="top">
-        <h4>Relatórios de refeições</h4>
+        <h4>Relatório de refeições</h4>
         <div class="row">
-
+             <div class="col 15">
+                 <h:outputText value="Quantidade: #{refeitorioAutorizacaoController.totalAlmoco()} almoços, #{refeitorioAutorizacaoController.totalJantares()} jantares." />
+            </div>
             <h:form prependId="false">
                 <ul class="collection with-header">
                     <li class="collection-item">
                         <div class="row">
-
+                            <div class="col l1"><b>ID</b></div>
+                            <div class="col l5"><b>Nome</b></div>
                             <div class="col l2"><b>Data</b></div>
                             <div class="col l2"><b>Hora</b></div>
-                            <div class="col l1"><b>Alunos</b></div>
-                            <div class="col l5"><b>Professor</b></div>
-                            <div class="col l2"><b>Status</b></div>
+                            <div class="col 11"><b>Alunos</b></div>
                         </div>
                     </li>
-                    <ui:repeat var="solicitacao" value="#">
+                    
+                    <ui:repeat var="solicitacao" value="#{refeicaoController.refeicoesNoDia}">
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{solicitacao.refeicao.id}"></h:outputText>
                                 </div>
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{solicitacao.refeicao.nome}"></h:outputText>
                                 </div>
                                 <div class="col l1">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{solicitacao.dataFinal}"></h:outputText>
                                 </div>
                                 <div class="col l5">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{solicitacao.refeicao.horaTermino}"></h:outputText>
                                 </div>
-                                <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                <div class="col l1">
+                                    <h:outputText value="#{solicitacao.alunos.size}"></h:outputText>
                                 </div>
-
-
-
                             </div>
-
                         </li>
-
                     </ui:repeat>
+                    
                 </ul>
             </h:form>
+            
         </div>
     </ui:define>
 </ui:composition>
