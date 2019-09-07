@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import br.edu.ifpb.dao.RefeicaoDao;
 import br.edu.ifpb.domain.Refeicao;
+import java.time.LocalDate;
 
 @SuppressWarnings("serial")
 @RequestScoped
@@ -21,5 +22,9 @@ public class RefeicaoController implements Serializable{
 	public List<Refeicao> getListaDeRefeicoes(){
 		return refeicaoDao.listar();
 	}
+        
+        public List<Refeicao> getRefeicoesNoDia(LocalDate data){
+                return refeicaoDao.refeicoesNoDia(data);
+        }
 
 }

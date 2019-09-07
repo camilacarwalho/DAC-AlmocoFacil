@@ -9,6 +9,8 @@ import javax.persistence.TypedQuery;
 
 import br.edu.ifpb.dao.RefeicaoDao;
 import br.edu.ifpb.domain.Refeicao;
+import java.time.LocalDate;
+import java.util.List;
 
 @Stateless
 public class RefeicaoDaoJpa implements RefeicaoDao {
@@ -54,7 +56,15 @@ public class RefeicaoDaoJpa implements RefeicaoDao {
 		query.setParameter("nome", nome);
 		return query.getSingleResult();
 	}
-	
-	
 
+        @Override
+        public List<Refeicao> refeicoesNoDia(LocalDate data) {
+                String jpql = "SELECT rf FROM Requisicao r JOIN Refeicao rf" 
+				+ " WHERE r.refeicao = rf.id AND r.dataInicial = :data";
+		TypedQuery<Refeicao> query = em.createQuery(jpql, Refeicao.class);
+		query.setParameter("data", data);
+		return query.getResultList();
+        }
+	
+	
 }
