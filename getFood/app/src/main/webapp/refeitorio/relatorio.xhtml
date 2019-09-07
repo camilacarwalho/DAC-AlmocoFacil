@@ -43,19 +43,19 @@
                     <ui:repeat var="solicitacao" value="#{refeicaoController.refeicoesNoDia}">
                         <li class="collection-item">
                             <div class="row">
-                                <div class="col l2">
+                                <div class="col l1">
                                     <h:outputText value="#{solicitacao.refeicao.id}"></h:outputText>
                                 </div>
-                                <div class="col l2">
+                                <div class="col l5">
                                     <h:outputText value="#{solicitacao.refeicao.nome}"></h:outputText>
                                 </div>
-                                <div class="col l1">
+                                <div class="col l2">
                                     <h:outputText value="#{solicitacao.dataFinal}"></h:outputText>
                                 </div>
-                                <div class="col l5">
+                                <div class="col l2">
                                     <h:outputText value="#{solicitacao.refeicao.horaTermino}"></h:outputText>
                                 </div>
-                                <div class="col l1">
+                                <div class="col l1 -m ">
                                     <h:outputText value="#{solicitacao.alunos.size}"></h:outputText>
                                 </div>
                             </div>
