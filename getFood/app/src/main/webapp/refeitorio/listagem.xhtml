@@ -38,23 +38,23 @@
                             <div class="col l2"><b>Status</b></div>
                         </div>
                     </li>
-                    <ui:repeat var="solicitacao" value="#">
+                    <ui:repeat var="refeicao" value="#{refeicaoController.refeicoesNoDia}">
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{refeicao.dataInicial}"></h:outputText>
                                 </div>
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{refeicao.refeicao.horaInicio}"></h:outputText>
                                 </div>
                                 <div class="col l1">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{refeicao.alunos}"></h:outputText>
                                 </div>
                                 <div class="col l5">
                                     <h:outputText value="#"></h:outputText>
                                 </div>
                                 <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
+                                    <h:outputText value="#{refeicao.statusRequisicao}"></h:outputText>
                                 </div>
 
 

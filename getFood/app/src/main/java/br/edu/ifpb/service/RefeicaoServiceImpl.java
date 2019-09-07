@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 
 import br.edu.ifpb.dao.RefeicaoDao;
 import br.edu.ifpb.domain.Refeicao;
+import br.edu.ifpb.domain.Requisicao;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class RefeicaoServiceImpl implements RefeicaoService{
 	}
 
         @Override
-        public List<Refeicao> refeicoesNoDia(LocalDate data) {
+        public List<Requisicao> refeicoesNoDia(LocalDate data) {
                 return refeicaoDao.refeicoesNoDia(data);
         }
 
