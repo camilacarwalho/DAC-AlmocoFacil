@@ -1,10 +1,17 @@
 package com.example.almocofacil.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.almocofacil.R;
 
@@ -37,5 +44,31 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
         dados.add("almoço - 06/09/2019 - 07/09/2019");
 
         return dados;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id== R.id.logout){
+            System.out.println("funcionou logout");
+            Intent logout = new Intent(getApplicationContext(), LoginActivity.class);
+//            startActivity(logout);
+            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(
+                    getApplicationContext(),R.anim.fade_in,R.anim.mover_esquerda);
+            ActivityCompat.startActivity(AcompanharSolicitacaoActivity.this,logout,activityOptionsCompat.toBundle());
+            finish();
+        }
+        if (id== R.id.solicitacao){
+            System.out.println("funcionou solicitação");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
