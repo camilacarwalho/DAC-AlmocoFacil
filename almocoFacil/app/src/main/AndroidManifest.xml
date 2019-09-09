@@ -12,21 +12,6 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SolicitarRefeicao">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.AcompanharSolicitacaoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.RelatorioRefeicaoActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/app_name"
@@ -37,15 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ListarAlunos">
-
-            <!-- tools:ignore="WrongManifestParent"> -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activities.SolicitarRefeicao"/>
+        <activity android:name=".activities.AcompanharSolicitacaoActivity"/>
+        <activity android:name=".activities.RelatorioRefeicaoActivity" />
+        <activity android:name=".activities.ListarAlunos"/>
     </application>
 
 </manifest>

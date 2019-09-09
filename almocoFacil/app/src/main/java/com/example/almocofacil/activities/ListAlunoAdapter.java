@@ -13,13 +13,13 @@ import com.example.almocofacil.domain.Aluno;
 import java.util.ArrayList;
 import java.util.List;
 
-public class listAlunoAdapter extends BaseAdapter {
+public class ListAlunoAdapter extends BaseAdapter {
     // TODO: Recebe uma lista de alunos
     public List<Aluno> alunoList;
 
     Activity activity;
 
-    public listAlunoAdapter(ArrayList<Aluno> list, Activity activity) {
+    public ListAlunoAdapter(ArrayList<Aluno> list, Activity activity) {
         super();
         this.alunoList = list;
         this.activity = activity;

@@ -1,66 +1,35 @@
 package com.example.almocofacil.domain;
 
-import java.util.Objects;
+public class Aluno {
+    private String matricula;
+    private String nome;
+    private String cpf;
+    private String curso;
+    private String telefone;
 
-import static com.example.almocofacil.domain.enums.UsuarioEnum.ALUNO;
+    public Aluno() {}
 
+    public Aluno(String matricula, String nome) {
+        this.matricula = matricula;
+        this.nome = nome;
+    }
 
-public class Aluno extends Usuario {
-
-    private Curso curso;
-
-    private Periodo periodoIngresso;
-
-    public Aluno(String matricula, String senha, Pessoa pessoa, Curso curso, Periodo periodoIngresso) {
-        super(matricula, senha, ALUNO, pessoa);
+    public Aluno(String matricula, String nome, String cpf, String curso, String telefone) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.cpf = cpf;
         this.curso = curso;
-        this.periodoIngresso = periodoIngresso;
+        this.telefone = telefone;
     }
 
-    public Aluno(String matricula, String nome){
-        super(matricula,
-                "123",
-                ALUNO,
-                new Pessoa());
-        this.getPessoa().setNome(nome);
-
-    }
-
-
-
-    public Aluno() {
-    }
-
-    public String getNome(){return getPessoa().getNome();}
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
-
-    public Periodo getPeriodoIngresso() {
-        return periodoIngresso;
-    }
-
-    public void setPeriodoIngresso(Periodo periodoIngresso) {
-        this.periodoIngresso = periodoIngresso;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Aluno aluno = (Aluno) o;
-        return Objects.equals(curso, aluno.curso) &&
-                Objects.equals(periodoIngresso, aluno.periodoIngresso);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), curso, periodoIngresso);
-    }
+    public String getMatricula() {return matricula;}
+    public void setMatricula(String matricula) {this.matricula = matricula;}
+    public String getNome() {return nome;}
+    public void setNome(String nome) {this.nome = nome;}
+    public String getCpf() {return cpf;}
+    public void setCpf(String cpf) {this.cpf = cpf;}
+    public String getCurso() {return curso;}
+    public void setCurso(String curso) {this.curso = curso;}
+    public String getTelefone() {return telefone;}
+    public void setTelefone(String telefone) {this.telefone = telefone;}
 }

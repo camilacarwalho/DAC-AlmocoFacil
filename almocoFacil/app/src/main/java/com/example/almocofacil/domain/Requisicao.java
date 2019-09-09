@@ -1,6 +1,5 @@
 package com.example.almocofacil.domain;
 
-import com.example.almocofacil.domain.Aluno;
 import com.example.almocofacil.domain.enums.StatusRequisicao;
 
 import java.io.Serializable;

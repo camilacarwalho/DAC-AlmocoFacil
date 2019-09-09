@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import android.widget.ListView;
 import com.example.almocofacil.R;
-
 import com.example.almocofacil.domain.Aluno;
 
 public class ListarAlunos extends Activity {
@@ -21,7 +20,7 @@ public class ListarAlunos extends Activity {
 
         ListView lview = (ListView) findViewById(R.id.listview);
         populateList();
-        listAlunoAdapter adapter = new listAlunoAdapter(listAluno, this);
+        ListAlunoAdapter adapter = new ListAlunoAdapter(listAluno, this);
         lview.setAdapter(adapter);
     }
 

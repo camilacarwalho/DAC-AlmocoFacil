@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.almocofacil.R;
-import com.example.almocofacil.domain.Aluno;
 import com.example.almocofacil.domain.serializer.AlunoSerializer;
 import com.example.almocofacil.threads.AlunoRequest;
 
