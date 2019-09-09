@@ -1,4 +1,4 @@
-package br.edu.ifpb.service;
+package br.edu.ifpb.service.resouces;
 
 import javax.ws.rs.core.Application;
 
