@@ -32,7 +32,7 @@
 	    <property name="serverName" value="host-banco"/>
         <property name="portNumber" value="5432"/>        
          <!-- LOCAL -->
-        <!-- <property name="serverName" value="localhost"/>
+        <!--<property name="serverName" value="localhost"/>
         <property name="portNumber" value="5433"/>-->
          
         <property name="databaseName" value="getfood"/>
