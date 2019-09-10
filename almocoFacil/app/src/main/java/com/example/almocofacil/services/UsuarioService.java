@@ -1,7 +1,6 @@
 package com.example.almocofacil.services;
 
 import com.example.almocofacil.domain.Usuario;
-import com.example.almocofacil.domain.enums.UsuarioEnum;
 
 public class UsuarioService {
 
@@ -30,20 +29,12 @@ public class UsuarioService {
         usuarioLogado.setMatricula(usuario.getMatricula());
         usuarioLogado.setNome(usuario.getNome());
         usuarioLogado.setCargo(usuario.getCargo());
-//        for (UsuarioEnum usuarioEnum : UsuarioEnum.values()) {
-//            if (usuario.getCargo().equals(usuarioEnum.getIdentificador())) {
-//                usuarioLogado.setCargo(usuarioEnum);
-//                break;
-//            }
-//        }
         usuarioLogado.setCpf(usuario.getCpf());
         usuarioLogado.setTelefone(usuario.getTelefone());
         logado = true;
         return usuarioLogado;
     }
 
-
-
-
-
+    public Usuario getUsuarioLogado() {return usuarioLogado;}
+    public boolean isLogado() {return logado;}
 }
