@@ -1,6 +1,7 @@
-package br.edu.ifpb.service.resouces.domain;
+package br.edu.ifpb.service.resouces;
 
 import br.edu.ifpb.domain.Usuario;
+import br.edu.ifpb.domain.resource.UsuarioRest;
 
 public class ConvertObjectRest {
 	

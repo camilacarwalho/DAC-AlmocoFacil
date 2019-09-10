@@ -1,4 +1,4 @@
-package br.edu.ifpb.service.resouces.domain;
+package br.edu.ifpb.domain.resource;
 
 import java.io.Serializable;
 
