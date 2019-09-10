@@ -2,7 +2,7 @@ package com.example.almocofacil.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,14 +10,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.almocofacil.R;
-import com.example.almocofacil.domain.serializer.AlunoSerializer;
-import com.example.almocofacil.threads.AlunoRequest;
+import com.example.almocofacil.domain.Usuario;
+import com.example.almocofacil.domain.enums.UsuarioEnum;
+import com.example.almocofacil.services.UsuarioService;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText edMatricula;
     private EditText edSenha;
     private Button btEntrar;
+
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +35,47 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void btnEntrarOnClick(View v){
-        String matricula = edMatricula.getText().toString();
-        String senha = edSenha.getText().toString();
-        Toast.makeText(this,"Clicou!",Toast.LENGTH_LONG).show();
-        if(matricula.equals("111")){
-            Intent intent = new Intent(this, RelatorioRefeicaoActivity.class);
-            startActivity(intent);
-        }
+        final String matricula = edMatricula.getText().toString();
+        final String senha = edSenha.getText().toString();
 
-        //  EXEMPLO DE USO DA API REST
-        AlunoSerializer alunoSerializer = new AlunoSerializer("123456", "Alann Rodrigues");
-        Thread thread = new Thread(new AlunoRequest(alunoSerializer));
-        thread.start();
+        progress = new ProgressDialog(this);
+        progress.setTitle("enviando...");
+        progress.show();
 
-        // TODO: Autenticar usuario
+        final Usuario usuario = new Usuario(matricula,senha);
+        final LoginActivity esta = this;
 
-        // TODO: Redirecionar para tela principal
+        new AcessarRest<Usuario,Usuario>(esta, "usuario/login"){
+            @Override
+            public void retorno(final Usuario objeto) {
+                progress.dismiss();
+                if(objeto == null){
+                    Toast.makeText(getApplicationContext(),"Falha ao autenticar.", Toast.LENGTH_LONG).show();
+                } else {
+                    if (objeto.getMatricula() == null){
+                        Toast.makeText(getApplicationContext(), "Usuário ou senha inválido", Toast.LENGTH_LONG).show();
+                    } else {
+                        logadoUsuario(UsuarioService.getUsarioService().logar(objeto));
+                    }
+                }
+            }
+        }.run(usuario, Usuario.class);
+
     }
 
+    public void logadoUsuario(Usuario usuario){
+        Toast.makeText(getApplicationContext(), "Usuário " + usuario.getCargo(), Toast.LENGTH_LONG).show();
+        switch (usuario.getCargo()){
+            case ALUNO:
+                break;
+            case CAEST:
+                break;
+            case GESTOR:
+                break;
+            case PROFESSOR:
+                break;
+            case REFEITORIO:
+                break;
+        }
+    }
 }

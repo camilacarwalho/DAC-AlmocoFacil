@@ -18,6 +18,11 @@ public class Usuario implements Serializable {
 
     public Usuario() {}
 
+    public Usuario(String matricula, String senha) {
+        this.matricula = matricula;
+        this.senha = senha;
+    }
+
     public Usuario(String matricula, String senha, UsuarioEnum cargo, String cpf, String nome, String telefone) {
         this.matricula = matricula;
         this.senha = senha;
