@@ -44,4 +44,5 @@ public class CursoDaoJPA implements CursoDao {
         TypedQuery<Curso> query = em.createQuery(jpql, Curso.class);
         return query.getResultList();
     }
+
 }

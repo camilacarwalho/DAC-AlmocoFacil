@@ -11,81 +11,99 @@
 
 </h:head>
 <ui:composition template="../template.xhtml">
-  
-	<!--     LINKS   -->
-    <ui:define name="links">  
-    	<ui:include src="menu.xhtml"/>    
+
+    <!--     LINKS   -->
+    <ui:define name="links">
+        <ui:include src="menu.xhtml"/>
     </ui:define>
     <!-- ............ -->
-    
+
     <!--    MENSAGEM   -->
     <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
     <!-- ............ -->
-    
+
     <ui:define name="top">
         <h4>Listagem de Alunos</h4>
         <div class="row">
 
             <!--<h:form prependId="false">-->
-                <ul class="collection with-header">
-                    <li class="collection-item">
-                        <h:form prependId="false">
-                            <div class="row">
-                                <div class="input-field col s3">
-                                    <h:inputText value="#{gestaoAlunoController.matricula}"/>
-                                    <label>Buscar pela matricula</label>
-                                </div>
-
-                                <dir class="col s3">
-                                    <h:commandLink
-                                            action="#{gestaoAlunoController.buscar()}"
-                                            class="btn-floating btn-small waves-effect waves-light teal">
-                                        <i class="material-icons">search</i>
-                                    </h:commandLink>
-                                </dir>
-                            </div>
-                        </h:form>
-                    </li>
-                    <li class="collection-item">
+            <ul class="collection with-header">
+                <li class="collection-item">
+                    <h:form prependId="false" enctype="multipart/form-data">
                         <div class="row">
-
-                            <div class="col l3"><b>Matrícula</b></div>
-                            <div class="col l6"><b>Nome</b></div>
-                            <div class="col l3"><b>Telefone</b></div>
-                        </div>
-                    </li>
-                    <ui:repeat var="aluno" value="#{gestaoAlunoController.itens}">
-                        <li class="collection-item">
-                            <div class="row">
-                                <div class="col l3">
-                                    <h:outputText value="#{aluno.matricula}"></h:outputText>
-                                </div>
-                                <div class="col l6">
-                                    <h:outputText value="#{aluno.pessoa.nome}"></h:outputText>
-                                </div>
-                                <div class="col l3">
-                                    <h:outputText value="#{aluno.pessoa.telefone}"></h:outputText>
-                                </div>
-
+                            <div class="input-field col s3">
+                                <h:inputText value="#{gestaoAlunoController.matricula}"/>
+                                <label>Buscar pela matricula</label>
                             </div>
 
-                        </li>
+                            <dir class="col s2">
+                                <h:commandLink
+                                        action="#{gestaoAlunoController.buscar()}"
+                                        class="btn-floating btn-small waves-effect waves-light teal">
+                                    <i class="material-icons">search</i>
+                                </h:commandLink>
+                            </dir>
 
-                    </ui:repeat>
+                                <div class="file-field input-field col s3">
+
+                                    <div class="btn">
+                                        <span>Cadastro Via CSV</span>
+                                        <h:inputFile value="#{gestaoAlunoController.arquivoCsv}"/>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" />
+                                    </div>
+                                    <dir class="col s2">
+                                        <h:commandLink
+                                                action="#{gestaoAlunoController.salvarViaCsv()}"
+                                                class="btn-floating btn-small waves-effect waves-light teal">
+                                            <i class="material-icons">publish</i>
+                                        </h:commandLink>
+                                    </dir>
+                                </div>
+                        </div>
+                    </h:form>
+                </li>
+                <li class="collection-item">
+                    <div class="row">
+
+                        <div class="col l3"><b>Matrícula</b></div>
+                        <div class="col l6"><b>Nome</b></div>
+                        <div class="col l3"><b>Telefone</b></div>
+                    </div>
+                </li>
+                <ui:repeat var="aluno" value="#{gestaoAlunoController.itens}">
                     <li class="collection-item">
                         <div class="row">
-                            <ui:include  src="../includes/paginacao.xhtml">
-                                <ui:param value="#{gestaoAlunoController}" name="controller"/>
-                            </ui:include>
+                            <div class="col l3">
+                                <h:outputText value="#{aluno.matricula}"></h:outputText>
+                            </div>
+                            <div class="col l6">
+                                <h:outputText value="#{aluno.pessoa.nome}"></h:outputText>
+                            </div>
+                            <div class="col l3">
+                                <h:outputText value="#{aluno.pessoa.telefone}"></h:outputText>
+                            </div>
+
                         </div>
+
                     </li>
 
-                    <li class="collection-item">
-                        <div class="row">
-                            <p>Total de alunos encontrados: <h:outputText value="#{gestaoAlunoController.quantidadeItens}"/></p>
-                        </div>
-                    </li>
-                </ul>
+                </ui:repeat>
+                <li class="collection-item">
+                    <div class="row">
+                        <ui:include  src="../includes/paginacao.xhtml">
+                            <ui:param value="#{gestaoAlunoController}" name="controller"/>
+                        </ui:include>
+                    </div>
+                </li>
+
+                <li class="collection-item">
+                    <div class="row">
+                        <p>Total de alunos encontrados: <h:outputText value="#{gestaoAlunoController.quantidadeItens}"/></p>
+                    </div>
+                </li>
+            </ul>
             <!--</h:form>-->
         </div>
     </ui:define>
