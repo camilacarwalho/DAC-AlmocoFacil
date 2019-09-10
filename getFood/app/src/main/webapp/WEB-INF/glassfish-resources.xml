@@ -28,8 +28,13 @@
 	        validate-atmost-once-period-in-seconds="0" 
 	        wrap-jdbc-objects="false"
 	        name="post-gre-sql_persistence_events_postgresPool" >
-        <property name="serverName" value="localhost"/>
-        <property name="portNumber" value="5433"/>
+	    <!-- CONTAINER -->
+	    <property name="serverName" value="host-banco"/>
+        <property name="portNumber" value="5432"/>        
+         <!-- LOCAL -->
+        <!-- <property name="serverName" value="localhost"/>
+        <property name="portNumber" value="5433"/>-->
+         
         <property name="databaseName" value="getfood"/>
         <property name="User" value="postgres"/>
         <property name="Password" value="postgres"/>

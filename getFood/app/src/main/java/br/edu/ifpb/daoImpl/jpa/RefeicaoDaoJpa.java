@@ -1,7 +1,5 @@
 package br.edu.ifpb.daoImpl.jpa;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +7,9 @@ import javax.persistence.TypedQuery;
 
 import br.edu.ifpb.dao.RefeicaoDao;
 import br.edu.ifpb.domain.Refeicao;
+import br.edu.ifpb.domain.Requisicao;
+import java.time.LocalDate;
+import java.util.List;
 
 @Stateless
 public class RefeicaoDaoJpa implements RefeicaoDao {
@@ -54,7 +55,15 @@ public class RefeicaoDaoJpa implements RefeicaoDao {
 		query.setParameter("nome", nome);
 		return query.getSingleResult();
 	}
-	
-	
 
+        @Override
+        public List<Requisicao> refeicoesNoDia(LocalDate data) {
+                String jpql = "SELECT r FROM Requisicao r " 
+				+ " WHERE r.dataInicial = :data";
+		TypedQuery<Requisicao> query = em.createQuery(jpql, Requisicao.class);
+		query.setParameter("data", data);
+		return query.getResultList();
+        }
+       
+	
 }

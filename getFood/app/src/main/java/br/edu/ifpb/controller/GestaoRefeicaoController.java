@@ -2,7 +2,7 @@ package br.edu.ifpb.controller;
 
 import br.edu.ifpb.domain.AutorizacaoRR;
 import br.edu.ifpb.domain.enums.StatusAutorizacao;
-import br.edu.ifpb.service.AutorizaoService;
+import br.edu.ifpb.service.AutorizacaoService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -18,7 +18,7 @@ public class GestaoRefeicaoController extends PaginacaoController<AutorizacaoRR>
 
 
     @Inject
-    private AutorizaoService autorizaoService;
+    private AutorizacaoService autorizaoService;
 
     private LocalDate dataInicial;
     private LocalDate dataFinal;
