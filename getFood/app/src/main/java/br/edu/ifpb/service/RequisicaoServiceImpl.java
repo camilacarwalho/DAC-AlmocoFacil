@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import br.edu.ifpb.dao.RequisicaoDao;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.enums.StatusRequisicao;
+import java.util.List;
 
 @Stateless
 public class RequisicaoServiceImpl implements RequisicaoService {
@@ -79,4 +80,9 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 		}
 	}
 
+    @Override
+    public List<Requisicao> buscarRequisicoes(StatusRequisicao statusRequisicao, LocalDate data) {
+        return requisicaoDao.buscarPeloStatus(statusRequisicao, data);
+    }
+    
 }
