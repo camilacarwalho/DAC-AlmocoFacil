@@ -3,6 +3,7 @@ package com.example.almocofacil.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Usuario;
-import com.example.almocofacil.domain.enums.UsuarioEnum;
+import com.example.almocofacil.services.AcessarRest;
 import com.example.almocofacil.services.UsuarioService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -64,18 +65,29 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logadoUsuario(Usuario usuario){
-        Toast.makeText(getApplicationContext(), "Usuário " + usuario.getCargo(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Usuário " + usuario.getCargo().getNome(), Toast.LENGTH_LONG).show();
+        Class<?> nomeClasse = null;
         switch (usuario.getCargo()){
             case ALUNO:
                 break;
             case CAEST:
                 break;
             case GESTOR:
+                nomeClasse = RelatorioRefeicaoActivity.class;
                 break;
             case PROFESSOR:
+                nomeClasse = AcompanharSolicitacaoActivity.class;
                 break;
             case REFEITORIO:
+                nomeClasse = ListarAlunos.class;
                 break;
+            default:
+                return;
+        }
+        if(nomeClasse != null) {
+            Intent intent = new Intent(this, nomeClasse);
+            startActivity(intent);
+            this.finish();
         }
     }
 }

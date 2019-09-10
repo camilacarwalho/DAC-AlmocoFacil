@@ -67,6 +67,8 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
         }
         if (id== R.id.solicitacao){
             System.out.println("funcionou solicitação");
+            Intent intent = new Intent(this, SolicitarRefeicao.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
