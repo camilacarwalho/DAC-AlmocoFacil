@@ -24,14 +24,9 @@ public class RelatorioRefeicaoAdapter extends BaseAdapter {
         this.activity = activity;
     }
 
-    @Override
-    public int getCount() {return requisicao.size(); }
-
-    @Override
-    public Object getItem(int i) {return requisicao.get(i);}
-
-    @Override
-    public long getItemId(int i) {return 0;}
+    @Override public int getCount() {return requisicao.size(); }
+    @Override public Object getItem(int i) {return requisicao.get(i);}
+    @Override public long getItemId(int i) {return 0;}
 
     private class ViewHolder{
         TextView data;

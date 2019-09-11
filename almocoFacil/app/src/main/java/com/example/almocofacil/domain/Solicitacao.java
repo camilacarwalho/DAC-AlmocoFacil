@@ -18,16 +18,7 @@ public class Solicitacao implements Serializable {
 	private StatusRequisicao statusRequisicao;
 	private List<Requisicao> requisicoes;
 	
-	/************************************
-	 * Procedimento que vincula todas as
-	 * requisições a esta solicitação 
-	 ************************************/
-	private void vincularRequisicoes() {
-		for (Requisicao requisicao : requisicoes) {
-			requisicao.setSolicitacao(this);			
-		}		
-	}
-	
+
 	public Solicitacao() {
 		super();
 		this.requisicoes = new ArrayList<Requisicao>();
@@ -61,7 +52,6 @@ public class Solicitacao implements Serializable {
 	 * a vinculação desta requesição a esta Solicitação
 	 *******************************************************/
 	public void adicionarRequisicao(Requisicao requisicao) {
-		requisicao.setSolicitacao(this);
 		requisicoes.add(requisicao);
 	}
 	
@@ -119,7 +109,6 @@ public class Solicitacao implements Serializable {
 
 	public void setRequisicoes(List<Requisicao> requisicoes) {
 		this.requisicoes = requisicoes;
-		vincularRequisicoes();
 	}
 
 	@Override
