@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response.Status;
 
 import br.edu.ifpb.domain.Usuario;
 import br.edu.ifpb.service.UsuarioService;
+import br.edu.ifpb.service.resouces.convert.ConvertObjectRest;
 
 @Stateless
 @Path("usuario")
