@@ -16,14 +16,14 @@
 
         <TextView
             android:id="@+id/tvDataFinal"
-            android:layout_width="94dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="Data Final"
             android:textAlignment="center" />
 
         <TextView
             android:id="@+id/tvRefeicao"
-            android:layout_width="97dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="Refeição"
             android:textAlignment="center" />
@@ -34,5 +34,6 @@
             android:layout_height="wrap_content"
             android:text="Status"
             android:textAlignment="center" />
+
     </TableRow>
 </LinearLayout>

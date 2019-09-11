@@ -1,24 +1,22 @@
 package com.example.almocofacil.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
 import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Requisicao;
-import com.example.almocofacil.domain.Usuario;
-import com.example.almocofacil.domain.enums.StatusRequisicao;
-import com.example.almocofacil.services.AcessarRest;
 import com.example.almocofacil.services.GetRest;
 import com.example.almocofacil.services.UsuarioService;
 import com.google.gson.reflect.TypeToken;
@@ -26,50 +24,40 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-
-import okhttp3.Response;
 
 public class AcompanharSolicitacaoActivity extends AppCompatActivity {
 
+    private TextView tvNome;
+    private TextView tvMatricula;
     private List<Requisicao> requisicoes;
     private ListView lvRequisicoes;
+    private ProgressDialog progress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acompanhar_solicitacao);
 
+        tvNome = findViewById(R.id.tvNome);
+        tvMatricula = findViewById(R.id.tvMatricula);
+
+        tvNome.setText(UsuarioService.getUsarioService().getUsuarioLogado().getNome());
+        tvMatricula.setText(UsuarioService.getUsarioService().getUsuarioLogado().getMatricula());
+
         lvRequisicoes = findViewById(R.id.tv_solicitacao);
-
-
-        requisicoes = new ArrayList<>();
-        requisicoes.add(new Requisicao(
-                1, //int solicitacaoId,
-                1, //int requisicaoId,
-                new Date(),//Date dataSolicitacao,
-                "Eu", //String nomeRequerente,
-                "123", //String matriculaRequerente,
-                "Isso é uma requisição", //String descricao,
-                StatusRequisicao.PENDENTE, //StatusRequisicao status,
-                "Porque eu quero", //String justificativa,
-                "Almoço", //String refeicaoNome,
-                1, //int refeicaoId,
-                new Date(), //Date dataInicio,
-                new Date())); //Date dataFinal);
-
-        RequisicaoAdapter adapter = new RequisicaoAdapter(requisicoes,this);
-        lvRequisicoes.setAdapter(adapter);
-        Type listType = new TypeToken<ArrayList<Requisicao>>(){}.getType();
-        new GetRest<List<Requisicao>>(this,"requisicao/5000007",  listType){
-
+        lvRequisicoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void retorno(final List<Requisicao> objeto) {
-                atualizarListView(Collections.unmodifiableList(objeto));
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                irPara(requisicoes.get(i));
             }
+        });
 
-        }.get();
+        progress = new ProgressDialog(this);
+        progress.setTitle("Carregando dados...");
+
+        atualizar();
     }
 
     @Override
@@ -92,16 +80,38 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
             finish();
         }
         if (id== R.id.solicitacao){
-            System.out.println("funcionou solicitação");
-            Intent intent = new Intent(this, SolicitarRefeicao.class);
-            startActivity(intent);
+            irPara(new Requisicao());
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void atualizar(){
+        progress.show();
+        Type listType = new TypeToken<ArrayList<Requisicao>>(){}.getType();
+        new GetRest<List<Requisicao>>(
+                this,
+                "requisicao/"+ UsuarioService.getUsarioService().getUsuarioLogado().getMatricula() ,
+                listType){
+
+            @Override
+            public void retorno(final List<Requisicao> objeto) {
+                atualizarListView(Collections.unmodifiableList(objeto));
+            }
+
+        }.get();
+    }
+
     private void atualizarListView(List<Requisicao> requisicoes){
+        this.requisicoes = requisicoes;
         RequisicaoAdapter adapter = new RequisicaoAdapter(requisicoes,this);
         lvRequisicoes.setAdapter(adapter);
+        progress.dismiss();
+    }
+
+    private void irPara(Requisicao requisicao){
+        Intent intent = new Intent(getApplicationContext(), SolicitarRefeicao.class);
+        intent.putExtra("requisicao",requisicao);
+        startActivity(intent);
     }
 }
