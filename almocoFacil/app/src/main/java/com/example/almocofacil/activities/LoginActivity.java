@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.almocofacil.R;
+import com.example.almocofacil.controler.SessionSharedPreferences;
 import com.example.almocofacil.domain.Usuario;
 import com.example.almocofacil.services.AcessarRest;
 import com.example.almocofacil.services.UsuarioService;
@@ -84,8 +85,11 @@ public class LoginActivity extends AppCompatActivity {
             default:
                 return;
         }
+
         if(nomeClasse != null) {
             Intent intent = new Intent(this, nomeClasse);
+            SessionSharedPreferences ssp = new SessionSharedPreferences(this);
+            ssp.login(usuario);
             startActivity(intent);
             this.finish();
         }
