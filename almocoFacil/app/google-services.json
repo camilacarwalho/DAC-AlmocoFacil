@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "806548045709",
+    "firebase_url": "https://almoco-facil.firebaseio.com",
+    "project_id": "almoco-facil",
+    "storage_bucket": "almoco-facil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806548045709:android:d9222d74a90a0a59c7c7c4",
+        "android_client_info": {
+          "package_name": "com.example.almocofacil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806548045709-1t1c969k3qdkko5f29qhl5r48701not0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByaPWaxuRESjo5C__1FxqvTI01UIQg8pM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806548045709-1t1c969k3qdkko5f29qhl5r48701not0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
