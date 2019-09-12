@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.ifpb.dao.RequisicaoDao;
+import br.edu.ifpb.domain.Aluno;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.enums.StatusRequisicao;
 import java.util.List;
@@ -15,12 +16,19 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 	
 	@EJB
 	RequisicaoDao requisicaoDao;
-	
-	
 
 	@Override
 	public Requisicao buscar(long id) {		
 		return requisicaoDao.buscar(id);
+	}
+
+	@Override
+	public boolean adicionarAluno(Requisicao requisicao, Aluno aluno) {
+		if (requisicao == null || aluno == null)
+			return false;
+		requisicao.getAlunos().add(aluno);
+		requisicaoDao.atualizar(requisicao);
+		return true;
 	}
 
 	@Override
