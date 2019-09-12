@@ -16,10 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <modules>
-    <module>app</module>
-    <module>shared</module>
-  </modules>
+  <modules></modules>
 
 
 </project>

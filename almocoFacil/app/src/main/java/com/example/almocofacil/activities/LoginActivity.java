@@ -13,9 +13,9 @@ import android.widget.Toast;
 import com.example.almocofacil.R;
 import com.example.almocofacil.controler.SessionSharedPreferences;
 import com.example.almocofacil.domain.Usuario;
+import com.example.almocofacil.firebase.Notificacao;
 import com.example.almocofacil.services.AcessarRest;
 import com.example.almocofacil.services.UsuarioService;
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText edMatricula;
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (objeto.getMatricula() == null){
                         Toast.makeText(getApplicationContext(), "Usuário ou senha inválido", Toast.LENGTH_LONG).show();
                     } else {
-                        logadoUsuario(UsuarioService.getUsarioService().logar(objeto));
+                        logadoUsuario(UsuarioService.getUsarioService(getApplicationContext()).logar(objeto));
                     }
                 }
             }
@@ -88,8 +88,14 @@ public class LoginActivity extends AppCompatActivity {
 
         if(nomeClasse != null) {
             Intent intent = new Intent(this, nomeClasse);
-            SessionSharedPreferences ssp = new SessionSharedPreferences(this);
+            SessionSharedPreferences ssp = new SessionSharedPreferences(getApplicationContext());
             ssp.login(usuario);
+
+            //preparando aplicativo para receber notificações
+            Notificacao notificacao = new Notificacao(getApplicationContext());
+            //enviando token para o servidor de DAC
+            notificacao.registraTokenNoServidor();
+
             startActivity(intent);
             this.finish();
         }

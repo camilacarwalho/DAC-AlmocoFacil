@@ -1,14 +1,21 @@
 package com.example.almocofacil.services;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.example.almocofacil.domain.Usuario;
+import com.example.almocofacil.threads.ApiRequest;
+import com.google.gson.Gson;
 
 public class UsuarioService {
 
     private static UsuarioService usuarioService;
     private Usuario usuarioLogado;
     private boolean logado;
+    private Context context;
 
-    private UsuarioService(){
+    private UsuarioService(Context context){
+        this.context = context;
         sair();
     }
 
@@ -17,9 +24,9 @@ public class UsuarioService {
         logado = false;
     }
 
-    public static UsuarioService getUsarioService(){
+    public static UsuarioService getUsarioService(Context context){
         if (usuarioService == null){
-            usuarioService = new UsuarioService();
+            usuarioService = new UsuarioService(context);
         }
         return usuarioService;
     }
@@ -32,6 +39,7 @@ public class UsuarioService {
         usuarioLogado.setCpf(usuario.getCpf());
         usuarioLogado.setTelefone(usuario.getTelefone());
         logado = true;
+
         return usuarioLogado;
     }
 
