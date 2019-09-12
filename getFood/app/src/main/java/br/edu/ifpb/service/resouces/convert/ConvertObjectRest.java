@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import br.edu.ifpb.domain.Aluno;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.Usuario;
+import br.edu.ifpb.domain.resource.AlunoRest;
 import br.edu.ifpb.domain.resource.RequisicaoRest;
 import br.edu.ifpb.domain.resource.UsuarioRest;
 
@@ -46,5 +48,18 @@ public class ConvertObjectRest {
 				requisicao.getRefeicao().getId().intValue(), //refeicaoId, 
 				localDateToDate(requisicao.getDataInicial()), //dataInicio, 
 				localDateToDate(requisicao.getDataFinal()));// dataFinal);
+	}
+	
+	public static AlunoRest alunoParaRest(Aluno aluno) {
+		if ((aluno == null) || (aluno.getPessoa() == null) || (aluno.getCurso() == null))
+			return new AlunoRest();
+		
+		return new AlunoRest(
+				aluno.getMatricula(), //matricula, 
+				aluno.getPessoa().getNome(), //nome, 
+				aluno.getPessoa().getCpf(), //cpf, 
+				aluno.getCurso().getNome(),// //curso, 
+				aluno.getPessoa().getTelefone()); //telefone);
+				
 	}
 }
