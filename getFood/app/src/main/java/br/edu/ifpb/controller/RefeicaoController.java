@@ -25,7 +25,7 @@ public class RefeicaoController implements Serializable{
 	}
         
         public List<Requisicao> getRefeicoesNoDia(){
-                return refeicaoDao.refeicoesNoDia(LocalDate.MIN);
+                return refeicaoDao.refeicoesNoDia(LocalDate.now());
         }
 
 }

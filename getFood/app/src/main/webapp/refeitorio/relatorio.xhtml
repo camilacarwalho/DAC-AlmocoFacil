@@ -11,42 +11,48 @@
 
 </h:head>
 <ui:composition template="../template.xhtml">
-  
+
     <!--     LINKS   -->
-    <ui:define name="links">  
-    	<ui:include src="menu.xhtml"/>    
+    <ui:define name="links">
+        <ui:include src="menu.xhtml"/>
     </ui:define>
     <!-- ............ -->
-    
+
     <!--    MENSAGEM   -->
     <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
     <!-- ............ -->
-    
+
     <ui:define name="top">
         <h4>Relatório de refeições</h4>
         <div class="row">
-             <div class="col 15">
-                 <h:outputText value="Quantidade: #{refeitorioAutorizacaoController.totalAlmoco()} almoços, #{refeitorioAutorizacaoController.totalJantares()} jantares." />
-            </div>
+
             <h:form prependId="false">
                 <ul class="collection with-header">
                     <li class="collection-item">
                         <div class="row">
-                            <div class="col l1"><b>ID</b></div>
-                            <div class="col l5"><b>Nome</b></div>
-                            <div class="col l2"><b>Data</b></div>
-                            <div class="col l2"><b>Hora</b></div>
-                            <div class="col l1"><b>Alunos</b></div>
+                            <div class="col 15">
+                                <h:outputText value="Quantidade: #{refeicaoController.listaDeRefeicoes.size()} refeiçã(oẽs) " />
+                            </div>
                         </div>
                     </li>
-                    
+                    <li class="collection-item">
+                        <div class="row">
+                            <div class="col l1"><b>ID</b></div>
+                            <div class="col l3"><b>Nome</b></div>
+                            <div class="col l2"><b>Data</b></div>
+                            <div class="col l2"><b>Hora</b></div>
+                            <div class="col l2"><b>Alunos</b></div>
+                            <div class="col l1"><b>Lista de Alunos</b></div>
+                        </div>
+                    </li>
+
                     <ui:repeat var="solicitacao" value="#{refeicaoController.refeicoesNoDia}">
                         <li class="collection-item">
                             <div class="row">
                                 <div class="col l1">
                                     <h:outputText value="#{solicitacao.refeicao.id}"></h:outputText>
                                 </div>
-                                <div class="col l5">
+                                <div class="col l3">
                                     <h:outputText value="#{solicitacao.refeicao.nome}"></h:outputText>
                                 </div>
                                 <div class="col l2">
@@ -55,16 +61,39 @@
                                 <div class="col l2">
                                     <h:outputText value="#{solicitacao.refeicao.horaTermino}"></h:outputText>
                                 </div>
+                                <div class="col l2">
+                                    <h:outputText value="#{solicitacao.alunos.size()}"></h:outputText>
+                                </div>
                                 <div class="col l1 -m ">
-                                    <h:outputText value="#{solicitacao.alunos.size}"></h:outputText>
+                                    <a href="#modalAlunos#{solicitacao.id}" class="waves-effect waves-light btn modal-trigger">Listar Alunos</a>
+                                </div>
+                            </div>
+                            <div id="modalAlunos#{solicitacao.id}" class="modal modal-fixed-footer">
+                                <div class="modal-content">
+                                    <h4>Lista de Alunos</h4>
+                                    <div class="row">
+                                        <div class="col s2"><b>Matricula</b></div>
+                                        <div class="col s5"><b>Nome</b></div>
+                                        <div class="col s4"><b>Curso</b></div>
+                                    </div>
+                                    <ui:repeat var="aluno" value="#{solicitacao.alunos}">
+                                        <div class="row">
+                                            <div class="col s2"><h:outputText value="#{aluno.matricula}"/></div>
+                                            <div class="col s5"><h:outputText value="#{aluno.pessoa.nome}"/></div>
+                                            <div class="col s4"><h:outputText value="#{aluno.curso.nome}"/></div>
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
                                 </div>
                             </div>
                         </li>
                     </ui:repeat>
-                    
+
                 </ul>
             </h:form>
-            
+
         </div>
     </ui:define>
 </ui:composition>
