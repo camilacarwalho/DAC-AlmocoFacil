@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SolicitarRefeicao"/>
+        <activity android:name=".activities.SolicitarRefeicaoActivity"/>
         <activity android:name=".activities.AcompanharSolicitacaoActivity"/>
         <activity android:name=".activities.RelatorioRefeicaoActivity" />
         <activity android:name=".activities.ListarAlunos"/>

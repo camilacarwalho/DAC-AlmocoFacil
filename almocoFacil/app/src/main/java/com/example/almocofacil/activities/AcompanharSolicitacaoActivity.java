@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -110,7 +109,7 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
     }
 
     private void irPara(Requisicao requisicao){
-        Intent intent = new Intent(getApplicationContext(), SolicitarRefeicao.class);
+        Intent intent = new Intent(getApplicationContext(), SolicitarRefeicaoActivity.class);
         intent.putExtra("requisicao",requisicao);
         startActivity(intent);
     }
