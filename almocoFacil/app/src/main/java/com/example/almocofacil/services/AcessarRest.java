@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 public abstract class AcessarRest<T,S> {
 
-    private static String URL_REST_API = "http://10.0.3.2:8082/app/api/";
+    private static String URL_REST_API = "http://10.0.3.2:8080/app/api/";
 
     private final Activity activity;
     private String path;

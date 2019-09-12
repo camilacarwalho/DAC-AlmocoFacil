@@ -1,5 +1,6 @@
 package com.example.almocofacil.activities;
 
+import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,8 +43,8 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
         tvNome = findViewById(R.id.tvNome);
         tvMatricula = findViewById(R.id.tvMatricula);
 
-        tvNome.setText(UsuarioService.getUsarioService().getUsuarioLogado().getNome());
-        tvMatricula.setText(UsuarioService.getUsarioService().getUsuarioLogado().getMatricula());
+        tvNome.setText(UsuarioService.getUsarioService(getApplicationContext()).getUsuarioLogado().getNome());
+        tvMatricula.setText(UsuarioService.getUsarioService(getApplicationContext()).getUsuarioLogado().getMatricula());
 
         lvRequisicoes = findViewById(R.id.tv_solicitacao);
         lvRequisicoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,7 +91,7 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
         Type listType = new TypeToken<ArrayList<Requisicao>>(){}.getType();
         new GetRest<List<Requisicao>>(
                 this,
-                "requisicao/"+ UsuarioService.getUsarioService().getUsuarioLogado().getMatricula() ,
+                "requisicao/"+ UsuarioService.getUsarioService(getApplicationContext()).getUsuarioLogado().getMatricula() ,
                 listType){
 
             @Override
