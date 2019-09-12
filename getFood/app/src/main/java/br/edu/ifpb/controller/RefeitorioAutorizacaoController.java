@@ -2,7 +2,11 @@ package br.edu.ifpb.controller;
 
 import br.edu.ifpb.domain.Autorizacao;
 import br.edu.ifpb.domain.enums.StatusAutorizacao;
+import br.edu.ifpb.firebase.GerenteNotificacao;
+import br.edu.ifpb.firebase.Notificacao;
 import br.edu.ifpb.service.AutorizacaoService;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import java.io.IOException;
 
 
 
@@ -11,6 +15,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;

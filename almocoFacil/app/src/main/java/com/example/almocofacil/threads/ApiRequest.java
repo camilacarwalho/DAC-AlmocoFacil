@@ -10,7 +10,7 @@ import okhttp3.Response;
 
 
 //classe generica para requisicao a api do servidor usando json como comunicação
-public class ApiRequest {
+public class ApiRequest implements Runnable {
 
     //retorna objeto json em formato string
     public static String request(String json, String url) {
@@ -32,4 +32,9 @@ public class ApiRequest {
         return null;
     }
 
+
+    @Override
+    public void run() {
+
+    }
 }
