@@ -24,7 +24,7 @@ public class UsuarioService {
         logado = false;
     }
 
-    public static UsuarioService getUsarioService(Context context){
+    public static UsuarioService getUsuarioService(Context context){
         if (usuarioService == null){
             usuarioService = new UsuarioService(context);
         }

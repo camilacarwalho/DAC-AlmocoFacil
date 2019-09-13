@@ -14,7 +14,7 @@ import com.example.almocofacil.R;
 import com.example.almocofacil.controler.SessionSharedPreferences;
 import com.example.almocofacil.domain.Usuario;
 import com.example.almocofacil.firebase.Notificacao;
-import com.example.almocofacil.services.AcessarRest;
+import com.example.almocofacil.services.AcessoRest;
 import com.example.almocofacil.services.UsuarioService;
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,9 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         final Usuario usuario = new Usuario(matricula,senha);
         final LoginActivity esta = this;
 
-        new AcessarRest<Usuario,Usuario>(esta, "usuario/login"){
+        new AcessoRest<Usuario>(esta,"usuario/login",Usuario.class){
+
             @Override
-            public void retorno(final Usuario objeto) {
+            public void retorno(Usuario objeto) {
                 progress.dismiss();
                 if(objeto == null){
                     Toast.makeText(getApplicationContext(),"Falha ao autenticar.", Toast.LENGTH_LONG).show();
@@ -57,11 +58,27 @@ public class LoginActivity extends AppCompatActivity {
                     if (objeto.getMatricula() == null){
                         Toast.makeText(getApplicationContext(), "Usuário ou senha inválido", Toast.LENGTH_LONG).show();
                     } else {
-                        logadoUsuario(UsuarioService.getUsarioService(getApplicationContext()).logar(objeto));
+                        logadoUsuario(UsuarioService.getUsuarioService(getApplicationContext()).logar(objeto));
                     }
                 }
             }
-        }.run(usuario, Usuario.class);
+        }.post(usuario);
+
+//        new AcessarRest<Usuario,Usuario>(esta, "usuario/login"){
+//            @Override
+//            public void retorno(final Usuario objeto) {
+//                progress.dismiss();
+//                if(objeto == null){
+//                    Toast.makeText(getApplicationContext(),"Falha ao autenticar.", Toast.LENGTH_LONG).show();
+//                } else {
+//                    if (objeto.getMatricula() == null){
+//                        Toast.makeText(getApplicationContext(), "Usuário ou senha inválido", Toast.LENGTH_LONG).show();
+//                    } else {
+//                        logadoUsuario(UsuarioService.getUsuarioService(getApplicationContext()).logar(objeto));
+//                    }
+//                }
+//            }
+//        }.run(usuario, Usuario.class);
 
     }
 

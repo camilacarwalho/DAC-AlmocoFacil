@@ -1,52 +1,59 @@
 package com.example.almocofacil.activities;
 
-import android.app.Dialog;
+
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
+import android.widget.TextView;
 
 import com.example.almocofacil.R;
 
-public abstract class DialogBoxInput extends DialogFragment {
+public abstract class DialogBoxInput extends AlertDialog {
 
     private String titulo;
     private String textoBotao;
-    private EditText campo;
+    private TextView tvTitulo;
+    private EditText etCampo;
+    private Button btOk;
+    private Button btCancelar;
 
 
-    public DialogBoxInput(String titulo, String textoBotao) {
+    public DialogBoxInput(Context context, String titulo, String textoBotao) {
+        super(context);
         this.titulo = titulo;
         this.textoBotao = textoBotao;
     }
 
     public abstract void retorno(String valor);
+    public abstract void cancelar();
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = this.getLayoutInflater();
-        builder
-                .setMessage(this.titulo)
-                .setView(inflater.inflate(R.layout.imput_box, null))
-                .setPositiveButton(textoBotao, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        campo = getActivity().findViewById(R.id.etInputCampo);
-                        retorno(campo.getText().toString());
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        DialogBoxInput.this.getDialog().cancel();
-                    }
-                });
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.imput_box);
+        tvTitulo = findViewById(R.id.tvInputBoxCampo);
+        etCampo = findViewById(R.id.etInputCampo);
+        btOk = findViewById(R.id.btInputBoxOk);
+        btCancelar = findViewById(R.id.btInputBoxCancelar);
+        etCampo.setText("");
+        tvTitulo.setText(titulo);
+        btOk.setText(textoBotao);
 
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                retorno(etCampo.getText().toString());
+            }
+        });
 
-        return builder.create();
+        btCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {cancelar();}
+        });
+
     }
 }

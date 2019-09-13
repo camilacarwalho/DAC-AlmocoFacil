@@ -140,35 +140,28 @@
                     android:text="Estudantes:"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btSolAdicionarEstudante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adicionar Estudante" />
             </TableRow>
 
         </TableLayout>
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ListView
+                android:id="@+id/lvSolAlunos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </ListView>
-
-            </LinearLayout>
-        </ScrollView>
-
-        <Button
-            android:id="@+id/btSolAdicionarEstudante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Adicionar Estudante" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/Solicitar"

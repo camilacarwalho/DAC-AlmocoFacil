@@ -16,7 +16,8 @@ import androidx.core.app.ActivityOptionsCompat;
 
 import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Requisicao;
-import com.example.almocofacil.services.GetRest;
+import com.example.almocofacil.domain.Usuario;
+import com.example.almocofacil.services.AcessoRest;
 import com.example.almocofacil.services.UsuarioService;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,6 +28,7 @@ import java.util.List;
 
 public class AcompanharSolicitacaoActivity extends AppCompatActivity {
 
+    private Usuario usuario;
     private TextView tvNome;
     private TextView tvMatricula;
     private List<Requisicao> requisicoes;
@@ -36,14 +38,17 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        usuario = UsuarioService.getUsuarioService(getApplicationContext()).getUsuarioLogado();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acompanhar_solicitacao);
 
         tvNome = findViewById(R.id.tvNome);
         tvMatricula = findViewById(R.id.tvMatricula);
 
-        tvNome.setText(UsuarioService.getUsarioService().getUsuarioLogado().getNome());
-        tvMatricula.setText(UsuarioService.getUsarioService().getUsuarioLogado().getMatricula());
+        tvNome.setText(usuario.getNome());
+        tvMatricula.setText(usuario.getMatricula());
 
         lvRequisicoes = findViewById(R.id.tv_solicitacao);
         lvRequisicoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -88,9 +93,9 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
     private void atualizar(){
         progress.show();
         Type listType = new TypeToken<ArrayList<Requisicao>>(){}.getType();
-        new GetRest<List<Requisicao>>(
+        new AcessoRest<List<Requisicao>>(
                 this,
-                "requisicao/"+ UsuarioService.getUsarioService().getUsuarioLogado().getMatricula() ,
+                "requisicao/"+ usuario.getMatricula() ,
                 listType){
 
             @Override
