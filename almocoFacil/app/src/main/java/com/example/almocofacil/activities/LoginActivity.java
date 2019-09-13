@@ -1,6 +1,8 @@
 package com.example.almocofacil.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -110,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(nomeClasse != null) {
             Intent intent = new Intent(this, nomeClasse);
+            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(),R.anim.fade_in,R.anim.mover_direita);
             SessionSharedPreferences ssp = new SessionSharedPreferences(getApplicationContext());
             ssp.login(usuario);
 
@@ -123,7 +126,8 @@ public class LoginActivity extends AppCompatActivity {
 
             Log.d("Localizacao", latitude + " " + longitude);
 
-            startActivity(intent);
+            ActivityCompat.startActivity(LoginActivity.this, intent, activityOptionsCompat.toBundle());
+            //startActivity(intent);
             this.finish();
         }
     }
