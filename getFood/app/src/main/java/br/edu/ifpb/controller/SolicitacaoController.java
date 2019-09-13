@@ -17,7 +17,12 @@ import br.edu.ifpb.domain.Refeicao;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.Solicitacao;
 import br.edu.ifpb.domain.enums.StatusRequisicao;
+import br.edu.ifpb.firebase.Notificacao;
 import br.edu.ifpb.service.AlunoService;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @ViewScoped
 @Named
@@ -28,7 +33,7 @@ public abstract class SolicitacaoController implements Serializable{
 	private static final long serialVersionUID = 8893178495248405539L;
 	@Inject
 	private UsuarioController usuarioController;
-	@Inject
+        @Inject
 	private RefeicaoController refeicaoController;
 	@Inject
 	private AlunoService alunoService;
