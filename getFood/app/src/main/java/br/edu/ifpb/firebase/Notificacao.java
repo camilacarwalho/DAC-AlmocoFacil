@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -41,11 +42,11 @@ public class Notificacao {
             
             //caminho do arquivo onde esta o json do firebase , esta na raiz da aplicacao
             //no meu computador ele tem esse caminho , talvez precise alterar no de vcs
-            File arquivo = new File("almoco-facil-firebase-adminsdk-52gm1-99965426c7.json");
-            String path = arquivo.getAbsolutePath();
+            String caminho = FacesContext.getCurrentInstance().getExternalContext().getRealPath("") + "/resources/";
+            String nomeArquivo = "almoco-facil-firebase-adminsdk-52gm1-99965426c7.json";
 
             FileInputStream serviceAccount
-                    = new FileInputStream(path);
+                    = new FileInputStream(caminho + nomeArquivo);
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))

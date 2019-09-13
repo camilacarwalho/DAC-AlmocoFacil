@@ -20,7 +20,7 @@ public class AlunoRequest implements Runnable {
         String json = gson.toJson(alunoSerializer);
 
         //reposta em formato string de um json
-        String object = ApiRequest.request(json, "http://10.0.3.2:8082/app/api/alunos");
+        String object = ApiRequest.request(json, "http://10.0.3.2:8080/app/api/alunos");
 
         //criando representacao simples de aluno apartir de um json em formato string
         AlunoSerializer alunoSerializer = gson.fromJson(object, AlunoSerializer.class);
