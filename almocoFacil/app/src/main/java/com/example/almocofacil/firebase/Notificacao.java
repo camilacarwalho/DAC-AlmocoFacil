@@ -62,7 +62,7 @@ public class Notificacao {
                 Gson gson = new Gson();
                 String json = gson.toJson(token);
 
-                String object = ApiRequest.request(json, "http://10.0.3.2:8082/app/api/tokenNotificacao");
+                String object = ApiRequest.request(json, "http://10.0.3.2:8080/app/api/tokenNotificacao");
             }
 
 

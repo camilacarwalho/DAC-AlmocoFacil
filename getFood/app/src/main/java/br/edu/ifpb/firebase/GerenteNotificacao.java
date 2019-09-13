@@ -9,6 +9,7 @@ import com.google.firebase.messaging.FirebaseMessagingException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -25,13 +26,18 @@ import javax.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class GerenteNotificacao {
-    
+
+    @Inject
+    Notificacao notificacao;
+
     @POST
     public Response addToken(String token) throws IOException, FirebaseMessagingException {
         
         //este token representa a app android que sera notificada
         // ele precisa ser armazenado para enviar uma messagem quando encerrar uma refeição
         String tokenParaSalvar = token.replace("\"", "");
+
+        notificacao.getTokens().add(tokenParaSalvar);
         
         System.out.println("Token adicionado");
         

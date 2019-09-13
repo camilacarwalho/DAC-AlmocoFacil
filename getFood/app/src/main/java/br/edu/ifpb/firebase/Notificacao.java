@@ -12,9 +12,13 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
+
+import javax.ejb.Singleton;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,9 +27,12 @@ import java.io.IOException;
 
 
 //classe responssavel pelas notificações
+@Singleton
 public class Notificacao {
 
     private static int init;
+    private  List<String> tokens= new ArrayList<>();
+
 
     //este metodo notifica uma aplicacao android apartir de um token
     public static void notificacao(String token) throws IOException, FirebaseMessagingException {
@@ -59,5 +66,15 @@ public class Notificacao {
         String response = FirebaseMessaging.getInstance().send(message);
         System.out.println("Successfully sent message: " + response);
 
+    }
+
+    public void notificarAll() throws IOException, FirebaseMessagingException {
+        for(String token: tokens){
+            notificacao(token);
+        }
+    }
+
+    public List<String> getTokens() {
+        return tokens;
     }
 }

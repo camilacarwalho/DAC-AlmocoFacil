@@ -28,6 +28,9 @@ public class RefeitorioAutorizacaoController implements Serializable {
 
     @Inject
     private AutorizacaoService autorizacaoService;
+
+    @Inject
+    private Notificacao notificacao;
     
     private LocalDate dataHoje;
     private LocalTime horaAgora;
@@ -81,6 +84,13 @@ public class RefeitorioAutorizacaoController implements Serializable {
         autorizacaoAgora.stream().forEach(a -> {
             if (a.getStatusAutorizacao().equals(StatusAutorizacao.PENDENTE)) {
                 ausenteAutorizacao(a.getId());
+                try {
+                    notificacao.notificarAll();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (FirebaseMessagingException e) {
+                    e.printStackTrace();
+                }
             }
         }
         );
