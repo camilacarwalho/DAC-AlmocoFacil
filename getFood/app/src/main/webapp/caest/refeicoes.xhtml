@@ -26,46 +26,52 @@
         <h4>Acompanhar refeições</h4>
         <div class="row">
 
-            <h:form prependId="false">
-                <ul class="collection with-header">
-                    <li class="collection-item">
-                        <div class="row">
+            <li class="collection-item">
+                <h:form prependId="false" id="refeicao">
+						<div class="row">
+							<div class="input-field col s6">
+								<h:inputText 
+									id="refeicao"
+                                                                        value="#{refeicaoController.nome}"
+									placeholder="Informe o nome da Refeição"/> 
+							</div>
 
-                            <div class="col l2"><b>Data</b></div>
-                            <div class="col l2"><b>Hora</b></div>
-                            <div class="col l1"><b>Alunos</b></div>
-                            <div class="col l5"><b>Professor</b></div>
-                            <div class="col l2"><b>Status</b></div>
-                        </div>
-                    </li>
-                    <ui:repeat var="solicitacao" value="#">
-                        <li class="collection-item">
-                            <div class="row">
-                                <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l1">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l5">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
-                                <div class="col l2">
-                                    <h:outputText value="#"></h:outputText>
-                                </div>
+							<div class="input-field col s3">							
+								<h:inputText 
+									id="horaInicio"
+                                                                        value="#{refeicaoController.horaInicio}"
+									placeholder="Informe o horário de Início"/> 
+							</div>
+							
+							<dir class="col s3">
+							 	<h:inputText 
+									id="horaTermino"
+                                                                        value="#{refeicaoController.horaTermino}"
+									placeholder="Informe o horário de Término"/> 
+							</dir>
+                                                    
+                                                    <dir class="col s3">
+							 	<h:commandLink
+                                                                    action="#{refeicaoController.atualizarRefeicao()}"
+							 		class="btn-floating btn-small waves-effect waves-light teal">
+							 		<i class="material-icons">edit</i>
+							 	</h:commandLink>
+								
+							</dir>
+                                                    <dir class="col s3">
+							 	<h:commandLink
+                                                                    action="#{refeicaoController.removerRefeicao()}"
+							 		class="btn-floating btn-small waves-effect waves-light teal">
+							 		<i class="material-icons">edit</i>
+							 	</h:commandLink>
+								
+							</dir>
 
+						</div>
 
+						</h:form>
 
-                            </div>
-
-                        </li>
-
-                    </ui:repeat>
-                </ul>
-            </h:form>
+					</li>
         </div>
     </ui:define>
 </ui:composition>

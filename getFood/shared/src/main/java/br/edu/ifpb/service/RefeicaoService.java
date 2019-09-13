@@ -7,7 +7,12 @@ import java.util.List;
 
 public interface RefeicaoService {
 	
-	Refeicao buscarPeloNome(String nome);
+	void salvar(Refeicao refeicao);
+        void atualizar(Refeicao refeicao);
+        void remover(Refeicao refeicao);
+        List<Refeicao> listar();
+        Refeicao buscarPeloNome(String nome);
         List<Requisicao> refeicoesNoDia(LocalDate data);
-
+        void atualizarRefeicao(Refeicao refeicao);
+        
 }
