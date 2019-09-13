@@ -13,13 +13,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import org.postgresql.core.ServerVersion;
 
 import br.edu.ifpb.domain.Aluno;
 import br.edu.ifpb.domain.Requisicao;
@@ -30,6 +27,7 @@ import br.edu.ifpb.service.AlunoService;
 import br.edu.ifpb.service.RequisicaoService;
 import br.edu.ifpb.service.SolicitacaoService;
 import br.edu.ifpb.service.resouces.convert.ConvertObjectRest;
+import br.edu.ifpb.service.resouces.convert.ConvertRestToRequisicao;
 
 @Stateless
 @Path("requisicao")
@@ -43,6 +41,8 @@ public class ResourcesRequisicao {
 	private RequisicaoService requisicaoService;
 	@Inject
 	private AlunoService alunoService;
+	@Inject
+	private ConvertRestToRequisicao convertRestToRequisicao;
 	
 	@GET
 	@Path("{matricula}")
@@ -58,6 +58,21 @@ public class ResourcesRequisicao {
 		
 		return Response.ok()
 				.entity(entity)
+				.build();
+	}
+	
+	@PUT
+	@Path("{requisicaoId}")
+	public Response salvarRequisicao(RequisicaoRest requisicaoRest) {
+		Requisicao requisicao = convertRestToRequisicao.run(requisicaoRest);
+		if (requisicao.getId() != 0) {
+			solicitacaoService.atualizar(requisicao.getSolicitacao());
+			requisicaoService.autorizar(requisicao);
+		} else {
+			solicitacaoService.salvar(requisicao.getSolicitacao());
+		}
+		return Response.ok()
+				.entity(ConvertObjectRest.requisicaoParaRest(requisicao))
 				.build();
 	}
 	
@@ -84,17 +99,23 @@ public class ResourcesRequisicao {
 	}
 	
 	@PUT
-	@Path("adicionarAluno")
-	public Response adicionarAluno(
-			@QueryParam("requisicaoId") String requisicaoId, 
-			@QueryParam("matricula") String matricula) {		
-		try {
-			Long id = Long.valueOf(requisicaoId);
-			Requisicao requisicao = requisicaoService.buscar(id); 
-			Aluno aluno = alunoService.buscarPelaMatricula(matricula);			
-			if (requisicaoService.adicionarAluno(requisicao, aluno))
-				return Response.ok()
-						.build();
+	@Path("listaAlunos/{requisicaoId}")
+	public Response adicionarAluno(String[] matriculas, @PathParam("requisicaoId") int requisicaoId) {		
+		try {			
+			Requisicao requisicao = requisicaoService.buscar(requisicaoId);
+			if (requisicao != null && requisicaoService.podeAlterar(requisicao)) {
+				List<Aluno> alunos = new ArrayList<Aluno>();
+				for (String matricula : matriculas) {
+					Aluno aluno = alunoService.buscarPelaMatricula(matricula);
+					if (aluno != null)
+						alunos.add(aluno);				
+				}				
+				if (requisicaoService.definirAlunos(requisicao, alunos)) {
+					return Response.ok()						
+							.entity("ok")
+							.build();					
+				}
+			}
 		} catch (Exception e) {
 			Logger.getLogger(ResourcesRequisicao.class.getName()).log(Level.SEVERE, e.toString(), e);
 		}
