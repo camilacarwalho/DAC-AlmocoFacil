@@ -30,6 +30,17 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 		requisicaoDao.atualizar(requisicao);
 		return true;
 	}
+	
+	
+
+	@Override
+	public boolean definirAlunos(Requisicao requisicao, List<Aluno> alunos) {		
+		if (! podeAlterar(requisicao))
+			return false;
+		requisicao.setAlunos(alunos);
+		requisicaoDao.atualizar(requisicao);
+		return true;
+	}
 
 	@Override
 	public boolean isEncerrada(Requisicao requisicao) {
@@ -92,5 +103,12 @@ public class RequisicaoServiceImpl implements RequisicaoService {
     public List<Requisicao> buscarRequisicoes(StatusRequisicao statusRequisicao, LocalDate data) {
         return requisicaoDao.buscarPeloStatus(statusRequisicao, data);
     }
+
+	@Override
+	public boolean podeAlterar(Requisicao requisicao) {
+		return (!isEncerrada(requisicao))  && (requisicao.getStatusRequisicao() == StatusRequisicao.PENDENTE);  
+	}
+    
+    
     
 }

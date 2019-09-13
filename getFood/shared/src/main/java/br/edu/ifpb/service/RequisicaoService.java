@@ -10,10 +10,12 @@ public interface RequisicaoService {
 	Requisicao buscar(long id);
         List<Requisicao> buscarRequisicoes(StatusRequisicao statusRequisicao, LocalDate dataHoje);
     boolean adicionarAluno(Requisicao requisicao, Aluno aluno);
+    boolean definirAlunos(Requisicao requisicao, List<Aluno> alunos);
 	boolean isEncerrada(Requisicao requisicao);
 	void negar(Requisicao requisicao);
 	void autorizar(Requisicao requisicao);
 	void autorizarCompulsoriamente(Requisicao requisicao);
 	boolean podeAutorizar(Requisicao requisicao);
 	boolean podeNegar(Requisicao requisicao);
+	boolean podeAlterar(Requisicao requisicao);
 }
