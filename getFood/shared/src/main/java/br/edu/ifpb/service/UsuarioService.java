@@ -9,7 +9,8 @@ import java.util.List;
 public interface UsuarioService {
 
 	boolean isLogado();
-	Usuario getUsuarioLogado();
+	Usuario buscar(String matricula);
+	Usuario getUsuarioLogado();	
 	Usuario logar(String matricula, String senha);
 	void logout();
 	void editar(String nome, String telefone, String senha) throws DadosInvalidosException;

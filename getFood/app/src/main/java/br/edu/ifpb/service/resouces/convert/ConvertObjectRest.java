@@ -6,6 +6,7 @@ import java.util.Date;
 
 import br.edu.ifpb.domain.Aluno;
 import br.edu.ifpb.domain.Requisicao;
+import br.edu.ifpb.domain.Solicitacao;
 import br.edu.ifpb.domain.Usuario;
 import br.edu.ifpb.domain.resource.AlunoRest;
 import br.edu.ifpb.domain.resource.RequisicaoRest;
@@ -49,6 +50,7 @@ public class ConvertObjectRest {
 				localDateToDate(requisicao.getDataInicial()), //dataInicio, 
 				localDateToDate(requisicao.getDataFinal()));// dataFinal);
 	}
+		
 	
 	public static AlunoRest alunoParaRest(Aluno aluno) {
 		if ((aluno == null) || (aluno.getPessoa() == null) || (aluno.getCurso() == null))
