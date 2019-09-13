@@ -12,6 +12,13 @@ public class RefeicaoServiceImpl implements RefeicaoService{
 	
 	@EJB
 	RefeicaoDao refeicaoDao;
+	
+	
+
+	@Override
+	public Refeicao buscar(Long id) {		
+		return refeicaoDao.buscar(id);
+	}
 
 	@Override
 	public Refeicao buscarPeloNome(String nome) {		

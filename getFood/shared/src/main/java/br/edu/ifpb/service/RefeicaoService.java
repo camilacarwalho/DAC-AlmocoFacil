@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface RefeicaoService {
 	
+	Refeicao buscar(Long id);
 	Refeicao buscarPeloNome(String nome);
-        List<Requisicao> refeicoesNoDia(LocalDate data);
+    List<Requisicao> refeicoesNoDia(LocalDate data);
 
 }
