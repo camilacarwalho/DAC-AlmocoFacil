@@ -2,9 +2,12 @@ package com.example.almocofacil.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -52,6 +55,12 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
         rbJantar = findViewById(R.id.rbJantar);
 
         lvAlunos = findViewById(R.id.lvSolAlunos);
+        lvAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                removerAluno(alunos.get(i));
+            }
+        });
 
         btSolAdicionarEstudante = findViewById(R.id.btSolAdicionarEstudante);
 
@@ -70,14 +79,30 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
         carregarDados();
     }
 
+    private void removerAluno(final Aluno aluno) {
+
+        new AlertDialog.Builder(this)
+            .setTitle("Remover aluno.")
+            .setMessage("Deseja remover o aluno " + aluno.getNome() + "?")
+            .setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    alunos.remove(aluno);
+                    listarAlunos();
+                }
+            })
+            .setNegativeButton("Cancelar",null)
+            .create()
+            .show();
+    }
+
     private void adicionarEstudante() {
 
-        new DialogBoxInput(this, "Informe a matrícula","Buscar"){
+        new DialogBoxInput(this, "Informe a matrícula","Adicionar"){
 
             @Override
             public void retorno(String valor) {
                 adicionarEstudante(valor);
-                //carregarAlunos();
                 this.cancel();
             }
 
