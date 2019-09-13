@@ -43,6 +43,14 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 			return new Usuario();
 		return usuarioLogado;
 	}
+	
+	
+	
+	@Override
+	public Usuario buscar(String matricula) {
+		return usuarioDao.buscar(matricula);
+	}
+	
 	@Override
 	public Usuario logar(String matricula, String senha) {
 		sair();
