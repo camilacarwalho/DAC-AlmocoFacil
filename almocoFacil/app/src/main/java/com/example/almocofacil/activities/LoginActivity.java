@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,9 @@ import com.example.almocofacil.domain.Usuario;
 import com.example.almocofacil.firebase.Notificacao;
 import com.example.almocofacil.services.AcessoRest;
 import com.example.almocofacil.services.UsuarioService;
+import com.example.almocofacil.util.InitLocalizacao;
+import com.example.almocofacil.util.LocalizacaoSingleton;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText edMatricula;
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        InitLocalizacao la = new InitLocalizacao(getApplicationContext());
         setContentView(R.layout.activity_login);
 
         edMatricula = findViewById(R.id.login_etMatricula);
@@ -112,6 +117,11 @@ public class LoginActivity extends AppCompatActivity {
             Notificacao notificacao = new Notificacao(getApplicationContext());
             //enviando token para o servidor de DAC
             notificacao.registraTokenNoServidor();
+
+            String latitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("latitude", "padrao");
+            String longitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("longitude", "padrao");
+
+            Log.d("Localizacao", latitude + " " + longitude);
 
             startActivity(intent);
             this.finish();
