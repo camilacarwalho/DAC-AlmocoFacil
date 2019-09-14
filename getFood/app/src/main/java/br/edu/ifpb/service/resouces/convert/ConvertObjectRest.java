@@ -48,7 +48,9 @@ public class ConvertObjectRest {
 				requisicao.getRefeicao().getNome(),// refeicaoNome, 
 				requisicao.getRefeicao().getId().intValue(), //refeicaoId, 
 				localDateToDate(requisicao.getDataInicial()), //dataInicio, 
-				localDateToDate(requisicao.getDataFinal()));// dataFinal);
+				localDateToDate(requisicao.getDataFinal()),// dataFinal);
+				requisicao.getSolicitacao().getLatitude(),// latitude);
+				requisicao.getSolicitacao().getLongitude());// longitude);
 	}
 		
 	
