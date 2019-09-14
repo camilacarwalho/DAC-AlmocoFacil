@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +21,7 @@ import com.example.almocofacil.domain.Usuario;
 import com.example.almocofacil.domain.enums.StatusRequisicao;
 import com.example.almocofacil.services.AcessoRest;
 import com.example.almocofacil.services.UsuarioService;
+import com.example.almocofacil.util.LocalizacaoSingleton;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -97,6 +99,7 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
         Requisicao requisicao = new Requisicao();
         requisicao.setRequisicaoId(0);
         requisicao.setSolicitacaoId(0);
+        requisicao.setPodeAlterar(true);
         requisicao.setDataSolicitacao(new Date());
         requisicao.setMatriculaRequerente(usuario.getMatricula());
         requisicao.setNomeRequerente(usuario.getNome());
@@ -106,6 +109,8 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
         requisicao.setStatus(StatusRequisicao.PENDENTE);
         requisicao.setRefeicaoNome("Almoço");
         requisicao.setRefeicaoId(1);
+        requisicao.setLatitude(UsuarioService.getLatitude(getApplicationContext()));
+        requisicao.setLongitude(UsuarioService.getLongitude(getApplicationContext()));
         return requisicao;
     }
 
@@ -133,8 +138,14 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
     }
 
     private void irPara(Requisicao requisicao){
-        Intent intent = new Intent(getApplicationContext(), SolicitarRefeicaoActivity.class);
-        intent.putExtra("requisicao",requisicao);
-        startActivity(intent);
+        if(requisicao.isPodeAlterar()) {
+            Intent intent = new Intent(getApplicationContext(), SolicitarRefeicaoActivity.class);
+            intent.putExtra("requisicao", requisicao);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(getApplicationContext(), SolicitarRefeicaoFechadaActivity.class);
+            intent.putExtra("requisicao", requisicao);
+            startActivity(intent);
+        }
     }
 }

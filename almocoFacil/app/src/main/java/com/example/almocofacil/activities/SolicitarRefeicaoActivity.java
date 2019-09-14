@@ -180,11 +180,11 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(requisicao.getDataInicio());
-        cal.add(Calendar.DAY_OF_MONTH,1);
+//        cal.add(Calendar.DAY_OF_MONTH,1);
         edDataInicio.setText(sdf.format(cal.getTime()));
 
         cal.setTime(requisicao.getDataFinal());
-        cal.add(Calendar.DAY_OF_MONTH,1);
+//        cal.add(Calendar.DAY_OF_MONTH,1);
         edDataFinal.setText(sdf.format(cal.getTime()));
 
         rbAlmoco.setChecked(requisicao.getRefeicaoId() == 1);

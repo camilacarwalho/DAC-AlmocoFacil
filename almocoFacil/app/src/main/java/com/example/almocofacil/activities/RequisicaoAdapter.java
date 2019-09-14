@@ -59,11 +59,11 @@ public class RequisicaoAdapter extends BaseAdapter {
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(requisicao.getDataInicio());
-        cal.add(Calendar.DAY_OF_MONTH,1);
+//        cal.add(Calendar.DAY_OF_MONTH,1);
         holder.dataInicio.setText(sdf.format(cal.getTime()));
 
         cal.setTime(requisicao.getDataFinal());
-        cal.add(Calendar.DAY_OF_MONTH,1);
+//        cal.add(Calendar.DAY_OF_MONTH,1);
         holder.dataFinal.setText(sdf.format(cal.getTime()));
         holder.refeicao.setText(requisicao.getRefeicaoNome());
         holder.status.setText(requisicao.getStatus().getNome());
