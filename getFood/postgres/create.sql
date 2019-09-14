@@ -81,6 +81,8 @@ CREATE TABLE solicitacao
   justificativa character varying(255),
   statusrequisicao character varying(20),
   usuario_matricula character varying(20),
+  latitude character varying(255),
+  longitude  character varying(255),
   CONSTRAINT solicitacao_pkey PRIMARY KEY (id)
 );
 
