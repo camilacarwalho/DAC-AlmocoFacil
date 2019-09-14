@@ -7,9 +7,11 @@ import java.util.Date;
 
 
 public class Requisicao implements Serializable{
+
 	private static final long serialVersionUID = 3997712216264687692L;
 	private int solicitacaoId;
 	private int requisicaoId;
+	private boolean podeAlterar;
 	private Date dataSolicitacao;
 	private String nomeRequerente;
 	private String matriculaRequerente;
@@ -20,14 +22,18 @@ public class Requisicao implements Serializable{
 	private int refeicaoId;
 	private Date dataInicio;
 	private Date dataFinal;
+	private String latitude;
+	private String longitude;
 
 	public Requisicao() {}
 
-	public Requisicao(int solicitacaoId, int requisicaoId, Date dataSolicitacao, String nomeRequerente,
+	public Requisicao(int solicitacaoId, int requisicaoId, boolean podeAlterar, Date dataSolicitacao, String nomeRequerente,
 						  String matriculaRequerente, String descricao, StatusRequisicao status, String justificativa,
-						  String refeicaoNome, int refeicaoId, Date dataInicio, Date dataFinal) {
+						  String refeicaoNome, int refeicaoId, Date dataInicio, Date dataFinal, String latitude,
+						  String longitude) {
 		this.solicitacaoId = solicitacaoId;
 		this.requisicaoId = requisicaoId;
+		this.podeAlterar = podeAlterar;
 		this.dataSolicitacao = dataSolicitacao;
 		this.nomeRequerente = nomeRequerente;
 		this.matriculaRequerente = matriculaRequerente;
@@ -38,10 +44,14 @@ public class Requisicao implements Serializable{
 		this.refeicaoId = refeicaoId;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public int getSolicitacaoId() {return solicitacaoId;}
 	public void setSolicitacaoId(int solicitacaoId) {this.solicitacaoId = solicitacaoId;}
+	public boolean isPodeAlterar() {return podeAlterar;}
+	public void setPodeAlterar(boolean podeAlterar) {this.podeAlterar = podeAlterar;}
 	public int getRequisicaoId() {return requisicaoId;}
 	public void setRequisicaoId(int requisicaoId) {this.requisicaoId = requisicaoId;}
 	public Date getDataSolicitacao() {return dataSolicitacao;}
@@ -64,5 +74,8 @@ public class Requisicao implements Serializable{
 	public void setDataInicio(Date dataInicio) {this.dataInicio = dataInicio;}
 	public Date getDataFinal() {return dataFinal;}
 	public void setDataFinal(Date dataFinal) {this.dataFinal = dataFinal;}
-	
+	public String getLatitude() {return latitude;}
+	public void setLatitude(String latitude) {this.latitude = latitude;}
+	public String getLongitude() {return longitude;}
+	public void setLongitude(String longitude) {this.longitude = longitude;}
 }
