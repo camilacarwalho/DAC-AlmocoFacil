@@ -34,7 +34,7 @@
       <div class="col s4" >
             <div class="card white " align="center">
 
-                <h:form>
+                <h:form id="login">
 
                     <img src="/app/resources/img/Logo.png" class="logoimagem" />
 
@@ -67,6 +67,9 @@
                             value="Acessar"
                             action="#{usuarioController.logon()}"
                             styleClass="white-text btn green accent-4 center-align btn-large"/>
+                            
+                     <h:inputHidden id="latitude" value="#{usuarioController.latitude}"/>
+                     <h:inputHidden id="longitude" value="#{usuarioController.longitude}"/>
                 </h:form>
                 <br/><br/>
                 <br/><br/>
@@ -75,13 +78,6 @@
 
         <div class="col s4"></div>
     </div>
-
-
-
-
-
-
-
 
     <div class="footer-copyright">
         <div class="container white-text">
@@ -94,6 +90,40 @@
     <h:outputScript library="js" name="JQuery.js" />
     <h:outputScript library="js" name="materialize.js" />
     <h:outputScript library="js" name="init.js" />
+
+
+	<script>
+		var lat = document.getElementById("login:latitude");
+		var log = document.getElementById("login:longitude");
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition,showError);
+			} else {
+				alert("Seu browser não suporta Geolocalização.");
+			}
+		}
+		function showPosition(position) {
+			lat.value = position.coords.latitude;
+			log.value = position.coords.longitude;
+		}
+		function showError(error) {
+			switch (error.code) {
+			case error.PERMISSION_DENIED:
+				alert("Usuário rejeitou a solicitação de Geolocalização.")
+				break;
+			case error.POSITION_UNAVAILABLE:
+				alert("Localização indisponível.")
+				break;
+			case error.TIMEOUT:
+				alert("A requisição expirou.")
+				break;
+			case error.UNKNOWN_ERROR:
+				alert("Algum erro desconhecido aconteceu.")
+				break;
+			}
+		}
+		getLocation();
+	</script>
 
 
 </h:body>
