@@ -31,7 +31,7 @@ public class RefeitorioAutorizacaoController implements Serializable {
 
     @Inject
     private Notificacao notificacao;
-    
+
     private LocalDate dataHoje;
     private LocalTime horaAgora;
     private List<Autorizacao> todasAltorizacoes;
@@ -39,7 +39,7 @@ public class RefeitorioAutorizacaoController implements Serializable {
     private List<Autorizacao> autorizacaoAumoco;
     private List<Autorizacao> autorizacaoAgora;
     private String tipoRefeicao;
-    private Boolean ativo; 
+    private Boolean ativo;
     private final LocalTime terminoAlmoco = LocalTime.parse("14:00:00");
 
     @PostConstruct
@@ -96,8 +96,8 @@ public class RefeitorioAutorizacaoController implements Serializable {
         );
         return "listagem.xhtml";
     }
-    
-     private void verificaSeAtivo() {
+
+    private void verificaSeAtivo() {
         ativo = false;
         boolean result = autorizacaoAgora.stream().anyMatch(obj -> obj.getStatusAutorizacao().equals(StatusAutorizacao.PENDENTE));
         ativo = result;
@@ -117,6 +117,16 @@ public class RefeitorioAutorizacaoController implements Serializable {
         autorizacaoService.alterarStatusAutorizacao(idAltorizacao, StatusAutorizacao.AUSENTE);
     }
 
+    public void notificar(){
+        try {
+            notificacao.notificarAll();
+        } catch (FirebaseMessagingException ex) {
+            Logger.getLogger(RefeitorioAutorizacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(RefeitorioAutorizacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
     public LocalDate getDataHoje() {
         return dataHoje;
     }
@@ -152,7 +162,5 @@ public class RefeitorioAutorizacaoController implements Serializable {
     public Boolean getAtivo() {
         return ativo;
     }
-
-   
 
 }
