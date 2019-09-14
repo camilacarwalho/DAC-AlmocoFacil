@@ -72,6 +72,11 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 	}
 
 	@Override
+	public void atualizar(Requisicao requisicao) {
+		requisicaoDao.atualizar(requisicao);
+	}
+
+	@Override
 	public boolean podeAutorizar(Requisicao requisicao) {
 		if (isEncerrada(requisicao))
 			return false;

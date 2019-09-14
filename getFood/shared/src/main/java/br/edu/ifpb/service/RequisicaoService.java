@@ -13,6 +13,7 @@ public interface RequisicaoService {
     boolean definirAlunos(Requisicao requisicao, List<Aluno> alunos);
 	boolean isEncerrada(Requisicao requisicao);
 	void negar(Requisicao requisicao);
+	void atualizar(Requisicao requisicao);
 	void autorizar(Requisicao requisicao);
 	void autorizarCompulsoriamente(Requisicao requisicao);
 	boolean podeAutorizar(Requisicao requisicao);

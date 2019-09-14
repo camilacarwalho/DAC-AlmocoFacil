@@ -61,19 +61,33 @@ public class ResourcesRequisicao {
 				.build();
 	}
 	
-	@PUT
-	@Path("{requisicaoId}")
+	@PUT	
+	@Path("salvar")
 	public Response salvarRequisicao(RequisicaoRest requisicaoRest) {
 		Requisicao requisicao = convertRestToRequisicao.run(requisicaoRest);
-		if (requisicao.getId() != 0) {
-			solicitacaoService.atualizar(requisicao.getSolicitacao());
-			requisicaoService.autorizar(requisicao);
-		} else {
-			solicitacaoService.salvar(requisicao.getSolicitacao());
+		boolean salvou = false;
+		if (requisicao != null) {
+			if (requisicao.getId() != null) {
+				if (requisicaoService.podeAlterar(requisicao)) {
+					solicitacaoService.atualizar(requisicao.getSolicitacao());
+//					requisicaoService.atualizar(requisicao);
+					salvou = true;
+				}
+			} else {
+				solicitacaoService.salvar(requisicao.getSolicitacao());
+				salvou = true;
+			}
 		}
+		
+		if (salvou)
+			return Response.ok()
+					.entity(ConvertObjectRest.requisicaoParaRest(requisicao))
+					.build();
+		
 		return Response.ok()
-				.entity(ConvertObjectRest.requisicaoParaRest(requisicao))
+				.status(Status.BAD_REQUEST)
 				.build();
+		
 	}
 	
 	@GET
