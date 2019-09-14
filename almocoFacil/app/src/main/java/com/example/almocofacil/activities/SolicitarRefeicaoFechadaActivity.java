@@ -31,6 +31,7 @@ import java.util.List;
 public class SolicitarRefeicaoFechadaActivity extends AppCompatActivity {
 
     private Requisicao requisicao;
+    private TextView tvStatus;
     private TextView tvDescricao;
     private TextView tvDataInicio;
     private TextView tvDataFinal;
@@ -46,7 +47,7 @@ public class SolicitarRefeicaoFechadaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_solicitar_refeicao_fechada);
 
         alunos = new ArrayList<>();
-
+        tvStatus = findViewById(R.id.tvStatus);
         tvDescricao = findViewById(R.id.tvDescricao);
         tvDataInicio = findViewById(R.id.tvDataInicio);
         tvDataFinal = findViewById(R.id.tvDataFinal);
@@ -67,6 +68,7 @@ public class SolicitarRefeicaoFechadaActivity extends AppCompatActivity {
     private void carregarDados(){
         progress.show();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        tvStatus.setText(requisicao.getStatus().getNome());
         tvDescricao.setText(requisicao.getDescricao());
 
         Calendar cal = Calendar.getInstance();
