@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 
     <application
@@ -25,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SolicitarRefeicaoActivity"/>
+        <activity android:name=".activities.SolicitarRefeicaoFechadaActivity"/>
         <activity android:name=".activities.AcompanharSolicitacaoActivity"/>
         <activity android:name=".activities.RelatorioRefeicaoActivity" />
         <activity android:name=".activities.ListarAlunos"/>
