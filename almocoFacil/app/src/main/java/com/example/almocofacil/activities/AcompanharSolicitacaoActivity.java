@@ -17,6 +17,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Requisicao;
 import com.example.almocofacil.domain.Usuario;
+import com.example.almocofacil.domain.enums.StatusRequisicao;
 import com.example.almocofacil.services.AcessoRest;
 import com.example.almocofacil.services.UsuarioService;
 import com.google.gson.reflect.TypeToken;
@@ -24,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class AcompanharSolicitacaoActivity extends AppCompatActivity {
@@ -84,10 +86,27 @@ public class AcompanharSolicitacaoActivity extends AppCompatActivity {
             finish();
         }
         if (id== R.id.solicitacao){
-            irPara(new Requisicao());
+            irPara(novaRequisicao());
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private Requisicao novaRequisicao() {
+        Usuario usuario = UsuarioService.getUsuarioService(getApplicationContext()).getUsuarioLogado();
+        Requisicao requisicao = new Requisicao();
+        requisicao.setRequisicaoId(0);
+        requisicao.setSolicitacaoId(0);
+        requisicao.setDataSolicitacao(new Date());
+        requisicao.setMatriculaRequerente(usuario.getMatricula());
+        requisicao.setNomeRequerente(usuario.getNome());
+        requisicao.setDataInicio(new Date());
+        requisicao.setDataFinal(new Date());
+        requisicao.setDescricao("Informe a descrição");
+        requisicao.setStatus(StatusRequisicao.PENDENTE);
+        requisicao.setRefeicaoNome("Almoço");
+        requisicao.setRefeicaoId(1);
+        return requisicao;
     }
 
     private void atualizar(){
