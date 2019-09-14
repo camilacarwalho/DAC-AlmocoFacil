@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -37,7 +38,9 @@ public abstract class DefaultRest<T> {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Gson gson = new Gson();
+                Gson gson = new GsonBuilder()
+                        .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                        .create();
                 RequestBody body = null;
                 if (object != null){
                     String json = gson.toJson(object);
