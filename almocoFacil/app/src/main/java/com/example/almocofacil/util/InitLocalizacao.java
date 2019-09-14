@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,9 +50,13 @@ public class InitLocalizacao implements GoogleApiClient.ConnectionCallbacks, Goo
     public void onConnected(@Nullable Bundle bundle) {
         System.out.print("Conexão com o serviços do Google Service API foi estabelecida!");
         localizacao = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        String latitude = "";
+        String longitude = "";
 
-        String latitude = String.valueOf(localizacao.getLatitude());
-        String longitude = String.valueOf(localizacao.getLongitude());
+        if (localizacao != null){
+            latitude = String.valueOf(localizacao.getLatitude());
+            longitude = String.valueOf(localizacao.getLongitude());
+        }
 
         SharedPreferences sp = LocalizacaoSingleton.getInstance(context);
         SharedPreferences.Editor editor = sp.edit();
