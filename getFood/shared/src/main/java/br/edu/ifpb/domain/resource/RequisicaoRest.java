@@ -20,12 +20,15 @@ public class RequisicaoRest implements Serializable{
 	private int refeicaoId;
 	private Date dataInicio;
 	private Date dataFinal;
+	private String latitude;
+	private String longitude;
 	
 	public RequisicaoRest() {}
 
 	public RequisicaoRest(int solicitacaoId, int requisicaoId, Date dataSolicitacao, String nomeRequerente,
 			String matriculaRequerente, String descricao, StatusRequisicao status, String justificativa,
-			String refeicaoNome, int refeicaoId, Date dataInicio, Date dataFinal) {
+			String refeicaoNome, int refeicaoId, Date dataInicio, Date dataFinal, String latitude,
+			String longitude) {
 		super();
 		this.solicitacaoId = solicitacaoId;
 		this.requisicaoId = requisicaoId;
@@ -39,6 +42,8 @@ public class RequisicaoRest implements Serializable{
 		this.refeicaoId = refeicaoId;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public int getSolicitacaoId() {return solicitacaoId;}
@@ -65,5 +70,8 @@ public class RequisicaoRest implements Serializable{
 	public void setDataInicio(Date dataInicio) {this.dataInicio = dataInicio;}
 	public Date getDataFinal() {return dataFinal;}
 	public void setDataFinal(Date dataFinal) {this.dataFinal = dataFinal;}
-
+	public String getLatitude() {return latitude;}
+	public void setLatitude(String latitude) {this.latitude = latitude;}
+	public String getLongitude() {return longitude;}
+	public void setLongitude(String longitude) {this.longitude = longitude;}
 }
