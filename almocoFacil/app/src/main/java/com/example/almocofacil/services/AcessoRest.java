@@ -10,6 +10,7 @@ import okhttp3.RequestBody;
 public abstract class AcessoRest<T> {
 
     protected static final String URL_REST_API = "http://10.0.3.2:8080/app/api/";
+    //protected static final String URL_REST_API = "http://192.168.0.108:8080/app/api/";
 
     private String path;
     private final Activity activity;
