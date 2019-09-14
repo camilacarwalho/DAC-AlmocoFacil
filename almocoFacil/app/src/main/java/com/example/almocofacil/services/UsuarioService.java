@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.example.almocofacil.domain.Usuario;
 import com.example.almocofacil.threads.ApiRequest;
+import com.example.almocofacil.util.LocalizacaoSingleton;
 import com.google.gson.Gson;
 
 public class UsuarioService {
@@ -45,4 +46,12 @@ public class UsuarioService {
 
     public Usuario getUsuarioLogado() {return usuarioLogado;}
     public boolean isLogado() {return logado;}
+
+    public static String getLatitude(Context context){
+        return LocalizacaoSingleton.getInstance(context).getString("latitude", "padrao");
+    }
+
+    public static String getLongitude(Context context){
+        return LocalizacaoSingleton.getInstance(context).getString("longitude", "padrao");
+    }
 }
