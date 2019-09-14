@@ -12,6 +12,7 @@ import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Requisicao;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class RequisicaoAdapter extends BaseAdapter {
@@ -54,10 +55,16 @@ public class RequisicaoAdapter extends BaseAdapter {
         }
         Requisicao requisicao = requisicoes.get(i);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
 
-        holder.dataInicio.setText(sdf.format(requisicao.getDataInicio()));
-        holder.dataFinal.setText(sdf.format(requisicao.getDataFinal()));
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(requisicao.getDataInicio());
+        cal.add(Calendar.DAY_OF_MONTH,1);
+        holder.dataInicio.setText(sdf.format(cal.getTime()));
+
+        cal.setTime(requisicao.getDataFinal());
+        cal.add(Calendar.DAY_OF_MONTH,1);
+        holder.dataFinal.setText(sdf.format(cal.getTime()));
         holder.refeicao.setText(requisicao.getRefeicaoNome());
         holder.status.setText(requisicao.getStatus().getNome());
 
