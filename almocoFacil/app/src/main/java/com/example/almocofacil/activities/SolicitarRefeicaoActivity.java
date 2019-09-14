@@ -91,6 +91,13 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
     }
 
     private void solicitar() {
+
+        if(alunos.size() == 0){
+            Toast.makeText(getApplicationContext(),"Não existe aluno na solicitação.",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
         if (!escreverDados())
             return;
         progress.setTitle("Requisitando...");
@@ -175,17 +182,11 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
 
     private void carregarDados(){
         progress.show();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         edDescricao.setText(requisicao.getDescricao());
 
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(requisicao.getDataInicio());
-//        cal.add(Calendar.DAY_OF_MONTH,1);
-        edDataInicio.setText(sdf.format(cal.getTime()));
+        carregarDatas();
 
-        cal.setTime(requisicao.getDataFinal());
-//        cal.add(Calendar.DAY_OF_MONTH,1);
-        edDataFinal.setText(sdf.format(cal.getTime()));
 
         rbAlmoco.setChecked(requisicao.getRefeicaoId() == 1);
         rbJantar.setChecked(requisicao.getRefeicaoId() == 2);
@@ -212,6 +213,18 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
         }
     }
 
+    private void carregarDatas() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(requisicao.getDataInicio());
+//        cal.add(Calendar.DAY_OF_MONTH,1);
+        edDataInicio.setText(sdf.format(cal.getTime()));
+
+        cal.setTime(requisicao.getDataFinal());
+//        cal.add(Calendar.DAY_OF_MONTH,1);
+        edDataFinal.setText(sdf.format(cal.getTime()));
+    }
+
     private boolean escreverDados() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         requisicao.setDescricao(edDescricao.getText().toString());
@@ -234,7 +247,25 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Data inválida",Toast.LENGTH_LONG).show();
             return false;
         }
-        return true;
+
+        if (requisicao.getDataInicio().after(requisicao.getDataFinal())){
+            Date tmp = requisicao.getDataInicio();
+            requisicao.setDataInicio(requisicao.getDataFinal());
+            requisicao.setDataFinal(tmp);
+            carregarDatas();
+        }
+
+        Date hoje = new Date();
+
+        if(requisicao.getDataInicio().after(hoje)) {
+            return true;
+        }else{
+            Toast.makeText(getApplicationContext(),"Data inválida.",Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+
+
     }
 
     private void listarAlunos() {
@@ -244,6 +275,13 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
     }
 
     private void adicionarEstudante(String matricula){
+
+        for (Aluno aluno: alunos)
+            if(aluno.getMatricula().equals(matricula)){
+                Toast.makeText(getApplicationContext(),"Aluno já incluído",Toast.LENGTH_LONG).show();
+                return;
+            }
+
         progress.show();
         String url = "aluno/"+matricula;
         new AcessoRest<Aluno>(this,url,Aluno.class){
