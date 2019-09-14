@@ -19,11 +19,7 @@ public class UsuarioService {
         sair();
     }
 
-    public static UsuarioService getUsarioService(Context applicationContext) {
-        return null;
-    }
-
-    private void sair() {
+     private void sair() {
         usuarioLogado = new Usuario();
         logado = false;
     }
