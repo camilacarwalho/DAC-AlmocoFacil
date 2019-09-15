@@ -37,32 +37,30 @@
                         <div class="col l2"><b>Autorizações</b></div>
                     </div>
                 </li>
-                <ui:repeat var="solicitacao" value="#">
+                
+                <ui:repeat var="edital" value="#{editalController.listar}">
                     <li class="collection-item">
                         <div class="row">
                             <div class="col l2">
-                                <h:outputText value="#"></h:outputText>
+                                <h:outputText value="#{edital.codigo}"></h:outputText>
                             </div>
                             <div class="col l2">
-                                <h:outputText value="#"></h:outputText>
+                                <h:outputText value="#{edital.periodo.ano}"></h:outputText>
                             </div>
                             <div class="col l1">
-                                <h:outputText value="#"></h:outputText>
+                                <h:outputText value="#{edital.periodo.periodo}"></h:outputText>
                             </div>
                             <div class="col l5">
-                                <h:outputText value="#"></h:outputText>
+                                <h:outputText value="#{edital.periodo.dataInicio}"></h:outputText>
+                                <h:outputText value="#{edital.periodo.dataFinal}"></h:outputText>
                             </div>
                             <div class="col l2">
-                                <h:outputText value="#"></h:outputText>
+                                <h:outputText value="#{editalController.totalAutorizacoes}"></h:outputText>
                             </div>
-
-
-
                         </div>
-
                     </li>
-
                 </ui:repeat>
+                
             </ul>
         </h:form>
     </ui:define>

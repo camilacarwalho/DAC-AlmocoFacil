@@ -63,4 +63,5 @@ public class EditalDaoJPA implements EditalDao {
         TypedQuery<Edital> query = em.createQuery(jpql, Edital.class);
         return query.getSingleResult();
     }
+    
 }

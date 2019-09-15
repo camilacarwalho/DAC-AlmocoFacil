@@ -7,6 +7,10 @@ public interface EditalService {
     
     Edital pesquisar(String codigo);
     
+    Edital buscarPorPeriodo(int periodo);
+    
+    Edital buscarPorAno(int ano);
+    
     List<Edital> listar();
     
     void salvar(Edital edital);
