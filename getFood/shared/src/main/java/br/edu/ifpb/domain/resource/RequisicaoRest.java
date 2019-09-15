@@ -10,6 +10,7 @@ public class RequisicaoRest implements Serializable{
 	private static final long serialVersionUID = 3997712216264687692L;
 	private int solicitacaoId;
 	private int requisicaoId;
+	private boolean podeAlterar;
 	private Date dataSolicitacao;
 	private String nomeRequerente;
 	private String matriculaRequerente;
@@ -25,13 +26,14 @@ public class RequisicaoRest implements Serializable{
 	
 	public RequisicaoRest() {}
 
-	public RequisicaoRest(int solicitacaoId, int requisicaoId, Date dataSolicitacao, String nomeRequerente,
+	public RequisicaoRest(int solicitacaoId, int requisicaoId, boolean podeAlterar, Date dataSolicitacao, String nomeRequerente,
 			String matriculaRequerente, String descricao, StatusRequisicao status, String justificativa,
 			String refeicaoNome, int refeicaoId, Date dataInicio, Date dataFinal, String latitude,
 			String longitude) {
 		super();
 		this.solicitacaoId = solicitacaoId;
 		this.requisicaoId = requisicaoId;
+		this.podeAlterar = podeAlterar;
 		this.dataSolicitacao = dataSolicitacao;
 		this.nomeRequerente = nomeRequerente;
 		this.matriculaRequerente = matriculaRequerente;
@@ -48,6 +50,8 @@ public class RequisicaoRest implements Serializable{
 
 	public int getSolicitacaoId() {return solicitacaoId;}
 	public void setSolicitacaoId(int solicitacaoId) {this.solicitacaoId = solicitacaoId;}
+	public boolean isPodeAlterar() {return podeAlterar;}
+	public void setPodeAlterar(boolean podeAlterar) {this.podeAlterar = podeAlterar;}
 	public int getRequisicaoId() {return requisicaoId;}
 	public void setRequisicaoId(int requisicaoId) {this.requisicaoId = requisicaoId;}
 	public Date getDataSolicitacao() {return dataSolicitacao;}

@@ -1,14 +1,19 @@
 package br.edu.ifpb.service.resouces.convert;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 import br.edu.ifpb.domain.Aluno;
+import br.edu.ifpb.domain.Autorizacao;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.Solicitacao;
 import br.edu.ifpb.domain.Usuario;
+import br.edu.ifpb.domain.enums.StatusRequisicao;
 import br.edu.ifpb.domain.resource.AlunoRest;
+import br.edu.ifpb.domain.resource.AutorizacaoRest;
 import br.edu.ifpb.domain.resource.RequisicaoRest;
 import br.edu.ifpb.domain.resource.UsuarioRest;
 
@@ -32,13 +37,54 @@ public class ConvertObjectRest {
 				usuario.getPessoa().getTelefone());			
 	}
 	
+	public static AutorizacaoRest autorizacaoParaRest(Autorizacao autorizacao) {
+		if (autorizacao == null 
+				|| autorizacao.getAluno() == null
+				|| autorizacao.getRefeicao() == null) {
+			return new AutorizacaoRest();
+		}
+		
+		Date data = convertaLocalParaDate(autorizacao.getData(),autorizacao.getHora());
+		
+		return new AutorizacaoRest(
+				autorizacao.getId().intValue(),//autorizacaoId, 
+				autorizacao.getAluno().getMatricula(), //matriculaAluno, 
+				autorizacao.getAluno().getPessoa().getNome(), //nomeAluno, 
+				data, 
+				autorizacao.getRefeicao().getNome(), //refeicaoNome, 
+			 	autorizacao.getRefeicao().getId().intValue(), //refeicaoId, 
+				autorizacao.getStatusAutorizacao(), //statusAutorizacao, 
+				autorizacao.getRequisicao().getId().intValue()); //requisicaoId);
+	}
 	
+	
+	private static Date convertaLocalParaDate(LocalDate data, LocalTime hora) {
+		
+		Date d = Date.from(data.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		
+				
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+//		if(data != null) {
+//			cal.set(Calendar.YEAR, data.getYear());
+//			cal.set(Calendar.MONTH, data.getMonthValue() -1);
+//			cal.set(Calendar.DAY_OF_MONTH, data.getDayOfMonth());
+//		}
+		if(hora != null) {
+			cal.set(Calendar.HOUR_OF_DAY, hora.getHour());
+			cal.set(Calendar.MINUTE, hora.getMinute());
+			cal.set(Calendar.SECOND, hora.getSecond());
+		}
+		return  cal.getTime();
+	}
+
 	public static RequisicaoRest requisicaoParaRest(Requisicao requisicao) {
 		if(requisicao == null || requisicao.getSolicitacao() == null)
 			return new RequisicaoRest();
 		return new RequisicaoRest(
 				requisicao.getSolicitacao().getId().intValue(), //solicitacaoId, 
 				requisicao.getId().intValue(), //requisicaoId,
+				podeAlterarRequisicao(requisicao), //podeAltera
 				localDateToDate(requisicao.getSolicitacao().getDataSolicitacao()), //dataSolicitacao, 
 				requisicao.getSolicitacao().getUsuario().getPessoa().getNome(), //nomeRequerente, 
 				requisicao.getSolicitacao().getUsuario().getMatricula(), //matriculaRequerente, 
@@ -51,6 +97,11 @@ public class ConvertObjectRest {
 				localDateToDate(requisicao.getDataFinal()),// dataFinal);
 				requisicao.getSolicitacao().getLatitude(),// latitude);
 				requisicao.getSolicitacao().getLongitude());// longitude);
+	}
+	
+	private static boolean podeAlterarRequisicao(Requisicao requisicao) {
+		return requisicao.getStatusRequisicao() == StatusRequisicao.PENDENTE 
+				&& requisicao.getDataInicial().isAfter(LocalDate.now());
 	}
 		
 	
@@ -66,4 +117,5 @@ public class ConvertObjectRest {
 				aluno.getPessoa().getTelefone()); //telefone);
 				
 	}
+	
 }
