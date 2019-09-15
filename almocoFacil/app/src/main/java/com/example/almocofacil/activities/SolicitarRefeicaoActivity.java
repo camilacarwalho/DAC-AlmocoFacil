@@ -263,9 +263,6 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Data inválida.",Toast.LENGTH_LONG).show();
             return false;
         }
-
-
-
     }
 
     private void listarAlunos() {
