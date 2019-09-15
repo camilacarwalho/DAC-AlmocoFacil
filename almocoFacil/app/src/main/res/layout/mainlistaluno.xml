@@ -16,6 +16,7 @@
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="?attr/actionModeCloseDrawable" >
 
+
         <TextView
             android:id="@+id/toolbarTextListAluno"
             android:layout_width="wrap_content"
@@ -41,8 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="47dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="55dp"
             android:text="Refeição"
             android:textSize="25dp"
             tools:layout_editor_absoluteX="200p"
@@ -56,6 +57,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginEnd="279dp"
             android:text="Data"
+
             android:textSize="25dp"
             tools:layout_editor_absoluteX="200p"
             tools:layout_editor_absoluteY="5dp" />
@@ -69,6 +71,7 @@
             android:layout_marginEnd="226dp"
             android:layout_marginBottom="101dp"
             android:ems="10"
+            android:background="@drawable/my_bg"
             android:inputType="date" />
 
         <Spinner
@@ -77,8 +80,9 @@
             android:layout_height="38dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="107dp" />
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="102dp"
+            android:background="@drawable/my_bg" />
 
         <Button
             android:id="@+id/button2"
@@ -90,7 +94,10 @@
             android:layout_marginStart="154dp"
             android:layout_marginEnd="152dp"
             android:layout_marginBottom="17dp"
-            android:text="Listar" />
+            android:text="Listar"
+            android:background="@drawable/my_bg"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/colorWhite"/>
 
 
     </RelativeLayout>
