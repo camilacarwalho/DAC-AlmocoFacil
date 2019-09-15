@@ -16,12 +16,18 @@ import android.widget.Toast;
 
 import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Autorizacao;
+import com.example.almocofacil.domain.BuscaAutorizacao;
 import com.example.almocofacil.domain.enums.StatusAutorizacao;
+import com.example.almocofacil.services.AcessoRest;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class ListaAutorizacaoActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
@@ -81,6 +87,26 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
         edData.setText(sdf.format(data));
     }
 
+    private boolean carregarData(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+
+
+            data = sdf.parse(edData.getText().toString());
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(data);
+            cal.add(Calendar.HOUR_OF_DAY,3);
+            data = cal.getTime();
+
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),"Data inválida",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.logout, menu);
@@ -88,19 +114,30 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
     }
 
     private void carregarDados() {
+
+        if(! carregarData())
+            return;
+
         progress.show();
-        for(int i = 0; i < 10; i++)
-            autorizacoes.add(new Autorizacao(
-                   0,
-                   "201912010001",
-                   "José das Couves Braga Pereira Filho",
-                   new Date(),
-                   "Almoço",
-                   1,
-                    StatusAutorizacao.PENDENTE,
-                    1
-            ));
-        atualizarLista(autorizacoes);
+        BuscaAutorizacao ba = new BuscaAutorizacao(data, refeicao);
+
+        Type listType = new TypeToken<ArrayList<Autorizacao>>(){}.getType();
+
+
+        new AcessoRest<List<Autorizacao>>(
+                this,
+                "autorizacao/listar",
+                listType){
+
+            @Override
+            public void retorno(List<Autorizacao> objeto) {
+                if(objeto != null){
+                    atualizarLista(objeto);
+                } else {
+                    atualizarLista(new ArrayList<Autorizacao>());
+                }
+            }
+        }.put(ba);
     }
 
     private void atualizarLista(List<Autorizacao> autorizacoes ){
@@ -137,7 +174,9 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_LONG).show();
+        refeicao = text;
+        carregarDados();
+//        Toast.makeText(parent.getContext(),text,Toast.LENGTH_LONG).show();
     }
 
     @Override

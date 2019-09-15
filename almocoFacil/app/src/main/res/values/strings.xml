@@ -16,6 +16,6 @@
     <string name="title_activity_relatorio_refeicao">Relatorio de Refeição</string>
     <string-array name="lista_refeicao">
         <item>Almoço</item>
-        <item>Janta</item>
+        <item>Jantar</item>
     </string-array>
 </resources>

@@ -215,16 +215,17 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
         cal.setTime(requisicao.getDataInicio());
-//        cal.add(Calendar.DAY_OF_MONTH,1);
+        cal.add(Calendar.HOUR_OF_DAY,3);
         edDataInicio.setText(sdf.format(cal.getTime()));
 
         cal.setTime(requisicao.getDataFinal());
-//        cal.add(Calendar.DAY_OF_MONTH,1);
+        cal.add(Calendar.HOUR_OF_DAY,3);
         edDataFinal.setText(sdf.format(cal.getTime()));
     }
 
     private boolean escreverDados() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
         requisicao.setDescricao(edDescricao.getText().toString());
         if((!rbAlmoco.isChecked()) && !(rbJantar.isChecked())){
             Toast.makeText(getApplicationContext(),"Selecione uma refeição",Toast.LENGTH_LONG).show();
@@ -239,8 +240,14 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
         }
 
         try {
-            requisicao.setDataInicio(sdf.parse(edDataInicio.getText().toString()));
-            requisicao.setDataFinal(sdf.parse(edDataFinal.getText().toString()));
+
+            cal.setTime(sdf.parse(edDataInicio.getText().toString()));
+            cal.add(Calendar.HOUR_OF_DAY, 3);
+            requisicao.setDataInicio(cal.getTime());
+
+            cal.setTime(sdf.parse(edDataFinal.getText().toString()));
+            cal.add(Calendar.HOUR_OF_DAY, 3);
+            requisicao.setDataFinal(cal.getTime());
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),"Data inválida",Toast.LENGTH_LONG).show();
             return false;
