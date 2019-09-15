@@ -20,5 +20,6 @@ public interface AutorizacaoService {
     public void finalizarTodasAutorizacoesPendentesHoje();
     public int quantAutorizacaoRR(LocalDate dataInicial, LocalDate dataFinal);
     public List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, LocalDate dataInicial, LocalDate dataFinal);
+    public List<AutorizacaoRR> listarAutorizacaoRRApi(LocalDate dataInicial, LocalDate dataFinal);
         
 }
