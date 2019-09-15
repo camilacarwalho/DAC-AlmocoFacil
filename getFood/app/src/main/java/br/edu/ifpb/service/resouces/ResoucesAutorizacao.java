@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 
 import br.edu.ifpb.domain.Autorizacao;
 import br.edu.ifpb.domain.Refeicao;
+import br.edu.ifpb.domain.enums.StatusAutorizacao;
 import br.edu.ifpb.domain.resource.AutorizacaoRest;
 import br.edu.ifpb.domain.resource.BuscaAutorizacao;
 import br.edu.ifpb.service.AutorizacaoService;
@@ -53,6 +54,23 @@ public class ResoucesAutorizacao {
 		GenericEntity<List<AutorizacaoRest>> entity = new GenericEntity<List<AutorizacaoRest>>(autorizacoes) {};
 		return Response.ok()
 				.entity(entity)
+				.build();
+	}
+	
+	@PUT
+	@Path("finalizar")
+	public Response finalizar(AutorizacaoRest[] autorizacoes) {
+		for (AutorizacaoRest autorizacaoRest: autorizacoes) {
+			Autorizacao autorizacao = autorizacaoService.buscar(autorizacaoRest.getAutorizacaoId());
+			if(autorizacaoRest.getStatusAutorizacao() == StatusAutorizacao.PENDENTE)
+				autorizacaoRest.setStatusAutorizacao(StatusAutorizacao.AUSENTE);			
+			if(autorizacao != null) {
+				autorizacao.setStatusAutorizacao(autorizacaoRest.getStatusAutorizacao());				
+				autorizacaoService.Atualizar(autorizacao);
+			}
+		}
+		return Response.ok()
+				.entity("ok")
 				.build();
 	}
 

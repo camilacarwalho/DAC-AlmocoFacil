@@ -51,6 +51,7 @@ public class ConvertObjectRest {
 		concluida = concluida || autorizacao.getStatusAutorizacao() == StatusAutorizacao.NEGADA;
 		concluida = concluida || autorizacao.getStatusAutorizacao() == StatusAutorizacao.RENUNCIADA;
 		concluida = concluida || autorizacao.getStatusAutorizacao() == StatusAutorizacao.AUSENTE;
+		concluida = concluida || autorizacao.getStatusAutorizacao() == StatusAutorizacao.REALIZADA;
 		
 		
 		Date data = convertaLocalParaDate(autorizacao.getData(),autorizacao.getHora());

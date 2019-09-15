@@ -110,7 +110,7 @@ public class AutorizacaoServiceImpl implements AutorizacaoService{
 
     @Override
     public Autorizacao buscar(int id) {
-        return autorizacaoDao.buscar(id);
+        return autorizacaoDao.buscar(Long.valueOf(id));
 
     }
 

@@ -1,19 +1,22 @@
 package br.edu.ifpb.api;
 
-import br.edu.ifpb.dao.AutorizacaoDao;
-import br.edu.ifpb.domain.AutorizacaoRR;
-import br.edu.ifpb.service.AutorizacaoService;
-import br.edu.ifpb.service.AutorizaoService;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import br.edu.ifpb.domain.AutorizacaoRR;
+import br.edu.ifpb.service.AutorizacaoService;
 
 @Stateless
 @Path("gestores")
