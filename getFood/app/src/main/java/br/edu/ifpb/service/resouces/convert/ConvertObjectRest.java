@@ -11,6 +11,7 @@ import br.edu.ifpb.domain.Autorizacao;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.Solicitacao;
 import br.edu.ifpb.domain.Usuario;
+import br.edu.ifpb.domain.enums.StatusAutorizacao;
 import br.edu.ifpb.domain.enums.StatusRequisicao;
 import br.edu.ifpb.domain.resource.AlunoRest;
 import br.edu.ifpb.domain.resource.AutorizacaoRest;
@@ -44,6 +45,14 @@ public class ConvertObjectRest {
 			return new AutorizacaoRest();
 		}
 		
+		
+		LocalDate hoje = LocalDate.now();
+		boolean concluida = LocalDate.now().isAfter(autorizacao.getData()); 
+		concluida = concluida || autorizacao.getStatusAutorizacao() == StatusAutorizacao.NEGADA;
+		concluida = concluida || autorizacao.getStatusAutorizacao() == StatusAutorizacao.RENUNCIADA;
+		concluida = concluida || autorizacao.getStatusAutorizacao() == StatusAutorizacao.AUSENTE;
+		
+		
 		Date data = convertaLocalParaDate(autorizacao.getData(),autorizacao.getHora());
 		
 		return new AutorizacaoRest(
@@ -54,7 +63,8 @@ public class ConvertObjectRest {
 				autorizacao.getRefeicao().getNome(), //refeicaoNome, 
 			 	autorizacao.getRefeicao().getId().intValue(), //refeicaoId, 
 				autorizacao.getStatusAutorizacao(), //statusAutorizacao, 
-				autorizacao.getRequisicao().getId().intValue()); //requisicaoId);
+				autorizacao.getRequisicao().getId().intValue(), //requisicaoId);
+				concluida); //concluída);
 	}
 	
 	
@@ -65,11 +75,6 @@ public class ConvertObjectRest {
 				
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(d);
-//		if(data != null) {
-//			cal.set(Calendar.YEAR, data.getYear());
-//			cal.set(Calendar.MONTH, data.getMonthValue() -1);
-//			cal.set(Calendar.DAY_OF_MONTH, data.getDayOfMonth());
-//		}
 		if(hora != null) {
 			cal.set(Calendar.HOUR_OF_DAY, hora.getHour());
 			cal.set(Calendar.MINUTE, hora.getMinute());
