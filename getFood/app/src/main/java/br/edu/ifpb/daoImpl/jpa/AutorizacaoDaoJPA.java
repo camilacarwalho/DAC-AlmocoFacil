@@ -3,6 +3,7 @@ package br.edu.ifpb.daoImpl.jpa;
 import br.edu.ifpb.dao.AutorizacaoDao;
 import br.edu.ifpb.domain.Autorizacao;
 import br.edu.ifpb.domain.AutorizacaoRR;
+import br.edu.ifpb.domain.Refeicao;
 import br.edu.ifpb.domain.enums.StatusAutorizacao;
 
 import javax.ejb.Stateless;
@@ -58,6 +59,18 @@ public class AutorizacaoDaoJPA implements AutorizacaoDao {
         query.setParameter("data", data);
         return query.getResultList();
     }
+    
+    @Override
+	public List<Autorizacao> buscarDataRefeicao(LocalDate data, Refeicao refeicao) {
+		String jpql = "SELECT DISTINCT(a) FROM Autorizacao a"
+				+ " JOIN a.refeicao r"
+				+ " WHERE a.data = :data"
+				+ " AND r.id = :id ";
+		TypedQuery<Autorizacao> query = em.createQuery(jpql, Autorizacao.class);
+		query.setParameter("data", data);
+		query.setParameter("id", refeicao.getId());
+		return query.getResultList();
+	}
 
     @Override
     public void alterarStatus(Long id, StatusAutorizacao statusAutorizacao) {
