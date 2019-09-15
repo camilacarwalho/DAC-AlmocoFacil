@@ -11,7 +11,7 @@ public class Edital extends Solicitacao {
     
     @Id
     @Column(length = 20)
-    private  String codigo;
+    private String codigo;
     @JoinColumn(nullable = false)
     private Periodo periodo;
 

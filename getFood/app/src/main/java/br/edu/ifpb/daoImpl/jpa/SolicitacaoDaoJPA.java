@@ -10,13 +10,14 @@ import javax.persistence.TypedQuery;
 import br.edu.ifpb.dao.SolicitacaoDao;
 import br.edu.ifpb.domain.Solicitacao;
 import br.edu.ifpb.domain.enums.StatusRequisicao;
+import java.time.LocalDate;
 
 @Stateless
 public class SolicitacaoDaoJPA implements SolicitacaoDao {
 
     @PersistenceContext
     private EntityManager em;
-
+    
     @Override
     public void salvar(Solicitacao object) {
     	object.setId(null);
@@ -126,10 +127,14 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
 		Long qdt = query.getSingleResult(); 
 		return qdt.intValue(); 
 	}
-	
-	
-	
-	
-    
-    
+
+        @Override
+        public int solicitacoesAprovadas() {
+            String jpql ="SELECT COUNT(s.id) FROM Solicitacao s "
+                                    + "WHERE s.status = " + StatusRequisicao.AUTORIZADA;
+            TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+            Long qdt = query.getSingleResult();
+            return qdt.intValue();
+        }
+	    
 }

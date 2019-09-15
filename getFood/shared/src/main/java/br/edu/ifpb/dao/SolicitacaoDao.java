@@ -12,6 +12,6 @@ public interface SolicitacaoDao extends DefaultDao<Solicitacao> {
 	List<Solicitacao> buscarPelaMatricula(String matricula, int inicio, int quant, StatusRequisicao statusRequisicao);
 	int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao);
 	int quantSolicitacoresPelaMatricula(String matricula, StatusRequisicao statusRequisicao);
-	
+	int solicitacoesAprovadas();
 	
 }

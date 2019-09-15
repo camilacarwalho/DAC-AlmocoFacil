@@ -64,6 +64,11 @@ public class SolicitacaoServiceImpl implements Serializable, SolicitacaoService{
 	public int quantBuscarPelaMatricula(String matricula, StatusRequisicao statusRequisicao) {		
 		return solicitacaoDao.quantSolicitacoresPelaMatricula(matricula, statusRequisicao);
 	}
+        
+        @Override
+        public int quantAprovadas(){
+            return solicitacaoDao.solicitacoesAprovadas();
+        }
 
 	@Override
 	public void atualizar(Solicitacao solicitacao) {
