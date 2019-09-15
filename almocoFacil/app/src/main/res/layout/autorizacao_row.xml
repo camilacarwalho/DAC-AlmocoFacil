@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,11 +22,23 @@
             android:text="TextView"
             android:textSize="14sp" />
 
-        <CheckBox
-            android:id="@+id/cbCompareceu"
-            android:layout_width="70dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="13dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <CheckBox
+                android:id="@+id/cbCompareceu"
+                android:layout_width="70dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="13dp" />
+
+            <TextView
+                android:id="@+id/tvListAutStatus"
+                android:layout_width="70dp"
+                android:layout_height="45dp"
+                android:text="Status"
+                android:textSize="14sp" />
+        </RelativeLayout>
 
     </TableRow>
 </LinearLayout>
