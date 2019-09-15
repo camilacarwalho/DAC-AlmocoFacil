@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -61,6 +63,25 @@ public class SolicitarRefeicaoFechadaActivity extends AppCompatActivity {
         progress.setTitle("Carregando dados...");
 
         carregarDados();
+    }
+
+    //barra de tarefas
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return true;
+    }
+
+    //Opções da barra de tarefas
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id== R.id.logout){
+            System.out.println("funcionou logout main <------");
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
