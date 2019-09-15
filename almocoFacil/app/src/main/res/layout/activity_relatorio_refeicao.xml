@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Relatório de Refeição"
+            android:textColor="@color/colorPrimary"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textStyle="bold" />
@@ -39,7 +40,9 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data Inicial:"
+                    android:text="Data Inicial:  "
+                    android:textColor="@color/colorPrimary"
+
                     android:textAlignment="viewEnd" />
 
                 <EditText
@@ -47,7 +50,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:background="@drawable/my_bg" />
             </TableRow>
 
             <TableRow
@@ -58,7 +62,8 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data Final:"
+                    android:text="Data Final:   "
+                    android:textColor="@color/colorPrimary"
                     android:textAlignment="viewEnd" />
 
                 <EditText
@@ -66,7 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:background="@drawable/my_bg" />
             </TableRow>
 
             <TableRow
@@ -83,7 +89,11 @@
                     android:id="@+id/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar" />
+                    android:text="Filtrar"
+                    android:background="@drawable/my_bg"
+                    android:textColor="@color/colorWhite"
+                    android:backgroundTint="@color/colorPrimary"
+                    />
             </TableRow>
         </TableLayout>
 
@@ -101,6 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="75"
                     android:text="Data"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -108,6 +119,7 @@
                     android:layout_width="112dp"
                     android:layout_height="wrap_content"
                     android:text="Refeição"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -115,6 +127,7 @@
                     android:layout_width="124dp"
                     android:layout_height="wrap_content"
                     android:text="Status"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -122,6 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Quant."
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
             </TableRow>
         </TableLayout>
