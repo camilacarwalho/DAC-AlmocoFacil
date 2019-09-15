@@ -17,11 +17,12 @@ public class AutorizacaoRest implements Serializable {
 	private int refeicaoId;
 	private StatusAutorizacao statusAutorizacao;
 	private int requisicaoId;
+	private boolean concluida;
 	
 	public AutorizacaoRest() {}
 
 	public AutorizacaoRest(int autorizacaoId, String matriculaAluno, String nomeAluno, Date data, String refeicaoNome,
-			int refeicaoId, StatusAutorizacao statusAutorizacao, int requisicaoId) {	
+			int refeicaoId, StatusAutorizacao statusAutorizacao, int requisicaoId, boolean concluida) {	
 		this.autorizacaoId = autorizacaoId;
 		this.matriculaAluno = matriculaAluno;
 		this.nomeAluno = nomeAluno;
@@ -30,6 +31,7 @@ public class AutorizacaoRest implements Serializable {
 		this.refeicaoId = refeicaoId;
 		this.statusAutorizacao = statusAutorizacao;
 		this.requisicaoId = requisicaoId;
+		this.concluida = concluida;
 	}
 
 	public int getAutorizacaoId() {return autorizacaoId;}
@@ -48,5 +50,7 @@ public class AutorizacaoRest implements Serializable {
 	public void setStatusAutorizacao(StatusAutorizacao statusAutorizacao) {this.statusAutorizacao = statusAutorizacao;}
 	public int getRequisicaoId() {return requisicaoId;}
 	public void setRequisicaoId(int requisicaoId) {this.requisicaoId = requisicaoId;}
+	public boolean isConcluida() {return concluida;}
+	public void setConcluida(boolean concluida) {this.concluida = concluida;}
 
 }

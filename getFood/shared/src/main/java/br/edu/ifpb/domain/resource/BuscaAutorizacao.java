@@ -1,9 +1,11 @@
 package br.edu.ifpb.domain.resource;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class BuscaAutorizacao {
+public class BuscaAutorizacao implements Serializable {
 
+	private static final long serialVersionUID = 3541492143821631550L;
 	private Date data;
 	private String reifeicao;
 	
