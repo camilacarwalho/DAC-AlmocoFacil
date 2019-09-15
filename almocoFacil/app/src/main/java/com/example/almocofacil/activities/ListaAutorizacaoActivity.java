@@ -2,7 +2,9 @@ package com.example.almocofacil.activities;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -80,7 +82,50 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
             }
         });
 
+        btEncerrar.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finalizarRefeicao();
+                    }
+                }
+        );
+
     }
+
+    private void finalizarRefeicao() {
+        new AlertDialog.Builder(this)
+                .setTitle("Finalizar Refeição.")
+                .setMessage("Deseja finalizar a refeição?")
+                .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        gravarFinalizado();
+                    }
+                })
+                .setNegativeButton("Cancelar",null)
+                .create()
+                .show();
+
+    }
+
+    private void gravarFinalizado() {
+        new AcessoRest<String>(
+                this,
+                "autorizacao/finalizar",
+                String.class){
+
+            @Override
+            public void retorno(String objeto) {
+                if(objeto != null){
+                    carregarDados();
+                } else {
+                    //
+                }
+            }
+        }.put(autorizacoes);
+    }
+
 
     private void mostrarFiltro() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
