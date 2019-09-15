@@ -5,23 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".activities.LoginActivity">
 
     <ImageView
         android:id="@+id/login_imgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="174dp"
+        android:layout_height="164dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/my_bg"
+        android:elevation="100dp"
+        android:minWidth="100dp"
+        android:minHeight="100dp"
         app:layout_constraintBottom_toTopOf="@+id/login_form"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:minHeight="100dp"
-        android:minWidth="100dp"/>
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_form"
@@ -30,32 +34,26 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.663">
 
-        <Button
-            android:id="@+id/login_btnEntrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:onClick="btnEntrarOnClick"
-            android:text="Entrar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_etSenha" />
 
         <EditText
             android:id="@+id/login_etSenha"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/my_bg"
             android:ems="10"
             android:hint="Senha"
             android:inputType="textPassword"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_tvSenha" />
@@ -64,30 +62,56 @@
             android:id="@+id/login_etMatricula"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/my_bg"
             android:ems="10"
             android:hint="Matricula"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_tvMatricula" />
 
         <TextView
             android:id="@+id/login_tvMatricula"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Digite sua matricula:"
+            android:layout_width="178dp"
+            android:layout_height="36dp"
+            android:text="Digite sua matrícula:"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/login_tvSenha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="161dp"
+            android:layout_height="29dp"
             android:layout_marginTop="16dp"
             android:text="Digite sua senha:"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_etMatricula" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/login_btnEntrar"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/my_bg"
+        android:textColor="@color/colorPrimary"
+        android:onClick="btnEntrarOnClick"
+        android:text="Entrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_form"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
