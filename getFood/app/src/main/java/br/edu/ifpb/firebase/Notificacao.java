@@ -36,7 +36,7 @@ public class Notificacao {
 
 
     //este metodo notifica uma aplicacao android apartir de um token
-    public static void notificacao(String token) throws IOException, FirebaseMessagingException {
+    public static void notificacao(String token,String refeicao) throws IOException, FirebaseMessagingException {
 
         if (init == 0) {
             
@@ -58,7 +58,7 @@ public class Notificacao {
         }
 
         Message message = Message.builder()
-                .setNotification(new Notification("Notificação", "Reifeição encerrada"))
+                .setNotification(new Notification("Notificação", refeicao+" encerrada"))
                 .putData("score", "850")
                 .putData("time", "2:45")
                 .setToken(token)
@@ -69,9 +69,9 @@ public class Notificacao {
 
     }
 
-    public void notificarAll() throws IOException, FirebaseMessagingException {
+    public void notificarAll(String refeicao) throws IOException, FirebaseMessagingException {
         for(String token: tokens){
-            notificacao(token);
+            notificacao(token,refeicao);
         }
     }
 

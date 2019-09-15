@@ -85,7 +85,7 @@ public class RefeitorioAutorizacaoController implements Serializable {
             if (a.getStatusAutorizacao().equals(StatusAutorizacao.PENDENTE)) {
                 ausenteAutorizacao(a.getId());
                 try {
-                    notificacao.notificarAll();
+                    notificacao.notificarAll(a.getRefeicao().getNome());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (FirebaseMessagingException e) {
@@ -118,13 +118,15 @@ public class RefeitorioAutorizacaoController implements Serializable {
     }
 
     public void notificar(){
+        autorizacaoAgora.stream().forEach(a ->{
         try {
-            notificacao.notificarAll();
-        } catch (FirebaseMessagingException ex) {
-            Logger.getLogger(RefeitorioAutorizacaoController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(RefeitorioAutorizacaoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            notificacao.notificarAll(a.getRefeicao().getNome());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FirebaseMessagingException e) {
+            e.printStackTrace();
+        } }
+        );
     }
         
     public LocalDate getDataHoje() {
