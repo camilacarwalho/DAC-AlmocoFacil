@@ -44,4 +44,19 @@ public class PeriodoDaoJPA implements PeriodoDao {
         TypedQuery<Periodo> query = em.createQuery(jpql, Periodo.class);
         return query.getResultList();
     }
+
+    @Override
+    public Periodo buscarPorAno(int ano) {
+        String jpql="SELECT p FROM Periodo p WHERE ano = " + ano;
+        TypedQuery<Periodo> query = em.createQuery(jpql, Periodo.class);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Periodo buscarPorPeriodo(int periodo) {
+        String jpql="SELECT p FROM Periodo p WHERE periodo = " + periodo;
+        TypedQuery<Periodo> query = em.createQuery(jpql, Periodo.class);
+        return query.getSingleResult();
+    }
+
 }
