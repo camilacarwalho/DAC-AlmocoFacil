@@ -2,6 +2,7 @@ package br.edu.ifpb.api;
 
 import br.edu.ifpb.dao.AutorizacaoDao;
 import br.edu.ifpb.domain.AutorizacaoRR;
+import br.edu.ifpb.service.AutorizacaoService;
 import br.edu.ifpb.service.AutorizaoService;
 
 import javax.ejb.Stateless;
@@ -21,12 +22,12 @@ import java.util.List;
 public class ResourcesGestor {
 
     @Inject
-    AutorizacaoDao autorizacaoDao;
+    AutorizacaoService service;
 
 
     @POST
     public Response listarTodos(){
-        List<AutorizacaoRR> todos = this.autorizacaoDao.listarAutorizacaoRRApi(null,null);
+        List<AutorizacaoRR> todos = this.service.listarAutorizacaoRRApi(null,null);
 
         GenericEntity<List<AutorizacaoRR>> entity = new  GenericEntity<List<AutorizacaoRR>>(todos){};
         return Response.ok().entity(entity).build();
@@ -38,7 +39,7 @@ public class ResourcesGestor {
         DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateInicio = LocalDate.parse(dataInicial,formato);
         LocalDate dateFim = LocalDate.parse(dataFinal,formato);
-        List<AutorizacaoRR> todos = this.autorizacaoDao.listarAutorizacaoRRApi(dateInicio,dateFim);
+        List<AutorizacaoRR> todos = this.service.listarAutorizacaoRRApi(dateInicio,dateFim);
         GenericEntity<List<AutorizacaoRR>> entity = new  GenericEntity<List<AutorizacaoRR>>(todos){};
         return Response.ok().entity(entity).build();
     }
