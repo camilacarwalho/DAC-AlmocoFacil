@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Aluno;
 import com.example.almocofacil.domain.Requisicao;
-import com.example.almocofacil.domain.RequisicaoMatricula;
 import com.example.almocofacil.services.AcessoRest;
 import com.google.gson.reflect.TypeToken;
 
@@ -26,7 +25,6 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 

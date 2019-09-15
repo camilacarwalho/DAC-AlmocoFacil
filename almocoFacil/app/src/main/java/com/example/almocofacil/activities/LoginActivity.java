@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 nomeClasse = AcompanharSolicitacaoActivity.class;
                 break;
             case REFEITORIO:
-                nomeClasse = ListarAlunos.class;
+                nomeClasse = ListaAutorizacaoActivity.class;
                 break;
             default:
                 return;

@@ -29,7 +29,7 @@
         <activity android:name=".activities.SolicitarRefeicaoFechadaActivity"/>
         <activity android:name=".activities.AcompanharSolicitacaoActivity"/>
         <activity android:name=".activities.RelatorioRefeicaoActivity" />
-        <activity android:name=".activities.ListarAlunos"/>
+        <activity android:name=".activities.ListaAutorizacaoActivity"/>
 
         <service
             android:name=".firebase.MyFirebaseMessagingService"
