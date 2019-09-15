@@ -3,6 +3,9 @@
     package="com.example.almocofacil">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
     <application
         android:allowBackup="true"
@@ -22,10 +25,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SolicitarRefeicao"/>
+        <activity android:name=".activities.SolicitarRefeicaoActivity"/>
+        <activity android:name=".activities.SolicitarRefeicaoFechadaActivity"/>
         <activity android:name=".activities.AcompanharSolicitacaoActivity"/>
         <activity android:name=".activities.RelatorioRefeicaoActivity" />
-        <activity android:name=".activities.ListarAlunos"/>
+        <activity android:name=".activities.ListaAutorizacaoActivity"/>
+
+        <service
+            android:name=".firebase.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

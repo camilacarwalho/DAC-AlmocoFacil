@@ -14,4 +14,8 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_relatorio_refeicao">Relatorio de Refeição</string>
+    <string-array name="lista_refeicao">
+        <item>Almoço</item>
+        <item>Jantar</item>
+    </string-array>
 </resources>

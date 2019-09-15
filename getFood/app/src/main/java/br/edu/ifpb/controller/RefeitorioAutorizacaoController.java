@@ -2,7 +2,11 @@ package br.edu.ifpb.controller;
 
 import br.edu.ifpb.domain.Autorizacao;
 import br.edu.ifpb.domain.enums.StatusAutorizacao;
+import br.edu.ifpb.firebase.GerenteNotificacao;
+import br.edu.ifpb.firebase.Notificacao;
 import br.edu.ifpb.service.AutorizacaoService;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import java.io.IOException;
 
 
 
@@ -11,6 +15,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -22,7 +28,10 @@ public class RefeitorioAutorizacaoController implements Serializable {
 
     @Inject
     private AutorizacaoService autorizacaoService;
-    
+
+    @Inject
+    private Notificacao notificacao;
+
     private LocalDate dataHoje;
     private LocalTime horaAgora;
     private List<Autorizacao> todasAltorizacoes;
@@ -30,7 +39,7 @@ public class RefeitorioAutorizacaoController implements Serializable {
     private List<Autorizacao> autorizacaoAumoco;
     private List<Autorizacao> autorizacaoAgora;
     private String tipoRefeicao;
-    private Boolean ativo; 
+    private Boolean ativo;
     private final LocalTime terminoAlmoco = LocalTime.parse("14:00:00");
 
     @PostConstruct
@@ -75,13 +84,20 @@ public class RefeitorioAutorizacaoController implements Serializable {
         autorizacaoAgora.stream().forEach(a -> {
             if (a.getStatusAutorizacao().equals(StatusAutorizacao.PENDENTE)) {
                 ausenteAutorizacao(a.getId());
+                try {
+                    notificacao.notificarAll();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (FirebaseMessagingException e) {
+                    e.printStackTrace();
+                }
             }
         }
         );
         return "listagem.xhtml";
     }
-    
-     private void verificaSeAtivo() {
+
+    private void verificaSeAtivo() {
         ativo = false;
         boolean result = autorizacaoAgora.stream().anyMatch(obj -> obj.getStatusAutorizacao().equals(StatusAutorizacao.PENDENTE));
         ativo = result;
@@ -101,6 +117,16 @@ public class RefeitorioAutorizacaoController implements Serializable {
         autorizacaoService.alterarStatusAutorizacao(idAltorizacao, StatusAutorizacao.AUSENTE);
     }
 
+    public void notificar(){
+        try {
+            notificacao.notificarAll();
+        } catch (FirebaseMessagingException ex) {
+            Logger.getLogger(RefeitorioAutorizacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(RefeitorioAutorizacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
     public LocalDate getDataHoje() {
         return dataHoje;
     }
@@ -136,7 +162,5 @@ public class RefeitorioAutorizacaoController implements Serializable {
     public Boolean getAtivo() {
         return ativo;
     }
-
-   
 
 }

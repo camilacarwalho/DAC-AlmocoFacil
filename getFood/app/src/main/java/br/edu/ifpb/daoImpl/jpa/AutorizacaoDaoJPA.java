@@ -85,6 +85,26 @@ public class AutorizacaoDaoJPA implements AutorizacaoDao {
     }
 
     @Override
+    public List<AutorizacaoRR> listarAutorizacaoRRApi(LocalDate dataInicial, LocalDate dataFinal) {
+        String jpql="SELECT NEW br.edu.ifpb.domain.AutorizacaoRR(a.data,f.nome,a.statusAutorizacao,COUNT(a.id))" +
+                " FROM Autorizacao a LEFT JOIN a.requisicao r JOIN r.refeicao f";
+        jpql+= dataInicial!=null ? " WHERE a.data BETWEEN :dataInicial AND :dataFinal":"";
+        jpql+=" GROUP BY a.data,f.nome,a.statusAutorizacao ORDER BY a.data DESC";
+        TypedQuery<AutorizacaoRR> query = em.createQuery(jpql, AutorizacaoRR.class);
+        if(dataInicial!=null){
+            if(dataFinal==null){
+                query.setParameter("dataInicial",dataInicial);
+                query.setParameter("dataFinal",LocalDate.now());
+            }else{
+                query.setParameter("dataInicial",dataInicial);
+                query.setParameter("dataFinal",dataFinal);
+            }
+        }
+        return query.getResultList();
+
+    }
+
+    @Override
     public List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, LocalDate dataInicial, LocalDate dataFinal) {
         String jpql="SELECT NEW br.edu.ifpb.domain.AutorizacaoRR(a.data,f.nome,a.statusAutorizacao,COUNT(a.id))" +
                 " FROM Autorizacao a LEFT JOIN a.requisicao r JOIN r.refeicao f";

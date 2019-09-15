@@ -1,19 +1,26 @@
 package com.example.almocofacil.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.almocofacil.R;
+import com.example.almocofacil.controler.SessionSharedPreferences;
 import com.example.almocofacil.domain.Usuario;
-import com.example.almocofacil.services.AcessarRest;
+import com.example.almocofacil.firebase.Notificacao;
+import com.example.almocofacil.services.AcessoRest;
 import com.example.almocofacil.services.UsuarioService;
+import com.example.almocofacil.util.InitLocalizacao;
+import com.example.almocofacil.util.LocalizacaoSingleton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        InitLocalizacao la = new InitLocalizacao(getApplicationContext());
         setContentView(R.layout.activity_login);
 
         edMatricula = findViewById(R.id.login_etMatricula);
@@ -46,9 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         final Usuario usuario = new Usuario(matricula,senha);
         final LoginActivity esta = this;
 
-        new AcessarRest<Usuario,Usuario>(esta, "usuario/login"){
+        new AcessoRest<Usuario>(esta,"usuario/login",Usuario.class){
+
             @Override
-            public void retorno(final Usuario objeto) {
+            public void retorno(Usuario objeto) {
                 progress.dismiss();
                 if(objeto == null){
                     Toast.makeText(getApplicationContext(),"Falha ao autenticar.", Toast.LENGTH_LONG).show();
@@ -56,11 +65,27 @@ public class LoginActivity extends AppCompatActivity {
                     if (objeto.getMatricula() == null){
                         Toast.makeText(getApplicationContext(), "Usuário ou senha inválido", Toast.LENGTH_LONG).show();
                     } else {
-                        logadoUsuario(UsuarioService.getUsarioService().logar(objeto));
+                        logadoUsuario(UsuarioService.getUsuarioService(getApplicationContext()).logar(objeto));
                     }
                 }
             }
-        }.run(usuario, Usuario.class);
+        }.post(usuario);
+
+//        new AcessarRest<Usuario,Usuario>(esta, "usuario/login"){
+//            @Override
+//            public void retorno(final Usuario objeto) {
+//                progress.dismiss();
+//                if(objeto == null){
+//                    Toast.makeText(getApplicationContext(),"Falha ao autenticar.", Toast.LENGTH_LONG).show();
+//                } else {
+//                    if (objeto.getMatricula() == null){
+//                        Toast.makeText(getApplicationContext(), "Usuário ou senha inválido", Toast.LENGTH_LONG).show();
+//                    } else {
+//                        logadoUsuario(UsuarioService.getUsuarioService(getApplicationContext()).logar(objeto));
+//                    }
+//                }
+//            }
+//        }.run(usuario, Usuario.class);
 
     }
 
@@ -79,14 +104,30 @@ public class LoginActivity extends AppCompatActivity {
                 nomeClasse = AcompanharSolicitacaoActivity.class;
                 break;
             case REFEITORIO:
-                nomeClasse = ListarAlunos.class;
+                nomeClasse = ListaAutorizacaoActivity.class;
                 break;
             default:
                 return;
         }
+
         if(nomeClasse != null) {
             Intent intent = new Intent(this, nomeClasse);
-            startActivity(intent);
+            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(),R.anim.fade_in,R.anim.mover_direita);
+            SessionSharedPreferences ssp = new SessionSharedPreferences(getApplicationContext());
+            ssp.login(usuario);
+
+            //preparando aplicativo para receber notificações
+            Notificacao notificacao = new Notificacao(getApplicationContext());
+            //enviando token para o servidor de DAC
+            notificacao.registraTokenNoServidor();
+
+            String latitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("latitude", "padrao");
+            String longitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("longitude", "padrao");
+
+            Log.d("Localizacao", latitude + " " + longitude);
+
+            ActivityCompat.startActivity(LoginActivity.this, intent, activityOptionsCompat.toBundle());
+            //startActivity(intent);
             this.finish();
         }
     }

@@ -19,7 +19,7 @@ public class ListAlunoAdapter extends BaseAdapter {
 
     Activity activity;
 
-    public ListAlunoAdapter(ArrayList<Aluno> list, Activity activity) {
+    public ListAlunoAdapter(List<Aluno> list, Activity activity) {
         super();
         this.alunoList = list;
         this.activity = activity;

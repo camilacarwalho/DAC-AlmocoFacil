@@ -149,4 +149,9 @@ public class AutorizacaoServiceImpl implements AutorizacaoService{
     public List<AutorizacaoRR> listarAutorizacaoRR(int min, int quant, LocalDate dataInicial, LocalDate dataFinal) {
         return autorizacaoDao.listarAutorizacaoRR(min,quant,dataInicial,dataFinal);
     }
+
+    @Override
+    public List<AutorizacaoRR> listarAutorizacaoRRApi(LocalDate dataInicial, LocalDate dataFinal) {
+        return autorizacaoDao.listarAutorizacaoRRApi(dataInicial,dataFinal);
+    }
 }

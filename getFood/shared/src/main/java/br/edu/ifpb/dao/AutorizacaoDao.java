@@ -21,4 +21,7 @@ public interface AutorizacaoDao extends DefaultDao<Autorizacao> {
     
     public void alterarStatus(Long id, StatusAutorizacao statusAutorizacao);
 
+    List<AutorizacaoRR> listarAutorizacaoRRApi(
+            LocalDate dataInicial, LocalDate dataFinal);
+
 }
