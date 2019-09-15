@@ -12,6 +12,8 @@ import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Autorizacao;
 import com.example.almocofacil.domain.enums.StatusAutorizacao;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ListAutorizacaoAdapter extends BaseAdapter {
@@ -20,6 +22,7 @@ public class ListAutorizacaoAdapter extends BaseAdapter {
         TextView tvMatricula;
         TextView tvNome;
         CheckBox cbComparece;
+        TextView tvStatus;
     }
 
     private List<Autorizacao> autorizacoes;
@@ -49,6 +52,7 @@ public class ListAutorizacaoAdapter extends BaseAdapter {
             holder.tvMatricula = (TextView) view.findViewById(R.id.tvListAutMatricula);
             holder.tvNome = (TextView) view.findViewById(R.id.tvListAutNome);
             holder.cbComparece = (CheckBox) view.findViewById(R.id.cbCompareceu);
+            holder.tvStatus = (TextView) view.findViewById(R.id.tvListAutStatus);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -57,6 +61,15 @@ public class ListAutorizacaoAdapter extends BaseAdapter {
         Autorizacao autorizacao = autorizacoes.get(i);
         holder.tvNome.setText(autorizacao.getNomeAluno());
         holder.tvMatricula.setText(autorizacao.getMatriculaAluno());
+        holder.cbComparece.setVisibility(View.INVISIBLE);
+        holder.tvStatus.setText(autorizacao.getStatusAutorizacao().getNome());
+        holder.tvStatus.setVisibility(View.VISIBLE);
+
+        if(!autorizacao.isConcluida()){
+            holder.cbComparece.setVisibility(View.VISIBLE);
+            holder.tvStatus.setVisibility(View.INVISIBLE);
+        }
+
         holder.cbComparece.setChecked(
                 autorizacao.getStatusAutorizacao() == StatusAutorizacao.REALIZADA
         );
