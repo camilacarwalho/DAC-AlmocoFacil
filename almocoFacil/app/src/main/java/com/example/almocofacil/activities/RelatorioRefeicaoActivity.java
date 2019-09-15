@@ -3,6 +3,8 @@ package com.example.almocofacil.activities;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +37,25 @@ public class RelatorioRefeicaoActivity extends AppCompatActivity {
 
         RelatorioRefeicaoAdapter adapter = new RelatorioRefeicaoAdapter(requisicoes,this);
         lvRelatorio.setAdapter(adapter);
+    }
+
+    //barra de tarefas
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return true;
+    }
+
+    //Opções da barra de tarefas
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id== R.id.logout){
+            System.out.println("funcionou logout main <------");
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void init(){
