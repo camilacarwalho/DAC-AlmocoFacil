@@ -1,6 +1,7 @@
 package com.example.almocofacil.activities;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,58 +9,55 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.almocofacil.R;
-import com.example.almocofacil.domain.RelatorioRequisicaoDado;
-
-import java.text.SimpleDateFormat;
+import com.example.almocofacil.domain.serializer.AutorizacaoRRJersey;
 import java.util.List;
 
 public class RelatorioRefeicaoAdapter extends BaseAdapter {
 
-    List<RelatorioRequisicaoDado> requisicao;
+    private Context context;
+    private List<AutorizacaoRRJersey> lista;
 
-    Activity activity;
-
-    public RelatorioRefeicaoAdapter(List<RelatorioRequisicaoDado> requisicao, Activity activity) {
-        this.requisicao = requisicao;
-        this.activity = activity;
+    public RelatorioRefeicaoAdapter(Context context, List<AutorizacaoRRJersey> lista) {
+        this.context = context;
+        this.lista = lista;
     }
 
-    @Override public int getCount() {return requisicao.size(); }
-    @Override public Object getItem(int i) {return requisicao.get(i);}
-    @Override public long getItemId(int i) {return 0;}
+    @Override
+    public int getCount() {
+        return lista.size();
+    }
 
-    private class ViewHolder{
-        TextView data;
-        TextView refeicao;
-        TextView status;
-        TextView quant;
+    @Override
+    public Object getItem(int i) {
+        return lista.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder;
-        LayoutInflater inflater = activity.getLayoutInflater();
 
-        if(view == null){
-            view = inflater.inflate(R.layout.relatorio_refeicao_row, null);
-            holder = new ViewHolder();
-            holder.data = (TextView) view.findViewById(R.id.tvData);
-            holder.refeicao = (TextView) view.findViewById(R.id.tvRefeicao);
-            holder.status = (TextView) view.findViewById(R.id.tvStatus);
-            holder.quant = (TextView) view.findViewById(R.id.tvQuantidade);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        RelatorioRequisicaoDado requisicaoMap = requisicao.get(i);
+        AutorizacaoRRJersey arj = lista.get(i);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.relatorio_refeicao_row, null);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+        TextView modelo0 = (TextView) layout.findViewById(R.id.tvData);
+        TextView modelo1 = (TextView) layout.findViewById(R.id.tvRefeicao);
+        TextView modelo2 = (TextView) layout.findViewById(R.id.tvStatus);
+        TextView modelo3 = (TextView) layout.findViewById(R.id.tvQuantidade);
 
-        holder.data.setText(sdf.format(requisicaoMap.getData()));
-        holder.refeicao.setText(requisicaoMap.getRefeicao().getNome());
-        holder.status.setText(requisicaoMap.getStatus().getNome());
-        holder.quant.setText(String.valueOf(requisicaoMap.getQuant()));
+        modelo0.setTextColor(Color.parseColor("#000000"));
+        modelo1.setTextColor(Color.parseColor("#000000"));
+        modelo2.setTextColor(Color.parseColor("#000000"));
+        modelo3.setTextColor(Color.parseColor("#000000"));
 
-        return view;
+        modelo0.setText(arj.getData());
+        modelo1.setText(arj.getNome());
+        modelo2.setText(arj.getStatusAutorizacao().toString());
+        modelo3.setText(arj.getQuantidade().toString());
+        return layout;
     }
 }
