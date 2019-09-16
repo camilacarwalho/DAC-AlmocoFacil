@@ -9,9 +9,9 @@ public class ScriptDDL {
         sql.append("ALUNONOME VARCHAR(200) UNIQUE NOT NULL DEFAULT (''), ");
         sql.append("ALUNOMATRICULA VARCHAR(200) UNIQUE NOT NULL DEFAULT (''), ");
         sql.append("DATA VARCHAR (20) NOT NULL DEFAULT (''), ");
-        sql.append("REFEICAONOME VARCHAR (20) NOT NULL DEFAULT ('') ");
-        sql.append("STATUSAUTORIZACAO VARCHAR (50) NOT NULL DEFAULT ('') ");
-        sql.append("REQUISICAOID VARCHAR (20) NOT NULL DEFAULT ('') ");
+        sql.append("REFEICAONOME VARCHAR (20) NOT NULL DEFAULT (''), ");
+        sql.append("STATUSAUTORIZACAO VARCHAR (50) NOT NULL DEFAULT (''), ");
+        sql.append("REQUISICAOID VARCHAR (20) NOT NULL DEFAULT (''), ");
         sql.append("REFEICAOID VARCHAR (20) NOT NULL DEFAULT ('') ");
         sql.append(") ");
         return sql.toString();
