@@ -1,21 +1,20 @@
-package com.example.almocofacil.domain;
+package com.example.almocofacil.domain.serializer;
 
 import com.example.almocofacil.domain.enums.StatusAutorizacao;
 
-import java.time.LocalDate;
-import java.util.Date;
 
-public class RelatorioRequisicaoDado {
+public class AutorizacaoRRJersey {
 
     private String data;
     private String nome;
     private StatusAutorizacao statusAutorizacao;
     private Long quantidade;
 
-    public RelatorioRequisicaoDado() {}
+    public AutorizacaoRRJersey() {
 
+    }
 
-    public RelatorioRequisicaoDado(String data, String nome, StatusAutorizacao statusAutorizacao, Long quantidade) {
+    public AutorizacaoRRJersey(String data, String nome, StatusAutorizacao statusAutorizacao, Long quantidade) {
         this.data = data;
         this.nome = nome;
         this.statusAutorizacao = statusAutorizacao;
@@ -56,11 +55,7 @@ public class RelatorioRequisicaoDado {
 
     @Override
     public String toString() {
-        return "RelatorioRequisicaoDado{" +
-                "data='" + data + '\'' +
-                ", nome='" + nome + '\'' +
-                ", statusAutorizacao=" + statusAutorizacao +
-                ", quantidade=" + quantidade +
-                '}';
+        return "AutorizacaoRRJersey{" + "data=" + data + ", nome=" + nome + ", statusAutorizacao=" + statusAutorizacao + ", quantidade=" + quantidade + '}';
     }
+
 }
