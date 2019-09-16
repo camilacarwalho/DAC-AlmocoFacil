@@ -1,16 +1,16 @@
 package br.edu.ifpb.controller;
 
-import br.edu.ifpb.dao.SolicitacaoDao;
-import br.edu.ifpb.domain.Edital;
-import br.edu.ifpb.domain.Periodo;
-import br.edu.ifpb.service.EditalService;
-import br.edu.ifpb.service.PeriodoService;
-import br.edu.ifpb.service.SolicitacaoService;
 import java.io.Serializable;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.edu.ifpb.domain.Edital;
+import br.edu.ifpb.domain.Periodo;
+import br.edu.ifpb.service.EditalService;
+import br.edu.ifpb.service.SolicitacaoService;
 
 @SuppressWarnings("serial")
 @RequestScoped
@@ -19,7 +19,9 @@ public class EditalController implements Serializable {
     
     @Inject
     private EditalService service;
+    @Inject    
     private SolicitacaoService solservice;
+    
     private Edital edital;
     private String codigo;
     private Periodo periodo;

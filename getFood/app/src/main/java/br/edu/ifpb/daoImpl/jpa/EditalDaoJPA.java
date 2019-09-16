@@ -5,6 +5,7 @@ import br.edu.ifpb.dao.PeriodoDao;
 import br.edu.ifpb.domain.Edital;
 import br.edu.ifpb.domain.Periodo;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +17,8 @@ public class EditalDaoJPA implements EditalDao {
 
     @PersistenceContext
     private EntityManager em;
+    
+    @EJB
     private PeriodoDao periododao;
 
     @Override

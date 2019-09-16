@@ -9,7 +9,7 @@ public class EditalServiceImpl implements EditalService {
     
     @EJB
     private EditalDao dao;
-
+    
     @Override
     public Edital pesquisar(String codigo) {
         return dao.buscar(codigo);
