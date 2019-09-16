@@ -96,6 +96,11 @@ public class RefeitorioAutorizacaoController implements Serializable {
         );
         return "listagem.xhtml";
     }
+    
+    public String finalizarRefeicaoTeste() throws IOException, FirebaseMessagingException{
+         notificacao.notificarAllTeste();
+        return "listagem.xhtml";
+    }
 
     private void verificaSeAtivo() {
         ativo = false;

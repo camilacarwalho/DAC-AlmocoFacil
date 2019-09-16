@@ -68,10 +68,49 @@ public class Notificacao {
         System.out.println("Successfully sent message: " + response);
 
     }
+    
+    public static void notificacao(String token) throws IOException, FirebaseMessagingException {
+
+        if (init == 0) {
+            
+            //caminho do arquivo onde esta o json do firebase , esta na raiz da aplicacao
+            //no meu computador ele tem esse caminho , talvez precise alterar no de vcs
+            String caminho = FacesContext.getCurrentInstance().getExternalContext().getRealPath("") + "/resources/";
+            String nomeArquivo = "almoco-facil-firebase-adminsdk-52gm1-99965426c7.json";
+
+            FileInputStream serviceAccount
+                    = new FileInputStream(caminho + nomeArquivo);
+
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setDatabaseUrl("https://almoco-facil.firebaseio.com")
+                    .build();
+
+            FirebaseApp.initializeApp(options);
+            init = 1;
+        }
+
+        Message message = Message.builder()
+                .setNotification(new Notification("Notificação", "refeicao encerrada"))
+                .putData("score", "850")
+                .putData("time", "2:45")
+                .setToken(token)
+                .build();
+
+        String response = FirebaseMessaging.getInstance().send(message);
+        System.out.println("Successfully sent message: " + response);
+
+    }
 
     public void notificarAll(String refeicao) throws IOException, FirebaseMessagingException {
         for(String token: tokens){
             notificacao(token,refeicao);
+        }
+    }
+    
+    public void notificarAllTeste() throws IOException, FirebaseMessagingException {
+        for(String token: tokens){
+            notificacao(token);
         }
     }
 
