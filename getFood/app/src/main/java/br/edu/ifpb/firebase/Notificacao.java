@@ -14,11 +14,12 @@ import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
 
 import javax.ejb.Singleton;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.faces.context.FacesContext;
 
 /**
@@ -32,7 +33,7 @@ import javax.faces.context.FacesContext;
 public class Notificacao {
 
     private static int init;
-    private  List<String> tokens= new ArrayList<>();
+    private  Set<String> tokens= new HashSet();
 
 
     //este metodo notifica uma aplicacao android apartir de um token
@@ -114,7 +115,7 @@ public class Notificacao {
         }
     }
 
-    public List<String> getTokens() {
-        return tokens;
+    public HashSet<String> getTokens() {
+        return (HashSet<String>) tokens;
     }
 }
