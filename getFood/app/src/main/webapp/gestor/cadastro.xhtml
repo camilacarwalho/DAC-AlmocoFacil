@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+
+</h:head>
+<ui:composition template="../template.xhtml">
+
+    <!--     LINKS   -->
+    <ui:define name="links">
+        <ui:include src="menu.xhtml"/>
+    </ui:define>
+    <!-- ............ -->
+
+    <!--    MENSAGEM   -->
+    <ui:define name="welcome"><h:outputLabel value="#{usuarioController.mensagem}"/></ui:define>
+    <!-- ............ -->
+
+    <ui:define name="top">
+        <h4>Formulário Para Usuários</h4>
+        <div class="row">
+            <h:form styleClass="col s12 white">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <p:inputMask mask="999.999.999-99" id="cpf" required="true" value="#"/>
+                        <label for="cpf">CPF</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <h:inputText id="matricula" required="true" value="#"/>
+                        <label for="matricula">Matricula</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <h:inputText id="nome" required="true" value="#"/>
+                        <label for="nome">Nome</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <h:inputText id="email" required="true" value="#"/>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <p:inputMask mask="(99)99999-9999" id="telefone" value="#"/>
+                        <label for="telefone">Telefone</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <h:inputText id="senha" required="true" value="#"/>
+                        <label for="senha">Senha</label>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="input-field col s6">
+                    <h:selectOneMenu id="tipoUser" value="#">
+                        <f:selectItems var="tipo" value="#{usuarioController.tipoUsuario()}"
+                                       itemValue="#{tipo}" itemLabel="#{tipo.name()}"/>
+
+                    </h:selectOneMenu>
+                </div>
+                <div class="input-field col s6">
+                    <h:commandButton value="Salvar" styleClass="btn-large blue"/>
+                </div>
+            </div>
+            </h:form>
+
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
+
