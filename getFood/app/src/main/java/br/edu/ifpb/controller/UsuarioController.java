@@ -21,6 +21,8 @@ public class UsuarioController implements Serializable {
 	private String senha;
 	private String nome;
 	private String telefone;
+	private String latitude;
+	private String longitude;
 	
 	@Inject
     private UsuarioService usuarioService;
@@ -78,6 +80,10 @@ public class UsuarioController implements Serializable {
 	public String getTelefone() {return usuarioService.getUsuarioLogado().getPessoa().getTelefone();}
 	public void setTelefone(String telefone) {this.telefone = telefone;}
 	public String getCargo() {return usuarioService.getUsuarioLogado().getCargo().getNome();}
+	public String getLatitude() {return latitude;}
+	public void setLatitude(String latitude) {this.latitude = latitude;}
+	public String getLongitude() {return longitude;}
+	public void setLongitude(String longitude) {this.longitude = longitude;}
 	
 	
 

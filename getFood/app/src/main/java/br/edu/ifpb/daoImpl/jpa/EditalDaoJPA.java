@@ -1,8 +1,11 @@
 package br.edu.ifpb.daoImpl.jpa;
 
 import br.edu.ifpb.dao.EditalDao;
+import br.edu.ifpb.dao.PeriodoDao;
 import br.edu.ifpb.domain.Edital;
+import br.edu.ifpb.domain.Periodo;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +17,9 @@ public class EditalDaoJPA implements EditalDao {
 
     @PersistenceContext
     private EntityManager em;
+    
+    @EJB
+    private PeriodoDao periododao;
 
     @Override
     public void salvar(Edital object) {
@@ -44,4 +50,21 @@ public class EditalDaoJPA implements EditalDao {
         TypedQuery<Edital> query = em.createQuery(jpql, Edital.class);
         return query.getResultList();
     }
+
+    @Override
+    public Edital buscarAno(int ano) {
+        Periodo p = periododao.buscarPorAno(ano);
+        String jpql="SELECT e FROM Edital e WHERE periodo = "+ p.getCodigo();
+        TypedQuery<Edital> query = em.createQuery(jpql, Edital.class);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Edital buscarPorPeriodo(int periodo) {
+        Periodo p = periododao.buscarPorPeriodo(periodo);
+        String jpql="SELECT e FROM Edital e WHERE periodo = "+ p.getCodigo();
+        TypedQuery<Edital> query = em.createQuery(jpql, Edital.class);
+        return query.getSingleResult();
+    }
+    
 }

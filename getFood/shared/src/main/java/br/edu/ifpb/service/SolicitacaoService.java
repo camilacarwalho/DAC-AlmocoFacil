@@ -16,6 +16,7 @@ public interface SolicitacaoService {
 	List<Solicitacao> buscarPelaMatricula(String matricula , StatusRequisicao statusRequisicao, int inicio, int termino);	
 	int quantBuscarSolicitacoes(String requerente, StatusRequisicao statusRequisicao);
 	int quantBuscarPelaMatricula(String matricula, StatusRequisicao statusRequisicao);
+        public int quantAprovadas();
 	void atualizar(Solicitacao solicitacao);
 	void salvar(Solicitacao solicitacao);
 	void atualizarStatusSolicitação(Solicitacao solicitacao);

@@ -54,7 +54,7 @@ public class ConvertRestToRequisicao implements Serializable {
 				.getDataSolicitacao()
 				.toInstant()
 				.atZone(ZoneId.systemDefault())
-				.toLocalDate().plusDays(1));
+				.toLocalDate());
 		Usuario usuario = solicitacao.getUsuario();
 		if(usuario == null)
 			usuario = usuarioService.buscar(requisicaoRest.getMatriculaRequerente());
@@ -67,12 +67,12 @@ public class ConvertRestToRequisicao implements Serializable {
 				.getDataInicio()
 				.toInstant()
 				.atZone(ZoneId.systemDefault())
-				.toLocalDate().plusDays(1));
+				.toLocalDate());
 		requisicao.setDataFinal(requisicaoRest
 				.getDataFinal()
 				.toInstant()
 				.atZone(ZoneId.systemDefault())
-				.toLocalDate().plusDays(1));
+				.toLocalDate());
 
 		return requisicao;
 		

@@ -1,15 +1,16 @@
 package br.edu.ifpb.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.ifpb.dao.RequisicaoDao;
 import br.edu.ifpb.domain.Aluno;
+import br.edu.ifpb.domain.Refeicao;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.enums.StatusRequisicao;
-import java.util.List;
 
 @Stateless
 public class RequisicaoServiceImpl implements RequisicaoService {
@@ -108,6 +109,13 @@ public class RequisicaoServiceImpl implements RequisicaoService {
     public List<Requisicao> buscarRequisicoes(StatusRequisicao statusRequisicao, LocalDate data) {
         return requisicaoDao.buscarPeloStatus(statusRequisicao, data);
     }
+    
+    
+
+	@Override
+	public List<Requisicao> buscarParaAutorizar(LocalDate data, Refeicao refeicao) {		
+		return requisicaoDao.buscarDataRefeicao(data,refeicao);
+	}
 
 	@Override
 	public boolean podeAlterar(Requisicao requisicao) {

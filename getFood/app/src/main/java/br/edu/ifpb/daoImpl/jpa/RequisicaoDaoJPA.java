@@ -1,6 +1,7 @@
 package br.edu.ifpb.daoImpl.jpa;
 
 import br.edu.ifpb.dao.RequisicaoDao;
+import br.edu.ifpb.domain.Refeicao;
 import br.edu.ifpb.domain.Requisicao;
 import br.edu.ifpb.domain.enums.StatusRequisicao;
 import java.time.LocalDate;
@@ -58,4 +59,23 @@ public class RequisicaoDaoJPA implements RequisicaoDao {
         query.setParameter("data", data);
         return query.getResultList();
     }
+
+	@Override
+	public List<Requisicao> buscarDataRefeicao(LocalDate data, Refeicao refeicao) {
+        String jpql = "SELECT DISTINCT(r) FROM Requisicao r"
+        		+ " JOIN r.refeicao e"
+                + " WHERE (r.statusRequisicao = :auto"
+                + " OR r.statusRequisicao = :comp)"
+                + " AND e.id = :id"
+                + " AND :data BETWEEN r.dataInicial AND r.dataFinal";
+
+        TypedQuery<Requisicao> query = em.createQuery(jpql, Requisicao.class);
+        query.setParameter("auto", StatusRequisicao.AUTORIZADA);
+        query.setParameter("comp", StatusRequisicao.COMPULSORIA);
+        query.setParameter("id", refeicao.getId());
+        query.setParameter("data", data);
+        return query.getResultList();
+	}
+    
+    
 }

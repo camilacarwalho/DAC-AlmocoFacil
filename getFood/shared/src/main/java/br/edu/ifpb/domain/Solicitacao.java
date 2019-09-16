@@ -38,6 +38,9 @@ public class Solicitacao implements Serializable{
 	private StatusRequisicao statusRequisicao;
 	@OneToMany(mappedBy="solicitacao", cascade=CascadeType.ALL)
 	private List<Requisicao> requisicoes;
+	private String latitude;
+	private String longitude;
+	
 	
 	/************************************
 	 * Procedimento que vincula todas as
@@ -61,12 +64,12 @@ public class Solicitacao implements Serializable{
 		this.usuario = usuario;
 		this.descricao = descricao;
 		this.justificativa = justificativa;
-		this.statusRequisicao = statusRequisicao;
+		this.statusRequisicao = statusRequisicao;		
 		setRequisicoes(requisicoes);
 	}
 
 	public Solicitacao(Long id, LocalDate dataSolicitacao, Usuario usuario, String descricao, String justificativa,
-			StatusRequisicao statusRequisicao, List<Requisicao> requisicoes) {
+			StatusRequisicao statusRequisicao, List<Requisicao> requisicoes,  String latitude, String longitude) {
 		this();
 		this.id = id;
 		this.dataSolicitacao = dataSolicitacao;
@@ -74,6 +77,8 @@ public class Solicitacao implements Serializable{
 		this.descricao = descricao;
 		this.justificativa = justificativa;
 		this.statusRequisicao = statusRequisicao;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		setRequisicoes(requisicoes);
 	}
 	
@@ -141,6 +146,22 @@ public class Solicitacao implements Serializable{
 	public void setRequisicoes(List<Requisicao> requisicoes) {
 		this.requisicoes = requisicoes;
 		vincularRequisicoes();
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 
 	@Override

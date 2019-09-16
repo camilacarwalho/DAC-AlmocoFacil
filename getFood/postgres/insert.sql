@@ -220,7 +220,7 @@ INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (6, 
 -- SOLICITACAO
 -------------------------------------------------------------------------------------------------------------------------
 --Autorizada
-INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula) VALUES (5, '2019-02-01', 'Aula no contraturno do curso de Eng. Civil', '', 'AUTORIZADA', '5000001');
+INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula, latitude, longitude) VALUES (5, '2019-02-01', 'Aula no contraturno do curso de Eng. Civil', '', 'AUTORIZADA', '5000001', '-6,88972878', '-38,54504666');
 INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (7, 5, '2019-02-01', '2019-02-01', 'AUTORIZADA', 1);
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (7, '201912200001');
 INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id, aluno_matricula, refeicao_id) VALUES (1, '2019-02-01', '11:01:56', 'REALIZADA', 7, '201912200001', 1);
@@ -229,7 +229,7 @@ INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id,
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (7, '201912200003');
 INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id, aluno_matricula, refeicao_id) VALUES (3, '2019-02-01', '13:01:52', 'AUSENTE', 7, '201912200001', 1);
 --Compulsoria
-INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula) VALUES (6, '2019-06-01', 'Aula no contraturno do curso de ADS', '', 'COMPULSORIA', '5000002');
+INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula, latitude, longitude) VALUES (6, '2019-06-01', 'Aula no contraturno do curso de ADS', '', 'COMPULSORIA', '5000002', '-6,88972878', '-38,54504666');
 INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (8, 6, '2019-06-01', '2019-06-01', 'COMPULSORIA', 1);
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (8, '201912010001');
 INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id, aluno_matricula, refeicao_id) VALUES (4, '2019-06-01', '12:05:15', 'REALIZADA', 8, '201912010001', 1);
@@ -238,13 +238,13 @@ INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id,
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (8, '201912010003');
 INSERT INTO public.autorizacao(id, data, hora, statusautorizacao, requisicao_id, aluno_matricula, refeicao_id) VALUES (6, '2019-06-01', '12:10:45', 'REALIZADA', 8, '201912010003', 1);
 --Negada
-INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula) VALUES (7, '2019-07-01', 'Aula no contraturno do curso de Esp. Matemática', 'Excede a quantidade limite de refeições.', 'NEGADA', '5000003');
+INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula, latitude, longitude) VALUES (7, '2019-07-01', 'Aula no contraturno do curso de Esp. Matemática', 'Excede a quantidade limite de refeições.', 'NEGADA', '5000003', '-6,88972878', '-38,54504666');
 INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (9, 7, '2019-07-01', '2019-07-01', 'NEGADA', 1);
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (9, '201912210001');
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (9, '201912210002');
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (9, '201912210003');
 --Pendente
-INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula) VALUES (8, CURRENT_DATE, 'Aula no contraturno do curso de Eletromecânica Integrado', '', 'PENDENTE', '5000007');
+INSERT INTO public.solicitacao(id, datasolicitacao, descricao, justificativa, statusrequisicao, usuario_matricula, latitude, longitude) VALUES (8, CURRENT_DATE, 'Aula no contraturno do curso de Eletromecânica Integrado', '', 'PENDENTE', '5000007', '-6,88972878', '-38,54504666');
 INSERT INTO public.requisicao(id, solicitacao_id, datainicial, datafinal, statusrequisicao, refeicao_id) VALUES (10, 8, CURRENT_DATE, CURRENT_DATE, 'PENDENTE', 1);
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (10, '20191200001');
 INSERT INTO public.requisicao_aluno(requisicao_id, alunos_matricula) VALUES (10, '20191200002');

@@ -70,6 +70,8 @@ public abstract class SolicitacaoController implements Serializable{
 		this.solicitacao.setDataSolicitacao(LocalDate.now());
 		this.solicitacao.setUsuario(usuarioController.getUsuario());
 		this.solicitacao.setStatusRequisicao(StatusRequisicao.PENDENTE);
+		this.solicitacao.setLatitude(usuarioController.getLatitude());
+		this.solicitacao.setLongitude(usuarioController.getLongitude());
 	}
 	
 	private String lerParametro(String parametro) {

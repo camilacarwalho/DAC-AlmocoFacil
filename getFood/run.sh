@@ -50,7 +50,8 @@ fi
 
 #IMPLANTAR BANCO DE DADOS
 if [ $parametro == "bd" ]; then
-	sh ./bd_run.sh	
+	sh ./bd_run.sh
+    docker logs -f bd	
 fi
 
 #IMPLANTAR APLICAÇÃO

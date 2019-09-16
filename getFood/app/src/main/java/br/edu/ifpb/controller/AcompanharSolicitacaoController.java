@@ -44,7 +44,7 @@ public class AcompanharSolicitacaoController extends PaginacaoController<Solicit
 				this.statusRequisicao);
 	}
 	
-	public StatusRequisicao[] getListarStatus() {return StatusRequisicao.values();}
+        public StatusRequisicao[] getListarStatus() {return StatusRequisicao.values();}
 	
 	public String getNome() {return usuarioController.getNome();}
 	public String getMatricula() {return usuarioController.getMatricula();}
