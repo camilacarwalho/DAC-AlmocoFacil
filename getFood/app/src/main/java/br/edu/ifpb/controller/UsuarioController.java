@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.domain.Usuario;
+import br.edu.ifpb.domain.enums.UsuarioEnum;
 import br.edu.ifpb.service.UsuarioService;
 
 @SessionScoped
@@ -67,6 +68,10 @@ public class UsuarioController implements Serializable {
 		usuarioService.desativar();
 		encerrarSessao();
 		return "home";
+	}
+
+	public UsuarioEnum[] tipoUsuario(){
+		return UsuarioEnum.values();
 	}
 	public Usuario getUsuario() {return usuarioService.getUsuarioLogado(); }
 	public String getMensagem() {return "Ambiente do " + usuarioService.getUsuarioEnum().getNome();}
