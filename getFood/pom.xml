@@ -17,9 +17,9 @@
   </properties>
 
    <modules>
-         <module>app</module>
-         <module>shared</module>
-    </modules>
+      <module>shared</module>
+      <module>app</module>
+   </modules>
 
 
 </project>
