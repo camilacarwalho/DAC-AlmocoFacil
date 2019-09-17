@@ -163,7 +163,7 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
 
     private void adicionarEstudante() {
 
-        new DialogBoxInput(this, "Informe a matrícula","Adicionar"){
+        DialogBoxInput db = new DialogBoxInput(this, "Informe a matrícula","Adicionar"){
 
             @Override
             public void retorno(String valor) {
@@ -175,7 +175,10 @@ public class SolicitarRefeicaoActivity extends AppCompatActivity {
             public void cancelar() {
                 this.cancel();
             }
-        }.show();
+        };
+        db.show();
+        db.forceFocus();
+
     }
 
     private void carregarDados(){

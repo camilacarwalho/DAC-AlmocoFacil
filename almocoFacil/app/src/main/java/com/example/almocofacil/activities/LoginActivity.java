@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
             String latitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("latitude", "padrao");
             String longitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("longitude", "padrao");
 
-            Log.d("Localizacao", latitude + " " + longitude);
+            Log.d("Localizacao2", latitude + " " + longitude);
 
             ActivityCompat.startActivity(LoginActivity.this, intent, activityOptionsCompat.toBundle());
             //startActivity(intent);
