@@ -29,44 +29,40 @@
             <h:form styleClass="col s12 white">
                 <div class="row">
                     <div class="input-field col s6">
-                        <p:inputMask mask="999.999.999-99" id="cpf" required="true" value="#"/>
+                        <p:inputMask mask="999.999.999-99" id="cpf" required="true" value="#{usuarioController.pessoa.cpf}"/>
                         <label for="cpf">CPF</label>
                     </div>
                     <div class="input-field col s6">
-                        <h:inputText id="matricula" required="true" value="#"/>
+                        <h:inputText id="matricula" required="true" value="#{usuarioController.usuarioNovo.matricula}"/>
                         <label for="matricula">Matricula</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <h:inputText id="nome" required="true" value="#"/>
+                        <h:inputText id="nome" required="true" value="#{usuarioController.pessoa.nome}"/>
                         <label for="nome">Nome</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <h:inputText id="email" required="true" value="#"/>
-                        <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <p:inputMask mask="(99)99999-9999" id="telefone" value="#"/>
+                        <p:inputMask mask="(99)99999-9999" id="telefone" value="#{usuarioController.pessoa.telefone}"/>
                         <label for="telefone">Telefone</label>
                     </div>
                     <div class="input-field col s6">
-                        <h:inputText id="senha" required="true" value="#"/>
+                        <h:inputSecret id="senha" required="true" value="#{usuarioController.usuarioNovo.senha}"/>
                         <label for="senha">Senha</label>
                     </div>
                 </div>
                 <div class="row">
                 <div class="input-field col s6">
-                    <h:selectOneMenu id="tipoUser" value="#">
+                    <h:selectOneMenu id="tipoUser" value="#{usuarioController.usuarioNovo.cargo}">
                         <f:selectItems var="tipo" value="#{usuarioController.tipoUsuario()}"
                                        itemValue="#{tipo}" itemLabel="#{tipo.name()}"/>
 
                     </h:selectOneMenu>
                 </div>
                 <div class="input-field col s6">
-                    <h:commandButton value="Salvar" styleClass="btn-large blue"/>
+                    <h:commandButton value="Salvar" action="#{usuarioController.salvar()}" styleClass="btn-large blue"/>
                 </div>
             </div>
             </h:form>

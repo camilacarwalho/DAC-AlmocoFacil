@@ -10,6 +10,7 @@ public interface UsuarioService {
 
 	boolean isLogado();
 	Usuario buscar(String matricula);
+	void salvar(Usuario usuario);
 	Usuario getUsuarioLogado();	
 	Usuario logar(String matricula, String senha);
 	void logout();
