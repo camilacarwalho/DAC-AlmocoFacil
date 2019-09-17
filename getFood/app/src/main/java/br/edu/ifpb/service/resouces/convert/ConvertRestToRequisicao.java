@@ -73,7 +73,8 @@ public class ConvertRestToRequisicao implements Serializable {
 				.toInstant()
 				.atZone(ZoneId.systemDefault())
 				.toLocalDate());
-
+		solicitacao.setLatitude(requisicaoRest.getLatitude());
+		solicitacao.setLongitude(requisicaoRest.getLongitude());
 		return requisicao;
 		
 	}
