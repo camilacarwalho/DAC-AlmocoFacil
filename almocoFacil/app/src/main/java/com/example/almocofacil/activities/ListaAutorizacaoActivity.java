@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +21,7 @@ import com.example.almocofacil.R;
 import com.example.almocofacil.domain.Autorizacao;
 import com.example.almocofacil.domain.BuscaAutorizacao;
 import com.example.almocofacil.domain.enums.StatusAutorizacao;
+import com.example.almocofacil.persistence.AutorizacaoDao;
 import com.example.almocofacil.services.AcessoRest;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,6 +32,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+
+import static com.example.almocofacil.domain.enums.StatusAutorizacao.PENDENTE;
 
 public class ListaAutorizacaoActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
@@ -43,6 +47,7 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
     private Spinner spRefeicao;
     private ListView lsAutorizacoes;
     private ProgressDialog progress;
+    private AutorizacaoDao autorizacaoDao;
 
 
 
@@ -58,6 +63,7 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
         lsAutorizacoes = findViewById(R.id.lvAutorizacoes);
 
         autorizacoes = new ArrayList<>();
+        autorizacaoDao = new AutorizacaoDao(this);
 
         //spinner
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
@@ -178,11 +184,27 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
             public void retorno(List<Autorizacao> objeto) {
                 if(objeto != null){
                     atualizarLista(objeto);
+                    popularBanco(objeto);
+                    Log.d("SQLITE", "populando o banco");
                 } else {
-                    atualizarLista(new ArrayList<Autorizacao>());
+                    List<Autorizacao> listaDoBanco = autorizacaoDao.listar();
+                    if(autorizacaoDao.listar() != null) {
+                        atualizarLista(listaDoBanco);
+                        Log.d("PEGANDO", "pegando dados dentro do banco");
+                    }
+                    else {
+                        atualizarLista(new ArrayList<Autorizacao>());
+                        Log.d("CRIANDO", "criando lista favia");
+                    }
                 }
             }
         }.put(ba);
+    }
+
+    private void popularBanco(List<Autorizacao> listaAutorizacao){
+        for (Autorizacao autorizacao: listaAutorizacao) {
+            if (autorizacao.getStatusAutorizacao() == PENDENTE) autorizacaoDao.salvar(autorizacao);
+        }
     }
 
     private void atualizarLista(List<Autorizacao> autorizacoes ){
