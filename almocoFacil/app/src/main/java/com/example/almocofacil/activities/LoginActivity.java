@@ -27,12 +27,14 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edMatricula;
     private EditText edSenha;
     private Button btEntrar;
+    private Notificacao notificacao;
 
     ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        notificacao = new Notificacao(getApplicationContext());
         InitLocalizacao la = new InitLocalizacao(getApplicationContext());
         setContentView(R.layout.activity_login);
 
@@ -116,15 +118,19 @@ public class LoginActivity extends AppCompatActivity {
             SessionSharedPreferences ssp = new SessionSharedPreferences(getApplicationContext());
             ssp.login(usuario);
 
-            //preparando aplicativo para receber notificações
-            Notificacao notificacao = new Notificacao(getApplicationContext());
-            //enviando token para o servidor de DAC
-            notificacao.registraTokenNoServidor();
+            if (nomeClasse ==  RelatorioRefeicaoActivity.class ) {
+                //preparando aplicativo para receber notificações
+
+                try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
+
+                //enviando token para o servidor de DAC
+                notificacao.registraTokenNoServidor();
+            }
 
             String latitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("latitude", "padrao");
             String longitude = LocalizacaoSingleton.getInstance(getApplicationContext()).getString("longitude", "padrao");
 
-            Log.d("Localizacao", latitude + " " + longitude);
+            Log.d("Localizacao2", latitude + " " + longitude);
 
             ActivityCompat.startActivity(LoginActivity.this, intent, activityOptionsCompat.toBundle());
             //startActivity(intent);

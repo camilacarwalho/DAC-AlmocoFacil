@@ -49,13 +49,18 @@ public class InitLocalizacao implements GoogleApiClient.ConnectionCallbacks, Goo
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         System.out.print("Conexão com o serviços do Google Service API foi estabelecida!");
+
         localizacao = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        String latitude = "";
-        String longitude = "";
+        String latitude = "xxxx";
+        String longitude = "xxxxx";
+
+        //temp
+        try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 
         if (localizacao != null){
             latitude = String.valueOf(localizacao.getLatitude());
             longitude = String.valueOf(localizacao.getLongitude());
+            Log.d("ARI", latitude + "  " + longitude);
         }
 
         SharedPreferences sp = LocalizacaoSingleton.getInstance(context);

@@ -32,7 +32,7 @@
 		<property name="serverName" value="host-banco"/>
         <property name="portNumber" value="5432"/>
         <!--LOCAL -->
-        <!--<property name="serverName" value="localhost"/>
+        <!-- <property name="serverName" value="localhost"/>
         <property name="portNumber" value="5433"/>-->
         
         <property name="databaseName" value="getfood"/>
@@ -41,7 +41,7 @@
         <property name="driverClass" value="org.postgresql.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource 
-    	enabled="true" 
+        enabled="true" 
         jndi-name="java:app/jdbc/persistence_getfood" 
         object-type="user" 
         pool-name="post-gre-sql_persistence_events_postgresPool"/>

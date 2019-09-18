@@ -37,7 +37,9 @@ public class GerenteNotificacao {
         // ele precisa ser armazenado para enviar uma messagem quando encerrar uma refeição
         String tokenParaSalvar = token.replace("\"", "");
 
-        notificacao.getTokens().add(tokenParaSalvar);
+        if (tokenParaSalvar != null) notificacao.getTokens().add(tokenParaSalvar);
+        
+        System.out.print(tokenParaSalvar);
         
         System.out.println("Token adicionado");
         

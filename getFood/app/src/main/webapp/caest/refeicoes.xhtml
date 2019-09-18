@@ -2,9 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 
@@ -23,56 +24,89 @@
     <!-- ............ -->
     
     <ui:define name="top">
-        <h4>Acompanhar refeições</h4>
-        <div class="row">
+		<h4>Acompanhar refeições</h4>
+		<div class="row">
 
-            <li class="collection-item">
-                <h:form prependId="false" id="refeicao">
+			<!--<h:form prependId="false">-->
+			<ul class="collection with-header">
+				<li class="collection-item">
+					<h:form prependId="false">
 						<div class="row">
 							<div class="input-field col s6">
 								<h:inputText 
 									id="nome"
-                                                                        value="#{refeicaoController.nome}"
+                                    value="#{refeicaoController.nome}"
 									alt="Informe o nome da Refeição"/> 
+							<div class="input-field col s3">
+								<p:inputMask value="#{refeicaoController.dataInicial}" mask="99/99/9999" converter="dateConverter">
+									<f:ajax/>
+								</p:inputMask>
+								<label>Data Inicial</label>
+							</div>
+							<div class="input-field col s3">
+								<p:inputMask mask="99/99/9999" value="#{refeicaoController.dataFinal}" converter="dateConverter">
+									<f:ajax/>
+								</p:inputMask>
+								<label>Data Final</label>
+							</div>
+							<div class="col s3">
+								<h:commandLink
+										action="#{refeicaoController.buscar}"
+										class="btn-floating btn-small waves-effect waves-light teal">
+									<i class="material-icons">search</i>
+								</h:commandLink>
+							</div>
+						</div>
+						</div>
+					</h:form>
+				</li>
+				<li class="collection-item">
+					<div class="row">
+						<div class="col l3"><b>Data</b></div>
+						<div class="col l3"><b>Refeição</b></div>
+						<div class="col l3"><b>Quantidade</b></div>
+						<div class="col l2"><b>Status</b></div>
+					</div>
+				</li>
+				<ui:repeat var="autorizacao" value="#{refeicaoController.itens}">
+					<li class="collection-item">
+						<div class="row">
+							<div class="col l3">
+								<h:outputText  value="#{autorizacao.data}"><f:converter converterId="dateConverter"/> </h:outputText>
+							</div>
+							<div class="col l3">
+								<h:outputText value="#{autorizacao.nome}"></h:outputText>
+							</div>
+							<div class="col l3">
+								<h:outputText value="#{autorizacao.quantidade}"></h:outputText>
+							</div>
+							<div class="col l2">
+								<h:outputText value="#{autorizacao.statusAutorizacao}"></h:outputText>
 							</div>
 
-							<div class="input-field col s3">							
-								<h:inputText 
-									id="horaInicio"
-                                                                        value="#{refeicaoController.horaInicio}"
-									alt="Informe o horário de Início"/> 
-							</div>
-							
-							<dir class="col s3">
-							 	<h:inputText 
-									id="horaTermino"
-                                                                        value="#{refeicaoController.horaTermino}"
-                                                                        alt="Informe o horário de Término" /> 
-							</dir>
-                                                    
-                                                    <dir class="col s3">
-							 	<h:commandLink
-                                                                    action="#{refeicaoController.atualizarRefeicao()}"
-							 		class="btn-floating btn-small waves-effect waves-light teal">
-							 		<i class="material-icons">edit</i>
-							 	</h:commandLink>
-								
-							</dir>
-                                                    <dir class="col s3">
-							 	<h:commandLink
-                                                                    action="#{refeicaoController.removerRefeicao()}"
-							 		class="btn-floating btn-small waves-effect waves-light teal">
-							 		<i class="material-icons">edit</i>
-							 	</h:commandLink>
-								
-							</dir>
+
 
 						</div>
 
-						</h:form>
-
 					</li>
-        </div>
+
+				</ui:repeat>
+				<li class="collection-item">
+					<div class="row">
+						<ui:include  src="../includes/paginacao.xhtml">
+							<ui:param value="#{refeicaoController}" name="controller"/>
+						</ui:include>
+					</div>
+				</li>
+
+				<li class="collection-item">
+					<div class="row">
+						<p>Total de requisições encontrados: <h:outputText value="#{refeicaoController.quantidadeItens}"/></p>
+					</div>
+				</li>
+			</ul>
+			<!--</h:form>-->
+		</div>
     </ui:define>
 </ui:composition>
 </html>

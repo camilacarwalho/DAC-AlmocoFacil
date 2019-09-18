@@ -50,7 +50,12 @@ public class UsuarioServiceImpl implements Serializable, UsuarioService {
 	public Usuario buscar(String matricula) {
 		return usuarioDao.buscar(matricula);
 	}
-	
+
+	@Override
+	public void salvar(Usuario usuario) {
+			this.usuarioDao.salvar(usuario);
+	}
+
 	@Override
 	public Usuario logar(String matricula, String senha) {
 		sair();
