@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 
-                <ui:repeat var="edital" value="#{editalController.listar}">
+                <ui:repeat var="edital" value="#{editalController.listar()}">
                     <li class="collection-item">
                         <div class="row">
                             <div class="col l2">
@@ -55,7 +55,7 @@
                                 <h:outputText value="#{edital.periodo.dataFinal}"></h:outputText>
                             </div>
                             <div class="col l2">
-                                <h:outputText value="#{editalController.totalAutorizacoes}"></h:outputText>
+                                <h:outputText value="#{editalController.totalAutorizacoes()}"></h:outputText>
                             </div>
                         </div>
                     </li>
