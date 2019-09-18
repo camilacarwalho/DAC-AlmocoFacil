@@ -4,18 +4,21 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.domain.AutorizacaoRR;
 import br.edu.ifpb.domain.Refeicao;
 import br.edu.ifpb.domain.Requisicao;
+import br.edu.ifpb.service.AutorizacaoService;
 import br.edu.ifpb.service.RefeicaoService;
 
 @SuppressWarnings("serial")
 @RequestScoped
 @Named
-public class RefeicaoController implements Serializable {
+public class RefeicaoController extends PaginacaoController<AutorizacaoRR> implements Serializable {
 
 	@Inject
 	private RefeicaoService service;	
@@ -23,6 +26,26 @@ public class RefeicaoController implements Serializable {
 	private String nome;
 	private LocalDate horaInicio;
 	private LocalDate horaTermino;
+	private LocalDate dataInicial;
+	private LocalDate dataFinal;
+
+	@Inject
+	private AutorizacaoService autorizaoService;
+
+	@PostConstruct
+	public void init(){
+		buscar();
+	}
+
+	@Override
+	protected List<AutorizacaoRR> listarItensDaBusca(int inicio, int maximo) {
+		return autorizaoService.listarAutorizacaoRR(inicio,maximo,dataInicial,dataFinal);
+	}
+
+	@Override
+	public int getQuantidadeItens() {
+		return autorizaoService.quantAutorizacaoRR(dataInicial,dataFinal);
+	}
 
 	public void salvarRefeicao() {
 		service.salvar(refeicao);
@@ -76,4 +99,19 @@ public class RefeicaoController implements Serializable {
 		this.horaTermino = horaTermino;
 	}
 
+	public LocalDate getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(LocalDate dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public LocalDate getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(LocalDate dataFinal) {
+		this.dataFinal = dataFinal;
+	}
 }
