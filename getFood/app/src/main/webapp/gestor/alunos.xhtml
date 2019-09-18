@@ -44,7 +44,7 @@
                                 </h:commandLink>
                             </dir>
 
-                                <div class="file-field input-field col s3">
+                                <div class="file-field input-field col s5">
 
                                     <div class="btn">
                                         <span>Cadastro Via CSV</span>
@@ -53,13 +53,26 @@
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text" />
                                     </div>
-                                    <dir class="col s2">
+                                    <!-- Modal Trigger -->
+                                    <a class="waves-effect grey waves-light btn modal-trigger" href="#modal1">?</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+
+                                            <p>O csv possui os seguintes campos: CPF, nome, telefone, matrícula, código do curso e código do período.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Entendi!!!</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col s6">
                                         <h:commandLink
                                                 action="#{gestaoAlunoController.salvarViaCsv()}"
-                                                class="btn-floating btn-small waves-effect waves-light teal">
+                                                class=" btn-small waves-effect waves-light teal">
                                             <i class="material-icons">publish</i>
                                         </h:commandLink>
-                                    </dir>
+                                    </div>
                                 </div>
                         </div>
                     </h:form>
