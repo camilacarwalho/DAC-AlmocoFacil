@@ -22,10 +22,8 @@ Estão contidos todos os diagramas referentes ao respectivo repositório
 - :sunglasses: Murillo Tavares
 - :sunglasses: Romulo Pereira
 
-# Comandos
-** Implantação via Docker ** * Linux *
-sudo ./run all
-** Remover a implantação do Docker ** *Linux *
-sudo ./stop all
-** Endereço de acesso da aplicação **
-localhost:8082/app
+## Comandos
+1. É necessário ter o Docker na máquina
+2. Comando para implantação no linux: `sudo ./run all`
+3. Comando para remoção no linux: `sudo ./stop all`
+4. Endereço de acesso da aplicação: `localhost:8082/app`
