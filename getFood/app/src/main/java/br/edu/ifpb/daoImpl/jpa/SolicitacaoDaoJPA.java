@@ -131,8 +131,9 @@ public class SolicitacaoDaoJPA implements SolicitacaoDao {
         @Override
         public int solicitacoesAprovadas() {
             String jpql ="SELECT COUNT(s.id) FROM Solicitacao s "
-                                    + "WHERE s.status = " + StatusRequisicao.AUTORIZADA;
+                                    + "WHERE s.statusRequisicao = :status ";
             TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+            query.setParameter("status",StatusRequisicao.AUTORIZADA);
             Long qdt = query.getSingleResult();
             return qdt.intValue();
         }
