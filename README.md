@@ -21,3 +21,11 @@ Estão contidos todos os diagramas referentes ao respectivo repositório
 - :sunglasses: Lucas Garrido
 - :sunglasses: Murillo Tavares
 - :sunglasses: Romulo Pereira
+
+# Comandos
+** Implantação via Docker ** * Linux *
+sudo ./run all
+** Remover a implantação do Docker ** *Linux *
+sudo ./stop all
+** Endereço de acesso da aplicação **
+localhost:8082/app
