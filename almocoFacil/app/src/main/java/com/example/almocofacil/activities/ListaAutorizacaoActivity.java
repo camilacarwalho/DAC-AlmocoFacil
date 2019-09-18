@@ -116,6 +116,8 @@ public class ListaAutorizacaoActivity extends Activity implements AdapterView.On
     }
 
     private void gravarFinalizado() {
+        for (Autorizacao autorizacao : autorizacoes)
+            autorizacaoDao.editar(autorizacao);
         new AcessoRest<String>(
                 this,
                 "autorizacao/finalizar",

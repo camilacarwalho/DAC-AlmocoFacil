@@ -47,6 +47,20 @@ public class AutorizacaoDao {
         }
     }
 
+    public boolean editar(Autorizacao autorizacao){
+        ContentValues values = new ContentValues();
+        values.put("ALUNONOME",autorizacao.getNomeAluno());
+        values.put("ALUNOMATRICULA",autorizacao.getMatriculaAluno());
+        values.put("DATA",autorizacao.getData().toString());
+        values.put("REFEICAONOME",autorizacao.getRefeicaoNome());
+        values.put("STATUSAUTORIZACAO",autorizacao.getStatusAutorizacao().getNome());
+
+        String[] param = new String[1];
+        param[0] = String.valueOf(autorizacao.getAutorizacaoId());
+
+        return gw.getDatabase().update(TABLE_AUTORIZACAO,values,"ID=?", param) > 0;
+    }
+
     public boolean excluir(int id){
         return gw.getDatabase().delete(TABLE_AUTORIZACAO, "ID=?", new String[]{ id + "" }) > 0;
     }
@@ -81,5 +95,6 @@ public class AutorizacaoDao {
         }
         cursor.close();
         return autorizacoes;
+
     }
 }
